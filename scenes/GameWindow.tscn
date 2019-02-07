@@ -113,6 +113,8 @@ autostart = false
 
 [connection signal="make_lock" from="Grid" to="LockHolder" method="_on_Grid_make_lock"]
 
+[connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
+
 [connection signal="timeout" from="DestroyTimer" to="Grid" method="_on_DestroyTimer_timeout"]
 
 [connection signal="timeout" from="CollapseTimer" to="Grid" method="_on_CollapseTimer_timeout"]

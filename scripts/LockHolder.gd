@@ -1,5 +1,7 @@
 extends Node2D
 
+signal remove_lock
+
 var lock_pieces = []
 var width = 8
 var height = 10
@@ -18,12 +20,6 @@ func make_2d_array():
 	return array
 
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-
 func _on_Grid_make_lock(board_position):
 	if lock_pieces.size() == 0:
 		lock_pieces = make_2d_array()
@@ -39,3 +35,4 @@ func _on_Grid_damage_lock(board_position):
 		if lock_pieces[board_position.x][board_position.y].health <= 0:
 			lock_pieces[board_position.x][board_position.y].queue_free()
 			lock_pieces[board_position.x][board_position.y] = null
+			emit_signal("remove_lock", board_position)

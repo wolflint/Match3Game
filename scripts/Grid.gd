@@ -75,7 +75,11 @@ func restricted_move(place):
 
 func is_in_array(array, item):
 	for i in array.size():
-		if empty_spaces[i] == item:
+		print("ARRAY:")
+		print(array)
+		print("ITEM")
+		print(item)
+		if array[i] == item:
 			return true
 	return false
 
@@ -137,6 +141,7 @@ func touch_input():
 	if Input.is_action_just_pressed("ui_touch"):
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)):
 			first_touch = pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)
+			print(first_touch)
 			controlling = true
 	if Input.is_action_just_released("ui_touch"):
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)) && controlling:
@@ -148,7 +153,7 @@ func swap_pieces(column, row, direction):
 	var first_piece = all_pieces[column][row]
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
 	if first_piece != null && other_piece != null:
-		if not restricted_move(Vector2(column, row)) and not restricted_move(Vector2(column, row) + direction):
+		if !restricted_move(Vector2(column, row)) and !restricted_move(Vector2(column, row) + direction):
 			store_info(first_piece, other_piece, Vector2(column, row), direction)
 			state = wait
 			all_pieces[column][row] = other_piece
@@ -294,3 +299,9 @@ func _on_CollapseTimer_timeout():
 
 func _on_RefillTimer_timeout():
 	refill_columns()
+
+
+func _on_LockHolder_remove_lock(place):
+	for i in range(lock_spaces.size() -1, -1, -1):
+		if lock_spaces[i] == place:
+			lock_spaces.remove(i)
