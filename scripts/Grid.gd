@@ -15,10 +15,13 @@ export (int) var y_offset
 # Obstacle Variables
 export (PoolVector2Array) var empty_spaces
 export (PoolVector2Array) var ice_spaces
+export (PoolVector2Array) var lock_spaces
 
 # Obstace Signals
-signal damage_ice
 signal make_ice
+signal damage_ice
+signal make_lock
+signal damage_lock
 
 # The piece array
 var possible_pieces = [
@@ -50,11 +53,24 @@ func _ready():
 	all_pieces = make_2d_array()
 	spawn_pieces()
 	spawn_ice()
+	spawn_locks()
 
 func restricted_fill(place):
 	# Check empty pieces
 	if is_in_array(empty_spaces, place):
 		return true
+	return false
+
+func restricted_move(place):
+	# Check lock pieces
+	print("PLACE" + str(place))
+	print("LOCK SPACES" + str(lock_spaces))
+	if is_in_array(lock_spaces, place):
+		print("IS IN ARRAY")		
+		return true
+#	elif is_in_array(ice_spaces, place):
+#		return true
+	print("FALSE")
 	return false
 
 func is_in_array(array, item):
@@ -132,18 +148,23 @@ func swap_pieces(column, row, direction):
 	var first_piece = all_pieces[column][row]
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
 	if first_piece != null && other_piece != null:
-		store_info(first_piece, other_piece, Vector2(column, row), direction)
-		state = wait
-		all_pieces[column][row] = other_piece
-		all_pieces[column + direction.x][row + direction.y] = first_piece
-		first_piece.move(grid_to_pixel(column + direction.x, row + direction.y))
-		other_piece.move(grid_to_pixel(column, row))
-		if !move_checked:
-			find_matches()
+		if not restricted_move(Vector2(column, row)) and not restricted_move(Vector2(column, row) + direction):
+			store_info(first_piece, other_piece, Vector2(column, row), direction)
+			state = wait
+			all_pieces[column][row] = other_piece
+			all_pieces[column + direction.x][row + direction.y] = first_piece
+			first_piece.move(grid_to_pixel(column + direction.x, row + direction.y))
+			other_piece.move(grid_to_pixel(column, row))
+			if !move_checked:
+				find_matches()
 
 func spawn_ice():
 	for i in ice_spaces.size():
 		emit_signal("make_ice", ice_spaces[i])
+
+func spawn_locks():
+	for i in lock_spaces.size():
+		emit_signal("make_lock", lock_spaces[i])
 
 func store_info(first_piece, other_piece, place, direction):
 	piece_one = first_piece
@@ -209,7 +230,7 @@ func destroy_matched():
 		for j in height:
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
-					emit_signal("damage_ice", Vector2(i, j))
+					damage_special(i, j)
 					was_matched = true
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
@@ -218,6 +239,10 @@ func destroy_matched():
 		get_parent().get_node("CollapseTimer").start()
 	else:
 		swap_back()
+
+func damage_special(column, row):
+	emit_signal("damage_ice", Vector2(column, row))
+	emit_signal("damage_lock", Vector2(column, row))
 
 func collapse_columns():
 	for i in width:
