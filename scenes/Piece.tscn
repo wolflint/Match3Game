@@ -8,6 +8,9 @@ scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 color = "Null"
+row_texture = null
+column_texture = null
+adjacent_texture = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
