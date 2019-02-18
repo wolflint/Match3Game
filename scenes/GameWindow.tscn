@@ -6,10 +6,10 @@
 [ext_resource path="res://scripts/Grid.gd" type="Script" id=4]
 [ext_resource path="res://scripts/IceHolder.gd" type="Script" id=5]
 [ext_resource path="res://scripts/LockHolder.gd" type="Script" id=6]
-[ext_resource path="res://scenes/ConcreteHolder.gd" type="Script" id=7]
+[ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=7]
 [ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=8]
 
-[node name="GameWindow" type="Node2D"]
+[node name="GameWindow" type="Node2D" index="0"]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -118,6 +118,8 @@ autostart = false
 [connection signal="make_lock" from="Grid" to="LockHolder" method="_on_Grid_make_lock"]
 
 [connection signal="make_slime" from="Grid" to="SlimeHolder" method="_on_Grid_make_slime"]
+
+[connection signal="update_score" from="Grid" to="TopUI" method="_on_Grid_update_score"]
 
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
 

@@ -1,5 +1,8 @@
 extends Node2D
 
+var score = 0
+signal update_score
+
 # State machine
 enum {wait, move}
 var state
@@ -361,6 +364,8 @@ func destroy_matched():
 	move_checked = true	
 	if was_matched:
 		get_parent().get_node("CollapseTimer").start()
+		score += 1
+		emit_signal("update_score", score)
 	else:
 		swap_back()
 	current_matches.clear()
