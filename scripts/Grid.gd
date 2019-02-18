@@ -36,8 +36,8 @@ preload("res://scenes/YellowPiece.tscn"),
 preload("res://scenes/BluePiece.tscn"),
 preload("res://scenes/PinkPiece.tscn"),
 preload("res://scenes/OrangePiece.tscn"),
-preload("res://scenes/GreenPiece.tscn"),
-preload("res://scenes/LightGreenPiece.tscn")
+#preload("res://scenes/GreenPiece.tscn"),
+#preload("res://scenes/LightGreenPiece.tscn")
 ]
 
 # The current pieces in the scene
@@ -310,13 +310,13 @@ func find_bombs():
 		# 3 is a color bomb
 		if col_matched == 5 or row_matched == 5:
 			print("color bomb")
-		if col_matched == 3 and row_matched ==3:
+		elif col_matched == 3 and row_matched ==3:
 			make_bomb(0, current_color)
 			return
-		if col_matched == 4:
+		elif col_matched == 4:
 			make_bomb(1, current_color)
 			return
-		if row_matched == 4:
+		elif row_matched == 4:
 			make_bomb(2, current_color)
 			return
 
@@ -507,11 +507,19 @@ func find_normal_neighbour(column, row):
 func match_all_in_column(column):
 	for i in height:
 		if all_pieces[column][i] != null:
+			if all_pieces[column][i].is_row_bomb:
+				match_all_in_row(i)
+			if all_pieces[column][i].is_adjacent_bomb:
+				find_adjacent_pieces(column, i)
 			all_pieces[column][i].matched = true
 
 func match_all_in_row(row):
 	for i in width:
 		if all_pieces[i][row] != null:
+			if all_pieces[i][row].is_column_bomb:
+				match_all_in_column(i)
+			if all_pieces[i][row].is_adjacent_bomb:
+				find_adjacent_pieces(i, row)
 			all_pieces[i][row].matched = true
 
 func find_adjacent_pieces(column, row):
@@ -519,6 +527,10 @@ func find_adjacent_pieces(column, row):
 		for j in range(-1, 2):
 			if is_in_grid(Vector2(column + i, row + j)):
 				if all_pieces[column+i][row+j] != null:
+					if all_pieces[column][i].is_row_bomb:
+						match_all_in_row(i)
+					if all_pieces[i][row].is_column_bomb:
+						match_all_in_column(i)
 					all_pieces[column+i][row+j].matched = true
 
 func _on_DestroyTimer_timeout():
