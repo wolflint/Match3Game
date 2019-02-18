@@ -64,11 +64,13 @@ func _ready():
 #	lock_spaces = spawn_obstacle("make_lock", lock_spaces)
 #	concrete_spaces = spawn_obstacle("make_concrete", concrete_spaces)
 #	slime_spaces = spawn_obstacle("make_slime", slime_spaces)
-	
+
 	spawn_ice()
 	spawn_locks()
 	spawn_concrete()
 	spawn_slime()
+	print("READY slime_spaces")
+	print(slime_spaces)
 
 func restricted_fill(place):
 	# Check empty pieces
@@ -89,16 +91,21 @@ func restricted_move(place):
 #		return true
 	return false
 
-func is_in_array(array, item):
-	print(array.size())
-	for i in array.size():
-		if array[i] == item:
-			return true
+func is_ice_block(place):
+	if is_in_array(ice_spaces, place):
+		return true
 	return false
 
+func is_in_array(array, item):
+	if array != null:
+		for i in array.size():
+			if array[i] == item:
+				return true
+		return false
+	else:
+		print("array is null")
+
 func remove_from_array(new_array, item):
-	print("NEW_ARRAY")
-	print(new_array)
 	for i in range(new_array.size() -1, -1, -1):
 		if new_array[i] == item:
 			new_array.remove(i)
@@ -461,25 +468,40 @@ func generate_slime():
 				slime_made = true
 			tracker += 1
 
+func check_restrictions(place):
+	if is_piece_null(place.x, place.y):
+		return true
+	elif restricted_move(place):
+		return true
+	elif restricted_fill(place):
+		return true
+	elif is_ice_block(place):
+		return true
+	else:
+		return false
+
 func find_normal_neighbour(column, row):
 	# Pick random direction
 	var rand_dir = floor(rand_range(0, 3))
 	
 	# Check right first
 	if rand_dir == 0 and is_in_grid(Vector2(column + 1, row)):
-		if !is_piece_null(column + 1, row) and !restricted_move(Vector2(column + 1, row)) and !restricted_fill(Vector2(column + 1, row)):
+		if !check_restrictions(Vector2(column + 1, row)):
 			return Vector2(column + 1, row)
 	# Check left
 	if rand_dir == 1 and is_in_grid(Vector2(column - 1, row)):
-		if !is_piece_null(column - 1, row) and !restricted_move(Vector2(column - 1, row)) and !restricted_fill(Vector2(column - 1, row)):
+#		if !is_piece_null(column - 1, row) and !restricted_move(Vector2(column - 1, row)) and !restricted_fill(Vector2(column - 1, row)):
+		if !check_restrictions(Vector2(column - 1, row)):
 			return Vector2(column - 1, row)
 	# Check up
 	if rand_dir == 2 and is_in_grid(Vector2(column, row + 1)):
-		if !is_piece_null(column, row + 1) and !restricted_move(Vector2(column, row + 1)) and !restricted_fill(Vector2(column, row + 1)):
+#		if !is_piece_null(column, row + 1) and !restricted_move(Vector2(column, row + 1)) and !restricted_fill(Vector2(column, row + 1)):
+		if !check_restrictions(Vector2(column, row + 1)):
 			return Vector2(column, row + 1)
 	# Check down
 	if rand_dir == 3 and is_in_grid(Vector2(column, row - 1)):
-		if !is_piece_null(column, row - 1) and !restricted_move(Vector2(column, row - 1)) and !restricted_fill(Vector2(column, row - 1)):
+#		if !is_piece_null(column, row - 1) and !restricted_move(Vector2(column, row - 1)) and !restricted_fill(Vector2(column, row - 1)):
+		if !check_restrictions(Vector2(column, row - 1)):
 			return Vector2(column, row - 1)
 
 func match_all_in_column(column):
@@ -517,3 +539,5 @@ func _on_ConcreteHolder_remove_concrete(item):
 func _on_SlimeHolder_remove_slime(item):
 	damaged_slime = true
 	slime_spaces = remove_from_array(slime_spaces, item)
+	print("REMOVE slime_spaces")
+	print(slime_spaces)
