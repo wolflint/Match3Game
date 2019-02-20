@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sinker v2.png-67cd614a5cdbfe32432b38525b3aba24.stex"
+path="res://.import/Button Template Blue.png-af389c83ea908da61ff8c9d819e68d20.stex"
 
 [deps]
 
-source_file="res://art/Obstacles:Sinkers/Sinker v2.png"
-dest_files=[ "res://.import/Sinker v2.png-67cd614a5cdbfe32432b38525b3aba24.stex" ]
+source_file="res://art/UI/Buttons/Button Template Blue.png"
+dest_files=[ "res://.import/Button Template Blue.png-af389c83ea908da61ff8c9d819e68d20.stex" ]
 
 [params]
 

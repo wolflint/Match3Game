@@ -9,7 +9,7 @@
 [ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=7]
 [ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=8]
 
-[node name="GameWindow" type="Node2D" index="0"]
+[node name="GameWindow" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -64,6 +64,7 @@ ice_spaces = PoolVector2Array(  )
 lock_spaces = PoolVector2Array(  )
 concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )
+piece_value = 10
 
 [node name="IceHolder" type="Node2D" parent="." index="4"]
 

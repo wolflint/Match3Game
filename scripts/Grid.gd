@@ -1,8 +1,5 @@
 extends Node2D
 
-var score = 0
-signal update_score
-
 # State machine
 enum {wait, move}
 var state
@@ -58,6 +55,11 @@ var move_checked = false
 var first_touch = Vector2(0, 0)
 var final_touch = Vector2(0, 0)
 var controlling = false
+
+# Scoring variables
+signal update_score
+export (int) var piece_value
+var streak = 1
 
 func _ready():
 	state = move
@@ -184,6 +186,15 @@ func swap_pieces(column, row, direction):
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
 	if first_piece != null && other_piece != null:
 		if !restricted_move(Vector2(column, row)) and !restricted_move(Vector2(column, row) + direction):
+			if is_color_bomb(first_piece, other_piece):
+				if first_piece.color == "Color":
+					match_color(other_piece.color)
+					match_and_dim(first_piece)
+					add_to_array(Vector2(column, row))
+				else:
+					match_color(first_piece.color)
+					match_and_dim(other_piece)
+					add_to_array(Vector2(column + direction.x, row + direction.y))
 			store_info(first_piece, other_piece, Vector2(column, row), direction)
 			state = wait
 			all_pieces[column][row] = other_piece
@@ -193,10 +204,10 @@ func swap_pieces(column, row, direction):
 			if !move_checked:
 				find_matches()
 
-#func spawn_obstacle(signal_name, new_array):
-#	for i in new_array.size():
-#		emit_signal(signal_name, new_array[i])
-#		return new_array
+func is_color_bomb(piece_one, piece_two):
+	if piece_one.color == "Color" or piece_two.color == "Color":
+		return true
+	return false
 
 func spawn_ice():
 	for i in ice_spaces.size():
@@ -312,7 +323,7 @@ func find_bombs():
 		# 0 is an adj bomb, 1 is a column bomb, and 2 is a row bomb
 		# 3 is a color bomb
 		if col_matched == 5 or row_matched == 5:
-			print("color bomb")
+			make_bomb(3, current_color)
 		elif col_matched == 3 and row_matched ==3:
 			make_bomb(0, current_color)
 			return
@@ -345,7 +356,8 @@ func change_bomb(bomb_type, piece):
 		piece.make_row_bomb()
 	elif bomb_type == 2:
 		piece.make_column_bomb()
-
+	elif bomb_type == 3:
+		piece.make_colour_bomb()
 func match_and_dim(item):
 	item.matched = true
 	item.dim()
@@ -361,11 +373,10 @@ func destroy_matched():
 					was_matched = true
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
+					emit_signal("update_score", piece_value * streak)
 	move_checked = true	
 	if was_matched:
 		get_parent().get_node("CollapseTimer").start()
-		score += 1
-		emit_signal("update_score", score)
 	else:
 		swap_back()
 	current_matches.clear()
@@ -404,6 +415,21 @@ func damage_special(column, row):
 	check_concrete(column, row)
 	check_slime(column, row)
 
+func match_color(color):
+	for i in width:
+		for j in height:
+			if all_pieces[i][j] != null:
+				if all_pieces[i][j].color == color:
+					match_and_dim(all_pieces[i][j])
+					add_to_array(Vector2(i, j))
+
+func clear_board():
+	for i in width:
+		for j in height:
+			if all_pieces[i][j] != null:
+				all_pieces[i][j].match_and_dim()
+				add_to_array(Vector2(i, j))
+
 func collapse_columns():
 	for i in width:
 		for j in height:
@@ -417,6 +443,7 @@ func collapse_columns():
 	get_parent().get_node("RefillTimer").start()
 
 func refill_columns():
+	streak += 1
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] == null && !restricted_fill(Vector2(i, j)):
@@ -446,6 +473,7 @@ func after_refill():
 	if !damaged_slime:
 		generate_slime()
 	state = move
+	streak = 1
 	move_checked = false
 	damaged_slime = false
 

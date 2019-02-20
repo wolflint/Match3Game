@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blocker v 1.png-edbf1c4c47918f1fbfc9cba07b567da4.stex"
+path="res://.import/Score Bar Fill.png-29a1bd53e0ee4c4011724c61ba8cf14d.stex"
 
 [deps]
 
-source_file="res://art/Obstacles:Sinkers/Blocker v 1.png"
-dest_files=[ "res://.import/Blocker v 1.png-edbf1c4c47918f1fbfc9cba07b567da4.stex" ]
+source_file="res://art/UI/Score Bar Fill.png"
+dest_files=[ "res://.import/Score Bar Fill.png-29a1bd53e0ee4c4011724c61ba8cf14d.stex" ]
 
 [params]
 

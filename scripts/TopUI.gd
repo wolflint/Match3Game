@@ -1,19 +1,11 @@
 extends TextureRect
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+onready var score_label = $MarginContainer/HBoxContainer/ScoreLabel
+var current_score = 0
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	_on_Grid_update_score(current_score)
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-
-func _on_Grid_update_score(score):
-	$MarginContainer/HBoxContainer/Score.text = str(score)
+func _on_Grid_update_score(amount_to_change):
+	current_score += amount_to_change
+	score_label.text = str(current_score)

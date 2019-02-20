@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sinker v3.png-397cbd5304b26f2e920480eb525e3151.stex"
+path="res://.import/explode_6.png-bfa99a23bf445e8ce7475b627cf6583e.stex"
 
 [deps]
 
-source_file="res://art/Obstacles:Sinkers/Sinker v3.png"
-dest_files=[ "res://.import/Sinker v3.png-397cbd5304b26f2e920480eb525e3151.stex" ]
+source_file="res://art/Particles and effects/Explosion V1/explode_6.png"
+dest_files=[ "res://.import/explode_6.png-bfa99a23bf445e8ce7475b627cf6583e.stex" ]
 
 [params]
 
