@@ -61,6 +61,12 @@ signal update_score
 export (int) var piece_value
 var streak = 1
 
+# was a color bomb used?
+var color_bomb_used = false
+
+# Effects
+var particle_effect = preload("res://scenes/ParticleEffect.tscn")
+
 func _ready():
 	state = move
 	all_pieces = make_2d_array()
@@ -206,6 +212,7 @@ func swap_pieces(column, row, direction):
 
 func is_color_bomb(piece_one, piece_two):
 	if piece_one.color == "Color" or piece_two.color == "Color":
+		color_bomb_used = true
 		return true
 	return false
 
@@ -340,14 +347,15 @@ func make_bomb(bomb_type, color):
 		# Cache a few variables
 		var current_column = current_matches[i].x
 		var current_row = current_matches[i].y
-		if all_pieces[current_column][current_row] == piece_one and piece_one.color == color:
-			# Make piece_one a bomb
-			piece_one.matched = false
-			change_bomb(bomb_type, piece_one)
-		if all_pieces[current_column][current_row] == piece_two and piece_two.color == color:
-			# Make piece_two a bomb
-			piece_two.matched = false
-			change_bomb(bomb_type, piece_two)
+		if !color_bomb_used:
+			if all_pieces[current_column][current_row] == piece_one and piece_one.color == color:
+				# Make piece_one a bomb
+				piece_one.matched = false
+				change_bomb(bomb_type, piece_one)
+			if all_pieces[current_column][current_row] == piece_two and piece_two.color == color:
+				# Make piece_two a bomb
+				piece_two.matched = false
+				change_bomb(bomb_type, piece_two)
 
 func change_bomb(bomb_type, piece):
 	if bomb_type == 0:
@@ -373,6 +381,7 @@ func destroy_matched():
 					was_matched = true
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
+					make_effect(particle_effect, i, j)
 					emit_signal("update_score", piece_value * streak)
 	move_checked = true	
 	if was_matched:
@@ -381,6 +390,11 @@ func destroy_matched():
 		swap_back()
 	current_matches.clear()
 
+func make_effect(effect, column, row):
+	var current = effect.instance()
+	current.position = grid_to_pixel(column, row)
+	add_child(current)
+	
 func check_concrete(column, row):
 	# Check right
 	if column < width - 1:
@@ -476,6 +490,7 @@ func after_refill():
 	streak = 1
 	move_checked = false
 	damaged_slime = false
+	color_bomb_used = false
 
 func generate_slime():
 	# Make sure there are slime pieces on the board
