@@ -1,7 +1,7 @@
 extends Node2D
 
 # State machine
-enum {wait, move}
+enum {wait, move, game_over}
 var state
 
 # Grid Variables
@@ -61,27 +61,29 @@ signal update_score
 export (int) var piece_value
 var streak = 1
 
-# was a color bomb used?
+# Counter variables
+signal update_counter
+export(int) var current_counter_value
+export(bool) var is_moves
+
+# Was a color bomb used?
 var color_bomb_used = false
 
 # Effects
 var particle_effect = preload("res://scenes/ParticleEffect.tscn")
+var explosion_animation = preload("res://scenes/ExplosionAnimation.tscn")
 
 func _ready():
 	state = move
 	all_pieces = make_2d_array()
 	spawn_pieces()
-#	ice_spaces = spawn_obstacle("make_ice", ice_spaces)
-#	lock_spaces = spawn_obstacle("make_lock", lock_spaces)
-#	concrete_spaces = spawn_obstacle("make_concrete", concrete_spaces)
-#	slime_spaces = spawn_obstacle("make_slime", slime_spaces)
-
 	spawn_ice()
 	spawn_locks()
 	spawn_concrete()
 	spawn_slime()
-	print("READY slime_spaces")
-	print(slime_spaces)
+	emit_signal("update_counter", current_counter_value)
+	if !is_moves:
+		$Timer.start()
 
 func restricted_fill(place):
 	# Check empty pieces
@@ -382,6 +384,7 @@ func destroy_matched():
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
 					make_effect(particle_effect, i, j)
+					make_effect(explosion_animation, i, j)
 					emit_signal("update_score", piece_value * streak)
 	move_checked = true	
 	if was_matched:
@@ -486,11 +489,17 @@ func after_refill():
 					return
 	if !damaged_slime:
 		generate_slime()
-	state = move
+	if state != game_over:
+		state = move
 	streak = 1
 	move_checked = false
 	damaged_slime = false
 	color_bomb_used = false
+	if is_moves:
+		current_counter_value -= 1
+		emit_signal("update_counter")
+		if current_counter_value == 0:
+			declare_game_over()
 
 func generate_slime():
 	# Make sure there are slime pieces on the board
@@ -601,3 +610,15 @@ func _on_SlimeHolder_remove_slime(item):
 	slime_spaces = remove_from_array(slime_spaces, item)
 	print("REMOVE slime_spaces")
 	print(slime_spaces)
+
+
+func _on_Timer_timeout():
+	current_counter_value -=1
+	emit_signal("update_counter")
+	if current_counter_value == 0:
+		declare_game_over()
+		$Timer.stop()
+	
+func declare_game_over():
+	print("GAME OVER")
+	state = game_over
