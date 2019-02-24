@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://art/UI/background 2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/TopUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/UI/Bottom UI v 2.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Grid.gd" type="Script" id=4]
-[ext_resource path="res://scripts/IceHolder.gd" type="Script" id=5]
-[ext_resource path="res://scripts/LockHolder.gd" type="Script" id=6]
-[ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=7]
-[ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=8]
+[ext_resource path="res://scenes/Sinker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/IceHolder.gd" type="Script" id=6]
+[ext_resource path="res://scripts/LockHolder.gd" type="Script" id=7]
+[ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=8]
+[ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=9]
+[ext_resource path="res://scenes/GameOverPanel.tscn" type="PackedScene" id=10]
 
 [node name="GameWindow" type="Node2D" index="0"]
 
@@ -65,8 +67,11 @@ lock_spaces = PoolVector2Array(  )
 concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )
 piece_value = 10
-current_counter_value = 5
+current_counter_value = 10
 is_moves = true
+sinker_piece = ExtResource( 5 )
+sinkers_in_scene = true
+max_sinkers = 5
 
 [node name="Timer" type="Timer" parent="Grid" index="0"]
 
@@ -77,19 +82,19 @@ autostart = false
 
 [node name="IceHolder" type="Node2D" parent="." index="4"]
 
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="LockHolder" type="Node2D" parent="." index="5"]
 
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="ConcreteHolder" type="Node2D" parent="." index="6"]
 
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="SlimeHolder" type="Node2D" parent="." index="7"]
 
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Material" ]
 
 [node name="DestroyTimer" type="Timer" parent="." index="8"]
@@ -113,6 +118,8 @@ wait_time = 0.4
 one_shot = true
 autostart = false
 
+[node name="GameOverPanel" parent="." index="11" instance=ExtResource( 10 )]
+
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
 
 [connection signal="damage_ice" from="Grid" to="IceHolder" method="_on_Grid_damage_ice"]
@@ -120,6 +127,8 @@ autostart = false
 [connection signal="damage_lock" from="Grid" to="LockHolder" method="_on_Grid_damage_lock"]
 
 [connection signal="damage_slime" from="Grid" to="SlimeHolder" method="_on_Grid_damage_slime"]
+
+[connection signal="game_over" from="Grid" to="GameOverPanel" method="_on_Grid_game_over"]
 
 [connection signal="make_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_make_concrete"]
 
