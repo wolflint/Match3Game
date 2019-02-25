@@ -58,6 +58,8 @@ var controlling = false
 
 # Scoring variables
 signal update_score
+signal setup_max_score
+export(int) var max_score
 export (int) var piece_value
 var streak = 1
 
@@ -65,6 +67,11 @@ var streak = 1
 signal update_counter
 export(int) var current_counter_value
 export(bool) var is_moves
+
+# Goal check
+signal check_goal
+
+
 
 # Was a color bomb used?
 var color_bomb_used = false
@@ -93,6 +100,7 @@ func _ready():
 	spawn_concrete()
 	spawn_slime()
 	emit_signal("update_counter", current_counter_value)
+	emit_signal("setup_max_score", max_score)
 	if !is_moves:
 		$Timer.start()
 
@@ -408,6 +416,7 @@ func destroy_matched():
 		for j in height:
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
+					emit_signal("check_goal", all_pieces[i][j].color)
 					damage_special(i, j)
 					was_matched = true
 					all_pieces[i][j].queue_free()
@@ -486,9 +495,12 @@ func collapse_columns():
 						all_pieces[i][j] = all_pieces[i][k]
 						all_pieces[i][k] = null
 						break
+	destroy_sinkers()
 	get_parent().get_node("RefillTimer").start()
 
 func refill_columns():
+	if current_sinkers < max_sinkers:
+		spawn_sinkers(max_sinkers - current_sinkers)
 	streak += 1
 	for i in width:
 		for j in height:
@@ -512,7 +524,7 @@ func after_refill():
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
-				if match_at(i, j, all_pieces[i][j].color):
+				if match_at(i, j, all_pieces[i][j].color) or all_pieces[i][j].matched:
 					find_matches()
 					#get_parent().get_node("DestroyTimer").start()
 					return
@@ -618,6 +630,13 @@ func find_adjacent_pieces(column, row):
 					if all_pieces[i][row].is_column_bomb:
 						match_all_in_column(i)
 					all_pieces[column+i][row+j].matched = true
+
+func destroy_sinkers():
+	for i in width:
+		if all_pieces[i][0] != null:
+			if all_pieces[i][0].color == "None":
+				all_pieces[i][0].matched = true
+				current_sinkers -= 1
 
 func _on_DestroyTimer_timeout():
 	destroy_matched()

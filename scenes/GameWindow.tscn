@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/UI/background 2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/TopUI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=8]
 [ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=9]
 [ext_resource path="res://scenes/GameOverPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/GoalHolder.gd" type="Script" id=11]
+[ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=12]
 
 [node name="GameWindow" type="Node2D" index="0"]
 
@@ -66,6 +68,7 @@ ice_spaces = PoolVector2Array(  )
 lock_spaces = PoolVector2Array(  )
 concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )
+max_score = 2000
 piece_value = 10
 current_counter_value = 10
 is_moves = true
@@ -120,6 +123,27 @@ autostart = false
 
 [node name="GameOverPanel" parent="." index="11" instance=ExtResource( 10 )]
 
+[node name="GoalHolder" type="Node" parent="." index="12"]
+
+script = ExtResource( 11 )
+
+[node name="Goal" parent="GoalHolder" index="0" instance=ExtResource( 12 )]
+
+max_needed = 5
+goal_string = "pink"
+
+[node name="Goal2" parent="GoalHolder" index="1" instance=ExtResource( 12 )]
+
+max_needed = 10
+goal_string = "yellow"
+
+[node name="Goal3" parent="GoalHolder" index="2" instance=ExtResource( 12 )]
+
+max_needed = 15
+goal_string = "blue"
+
+[connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
+
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
 
 [connection signal="damage_ice" from="Grid" to="IceHolder" method="_on_Grid_damage_ice"]
@@ -137,6 +161,8 @@ autostart = false
 [connection signal="make_lock" from="Grid" to="LockHolder" method="_on_Grid_make_lock"]
 
 [connection signal="make_slime" from="Grid" to="SlimeHolder" method="_on_Grid_make_slime"]
+
+[connection signal="setup_max_score" from="Grid" to="TopUI" method="_on_Grid_setup_max_score"]
 
 [connection signal="update_counter" from="Grid" to="TopUI" method="_on_Grid_update_counter"]
 
