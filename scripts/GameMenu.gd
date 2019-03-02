@@ -21,4 +21,4 @@ func _on_SettingsMenu_back_button():
 
 
 func _on_Main_play_pressed():
-	get_tree().change_scene("res://scenes/levels/Level1.tscn")
+	get_tree().change_scene("res://scenes/GameWindow.tscn")

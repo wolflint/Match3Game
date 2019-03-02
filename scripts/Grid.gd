@@ -236,6 +236,7 @@ func swap_pieces(column, row, direction):
 				first_piece.move(grid_to_pixel(column + direction.x, row + direction.y))
 				other_piece.move(grid_to_pixel(column, row))
 				if !move_checked:
+					print("find_matches from swap_pieces")
 					find_matches()
 
 func is_color_bomb(piece_one, piece_two):
@@ -307,8 +308,8 @@ func find_matches():
 			if all_pieces[i][j] != null and !is_piece_sinker(i, j):
 				var current_color = all_pieces[i][j].color
 				if i > 0 && i < width - 1:
-					if !is_piece_null(i - 1,j) && !is_piece_null(i + 1,j):
-						if all_pieces[i -1][j].color == current_color && all_pieces[i + 1][j].color == current_color:
+					if !is_piece_null(i - 1, j) && !is_piece_null(i + 1, j):
+						if all_pieces[i - 1][j].color == current_color && all_pieces[i + 1][j].color == current_color:
 							match_and_dim(all_pieces[i - 1][j])
 							match_and_dim(all_pieces[i][j])
 							match_and_dim(all_pieces[i + 1][j])
@@ -409,9 +410,9 @@ func match_and_dim(item):
 	item.matched = true
 	item.dim()
 
-func destroy_matched():
+func destroy_matched(was_matched = false):
 	find_bombs()
-	var was_matched = false
+	# var was_matched = false
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
@@ -428,6 +429,7 @@ func destroy_matched():
 	if was_matched:
 		get_parent().get_node("CollapseTimer").start()
 	else:
+		print("Swap back from destroy_matched")
 		swap_back()
 	current_matches.clear()
 
@@ -518,6 +520,7 @@ func refill_columns():
 				piece.position = grid_to_pixel(i, j - y_offset)
 				piece.move(grid_to_pixel(i,j))
 				all_pieces[i][j] = piece;
+	print("after_refill from refill_comumn")
 	after_refill()
 
 func after_refill():
@@ -525,6 +528,8 @@ func after_refill():
 		for j in height:
 			if all_pieces[i][j] != null:
 				if match_at(i, j, all_pieces[i][j].color) or all_pieces[i][j].matched:
+#				if match_at(i, j, all_pieces[i][j].color):
+					print("find_matches from after_refill")
 					find_matches()
 					#get_parent().get_node("DestroyTimer").start()
 					return
