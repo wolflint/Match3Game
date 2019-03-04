@@ -318,7 +318,7 @@ func find_matches():
 							add_to_array(Vector2(i-1,j))
 				if j > 0 && j < height - 1:
 					if !is_piece_null(i,j - 1) && !is_piece_null(i,j + 1):
-						if all_pieces[i][j -1].color == current_color && all_pieces[i][j + 1].color == current_color:
+						if all_pieces[i][j -1 ].color == current_color && all_pieces[i][j + 1].color == current_color:
 							match_and_dim(all_pieces[i][j - 1])
 							match_and_dim(all_pieces[i][j])
 							match_and_dim(all_pieces[i][j + 1])
@@ -420,6 +420,7 @@ func destroy_matched(was_matched = false):
 					emit_signal("check_goal", all_pieces[i][j].color)
 					damage_special(i, j)
 					was_matched = true
+					print("was matched = true")
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
 					make_effect(particle_effect, i, j)
