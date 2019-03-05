@@ -14,11 +14,6 @@ config/name="Match3Game"
 run/main_scene="res://scenes/GameWindow.tscn"
 config/icon="res://icon.png"
 
-[debug]
-
-settings/gdscript/max_call_stack=8000
-settings/visual_script/max_call_stack=8000
-
 [display]
 
 window/size/width=576

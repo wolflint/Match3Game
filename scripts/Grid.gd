@@ -37,7 +37,7 @@ var piece_pink = preload("res://scenes/PinkPiece.tscn")
 var piece_orange = preload("res://scenes/OrangePiece.tscn")
 var piece_green = preload("res://scenes/GreenPiece.tscn")
 var piece_lgreen = preload("res://scenes/LightGreenPiece.tscn")
-var possible_pieces = [piece_blue, piece_yellow, piece_pink, piece_green]
+var possible_pieces = [piece_blue, piece_yellow]
 
 # The current pieces in the scene
 var all_pieces = []
@@ -58,6 +58,7 @@ var controlling = false
 # Scoring variables
 signal update_score
 signal setup_max_score
+signal maximum_streak_reached
 export(int) var max_score
 export (int) var piece_value
 var streak = 1
@@ -510,6 +511,8 @@ func refill_columns():
 	if current_sinkers < max_sinkers:
 		spawn_sinkers(max_sinkers - current_sinkers)
 	streak += 1
+	if streak == 100:
+		emit_signal("maximum_streak_reached")
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] == null && !restricted_fill(Vector2(i, j)):
@@ -684,3 +687,6 @@ func _on_Timer_timeout():
 func declare_game_over():
 	emit_signal("game_over")
 	state = game_over
+
+func _on_Grid_maximum_streak_reached():
+	clear_board()

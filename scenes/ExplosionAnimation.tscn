@@ -1,13 +1,14 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/ExplosionAnimation.gd" type="Script" id=1]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_1_1.png" type="Texture" id=2]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_2_1.png" type="Texture" id=3]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_3_1.png" type="Texture" id=4]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_4_1.png" type="Texture" id=5]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_5_1.png" type="Texture" id=6]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_6_1.png" type="Texture" id=7]
-[ext_resource path="res://art/Particles and effects/Explosion V2/explode_7.png" type="Texture" id=8]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_1_1.png" type="Texture" id=2]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_2_1.png" type="Texture" id=3]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_3_1.png" type="Texture" id=4]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_4_1.png" type="Texture" id=5]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_5_1.png" type="Texture" id=6]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_6_1.png" type="Texture" id=7]
+[ext_resource path="res://art/particles_effects/Explosion V2/explode_7.png" type="Texture" id=8]
+
 
 [sub_resource type="SpriteFrames" id=1]
 
