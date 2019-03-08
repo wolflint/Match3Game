@@ -37,7 +37,7 @@ var piece_pink = preload("res://scenes/PinkPiece.tscn")
 var piece_orange = preload("res://scenes/OrangePiece.tscn")
 var piece_green = preload("res://scenes/GreenPiece.tscn")
 var piece_lgreen = preload("res://scenes/LightGreenPiece.tscn")
-var possible_pieces = [piece_blue, piece_yellow, piece_green, piece_pink]
+var possible_pieces = [piece_blue, piece_yellow, piece_green]
 
 # The current pieces in the scene
 var all_pieces = []
@@ -87,6 +87,7 @@ var current_sinkers = 0
 
 # Effects
 var particle_effect = preload("res://scenes/ParticleEffect.tscn")
+signal change_particle_color
 var explosion_animation = preload("res://scenes/ExplosionAnimation.tscn")
 
 # Game over
@@ -340,10 +341,13 @@ func get_bombed_pieces():
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
 					if all_pieces[i][j].is_column_bomb:
+						all_pieces[i][j].is_column_bomb = false
 						match_all_in_column(i)
 					elif all_pieces[i][j].is_row_bomb:
+						all_pieces[i][j].is_row_bomb = false
 						match_all_in_row(j)
 					elif all_pieces[i][j].is_adjacent_bomb:
+						all_pieces[i][j].is_adjacent_bomb = false
 						find_adjacent_pieces(i, j)
 
 func is_piece_null(column, row):
@@ -418,18 +422,19 @@ func match_and_dim(item):
 	item.dim()
 
 func destroy_matched(was_matched = false):
-	find_bombs()
 	# var was_matched = false
+	#find_bombs()
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
-					emit_signal("check_goal", all_pieces[i][j].color)
+					var piece_color = all_pieces[i][j].color
 					damage_special(i, j)
+					emit_signal("check_goal", piece_color)
 					was_matched = true
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
-					make_effect(particle_effect, i, j)
+					make_particle_effect(i, j, piece_color)
 					make_effect(explosion_animation, i, j)
 					emit_signal("update_score", piece_value * streak)
 	move_checked = true	
@@ -443,7 +448,13 @@ func make_effect(effect, column, row):
 	var current = effect.instance()
 	current.position = grid_to_pixel(column, row)
 	add_child(current)
-	
+
+func make_particle_effect(column, row, color):
+	var current = particle_effect.instance()
+	current.change_color(color)
+	current.position = grid_to_pixel(column, row)
+	add_child(current)
+
 func check_concrete(column, row):
 	# Check right
 	if column < width - 1:
@@ -474,6 +485,8 @@ func check_slime(column, row):
 
 func damage_special(column, row):
 	emit_signal("damage_ice", Vector2(column, row))
+	if is_in_array(ice_spaces, Vector2(column, row)):
+		print("damage_ice: " + str(column) + "," + str(row))
 	emit_signal("damage_lock", Vector2(column, row))
 	check_concrete(column, row)
 	check_slime(column, row)
@@ -485,6 +498,7 @@ func match_color(color):
 				if all_pieces[i][j].color == color:
 					match_and_dim(all_pieces[i][j])
 					add_to_array(Vector2(i, j))
+	color_bomb_used = true
 
 func clear_board():
 	cleared_board = true
@@ -619,36 +633,49 @@ func find_normal_neighbour(column, row):
 
 func match_all_in_column(column):
 	for i in height:
-#		if !just_matched_in_column:
-#			just_matched_in_column = true
+		# if piece isn't null, a sinker or a colour bomb
 		if all_pieces[column][i] != null and !is_piece_sinker(column, i) and !is_color_bomb(all_pieces[column][i]):
+			# if piece is a row bomb
 			if all_pieces[column][i].is_row_bomb:
 				match_all_in_row(i)
+			# if piece is a adjacent bomb
 			if all_pieces[column][i].is_adjacent_bomb:
 				find_adjacent_pieces(column, i)
+			# match all in column
 			all_pieces[column][i].matched = true
 
 func match_all_in_row(row):
 	for i in width:
-#		if !just_matched_in_row:
-#			just_matched_in_row = true
+		# if piece isn't null, a sinker or a colour bomb
 		if all_pieces[i][row] != null and !is_piece_sinker(i, row) and !is_color_bomb(all_pieces[i][row]):
+			# if_piece is a column bomb
 			if all_pieces[i][row].is_column_bomb:
 				match_all_in_column(i)
+			# if piece is  a adjacent bomb
 			if all_pieces[i][row].is_adjacent_bomb:
 				find_adjacent_pieces(i, row)
+			# match all in row
 			all_pieces[i][row].matched = true
 
 func find_adjacent_pieces(column, row):
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			if is_in_grid(Vector2(column + i, row + j)):
-				if all_pieces[column+i][row+j] != null and !is_piece_sinker(column+i, row+j) and !is_color_bomb(all_pieces[column+i][row+j]):
-					if all_pieces[column][i].is_row_bomb:
-						match_all_in_row(i)
+				if all_pieces[column + i][row + j] != null and !is_piece_sinker(column + i, row + j) and !is_color_bomb(all_pieces[column + i][row + j]):
+					if all_pieces[column][j].is_row_bomb:
+						match_all_in_row(j)
 					if all_pieces[i][row].is_column_bomb:
 						match_all_in_column(i)
 					all_pieces[column+i][row+j].matched = true
+#	for i in range(-1, 2):
+#		for j in range(-1, 2):
+#			if is_in_grid(Vector2(column + i, row + j)):
+#				if all_pieces[column+i][row+j] != null and !is_piece_sinker(column+i, row+j) and !is_color_bomb(all_pieces[column+i][row+j]):
+#					if all_pieces[column][i].is_row_bomb:
+#						match_all_in_row(i)
+#					if all_pieces[i][row].is_column_bomb:
+#						match_all_in_column(i)
+#					all_pieces[column+i][row+j].matched = true
 
 func destroy_sinkers():
 	for i in width:
@@ -658,6 +685,7 @@ func destroy_sinkers():
 				current_sinkers -= 1
 
 func _on_DestroyTimer_timeout():
+	find_bombs()
 	destroy_matched()
 
 func _on_CollapseTimer_timeout():
@@ -690,3 +718,7 @@ func declare_game_over():
 
 func _on_Grid_maximum_streak_reached():
 	clear_board()
+
+
+func _on_IceHolder_break_ice():
+	pass # replace with function body

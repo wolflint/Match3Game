@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://art/ui/background 2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/TopUI.tscn" type="PackedScene" id=2]
@@ -13,11 +13,9 @@
 [ext_resource path="res://scenes/GameOverPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scripts/GoalHolder.gd" type="Script" id=12]
 [ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=13]
-[ext_resource path="res://art/pieces/Pink Piece.png" type="Texture" id=14]
-[ext_resource path="res://art/pieces/Yellow Piece.png" type="Texture" id=15]
-[ext_resource path="res://art/pieces/Blue Piece.png" type="Texture" id=16]
+[ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=14]
 
-[node name="GameWindow" type="Node2D" index="0"]
+[node name="GameWindow" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -63,14 +61,14 @@ _sections_unfolded = [ "Rect" ]
 
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
-width = 7
-height = 7
+width = 8
+height = 10
 x_start = 64
 y_start = 800
 offset = 64
 y_offset = -2
-empty_spaces = null
-ice_spaces = PoolVector2Array(  )
+empty_spaces = PoolVector2Array( 3, 9, 3, 8, 4, 9, 4, 8 )
+ice_spaces = PoolVector2Array( 0, 0, 0, 8, 0, 7, 1, 8, 1, 7, 6, 8, 6, 7, 7, 8, 7, 7, 2, 4, 2, 3, 3, 4, 3, 3, 4, 4, 4, 3, 5, 4, 5, 3, 6, 0, 0, 1, 1, 0, 7, 0, 7, 1 )
 lock_spaces = PoolVector2Array(  )
 concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )
@@ -92,6 +90,7 @@ autostart = false
 [node name="IceHolder" type="Node2D" parent="." index="4"]
 
 script = ExtResource( 7 )
+value = "ice"
 
 [node name="LockHolder" type="Node2D" parent="." index="5"]
 
@@ -136,20 +135,8 @@ script = ExtResource( 12 )
 [node name="Goal" parent="GoalHolder" index="0" instance=ExtResource( 13 )]
 
 goal_texture = ExtResource( 14 )
-max_needed = 5
-goal_string = "pink"
-
-[node name="Goal2" parent="GoalHolder" index="1" instance=ExtResource( 13 )]
-
-goal_texture = ExtResource( 15 )
-max_needed = 10
-goal_string = "yellow"
-
-[node name="Goal3" parent="GoalHolder" index="2" instance=ExtResource( 13 )]
-
-goal_texture = ExtResource( 16 )
-max_needed = 15
-goal_string = "blue"
+max_needed = 22
+goal_string = "ice"
 
 [connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
 
@@ -182,6 +169,10 @@ goal_string = "blue"
 [connection signal="update_score" from="Grid" to="TopUI" method="_on_Grid_update_score"]
 
 [connection signal="timeout" from="Grid/Timer" to="Grid" method="_on_Timer_timeout"]
+
+[connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
+
+[connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
 
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
 

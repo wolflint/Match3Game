@@ -16,3 +16,6 @@ func check_goals(goal_type):
 
 func _on_Grid_check_goal(goal_type):
 	check_goals(goal_type)
+
+func _on_IceHolder_break_ice():
+	pass # replace with function body
