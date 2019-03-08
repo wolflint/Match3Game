@@ -63,8 +63,8 @@ _sections_unfolded = [ "Rect" ]
 
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
-width = 6
-height = 6
+width = 7
+height = 7
 x_start = 64
 y_start = 800
 offset = 64
