@@ -15,7 +15,7 @@
 [ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=13]
 [ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=14]
 
-[node name="GameWindow" type="Node2D"]
+[node name="GameWindow" type="Node2D" index="0"]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -61,14 +61,14 @@ _sections_unfolded = [ "Rect" ]
 
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
-width = 8
-height = 10
+width = 6
+height = 6
 x_start = 64
 y_start = 800
 offset = 64
 y_offset = -2
-empty_spaces = PoolVector2Array( 3, 9, 3, 8, 4, 9, 4, 8 )
-ice_spaces = PoolVector2Array( 0, 0, 0, 8, 0, 7, 1, 8, 1, 7, 6, 8, 6, 7, 7, 8, 7, 7, 2, 4, 2, 3, 3, 4, 3, 3, 4, 4, 4, 3, 5, 4, 5, 3, 6, 0, 0, 1, 1, 0, 7, 0, 7, 1 )
+empty_spaces = PoolVector2Array(  )
+ice_spaces = PoolVector2Array(  )
 lock_spaces = PoolVector2Array(  )
 concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )

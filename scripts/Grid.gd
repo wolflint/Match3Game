@@ -37,7 +37,7 @@ var piece_pink = preload("res://scenes/PinkPiece.tscn")
 var piece_orange = preload("res://scenes/OrangePiece.tscn")
 var piece_green = preload("res://scenes/GreenPiece.tscn")
 var piece_lgreen = preload("res://scenes/LightGreenPiece.tscn")
-var possible_pieces = [piece_blue, piece_yellow, piece_green]
+var possible_pieces = [piece_green, piece_orange]
 
 # The current pieces in the scene
 var all_pieces = []
