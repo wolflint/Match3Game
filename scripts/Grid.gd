@@ -179,6 +179,7 @@ func is_piece_sinker(col, row):
 	return false
 
 # i = the column, j = the row
+
 func match_at(i, j, color):
 	if i > 1:
 		if all_pieces[i-1][j] != null && all_pieces[i-2][j] != null:
@@ -188,6 +189,44 @@ func match_at(i, j, color):
 		if all_pieces[i][j-1] != null && all_pieces[i][j-2] != null:
 			if all_pieces[i][j-1].color == color && all_pieces[i][j-2].color == color:
 				return true
+
+func check_match_hlength(col, row, color):
+	var match_length = 0
+	var position_x = col
+	
+	while position_x > 0:
+		if all_pieces[position_x][row].color == color:
+			position_x -= 1
+			match_length += 1
+		else:
+			position_x = col
+			break
+	
+	while position_x < width:
+		if all_pieces[position_x][row].color == color:
+			position_x += 1
+			match_length += 1
+		else:
+			return match_length
+
+func check_match_vlength(col, row, color):
+	var match_length = 0
+	var position_y = row
+	
+	while position_y > 0:
+		if all_pieces[col][position_y].color == color:
+			position_y -= 1
+			match_length += 1
+		else:
+			position_y = col
+			break
+	
+	while position_y < width:
+		if all_pieces[col][position_y].color == color:
+			position_y += 1
+			match_length += 1
+		else:
+			return match_length
 
 func grid_to_pixel(column, row):
 	var new_x = x_start + offset * column;

@@ -138,9 +138,9 @@ goal_texture = ExtResource( 14 )
 max_needed = 22
 goal_string = "ice"
 
-[connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
-
 [connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
+
+[connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
 
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
 
@@ -170,9 +170,9 @@ goal_string = "ice"
 
 [connection signal="timeout" from="Grid/Timer" to="Grid" method="_on_Timer_timeout"]
 
-[connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
-
 [connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
+
+[connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
 
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
 
