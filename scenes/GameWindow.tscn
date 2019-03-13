@@ -137,7 +137,7 @@ script = ExtResource( 12 )
 [node name="Goal" parent="GoalHolder" index="0" instance=ExtResource( 13 )]
 
 goal_texture = ExtResource( 14 )
-max_needed = 22
+max_needed = 4
 goal_string = "ice"
 
 [connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]

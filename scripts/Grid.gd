@@ -199,7 +199,7 @@ func match_at(i, j, color):
 func check_match_hlength(col, row, color):
 	var match_length = 0
 	var position_x = col
-	
+
 	while position_x > 0:
 		if all_pieces[position_x][row].color == color:
 			position_x -= 1
@@ -207,7 +207,7 @@ func check_match_hlength(col, row, color):
 		else:
 			position_x = col
 			break
-	
+
 	while position_x < width:
 		if all_pieces[position_x][row].color == color:
 			position_x += 1
@@ -218,7 +218,7 @@ func check_match_hlength(col, row, color):
 func check_match_vlength(col, row, color):
 	var match_length = 0
 	var position_y = row
-	
+
 	while position_y > 0:
 		if all_pieces[col][position_y].color == color:
 			position_y -= 1
@@ -226,7 +226,7 @@ func check_match_vlength(col, row, color):
 		else:
 			position_y = col
 			break
-	
+
 	while position_y < width:
 		if all_pieces[col][position_y].color == color:
 			position_y += 1
@@ -468,7 +468,7 @@ func match_and_dim(item):
 
 func destroy_matched(was_matched = false):
 	# var was_matched = false
-	#find_bombs()
+	find_bombs()
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
@@ -482,7 +482,8 @@ func destroy_matched(was_matched = false):
 					make_particle_effect(i, j, piece_color)
 #					make_effect(explosion_animation, i, j)
 					emit_signal("update_score", piece_value * streak)
-	move_checked = true	
+	#find_bombs()
+	move_checked = true
 	if was_matched:
 		get_parent().get_node("CollapseTimer").start()
 	else:
@@ -655,7 +656,7 @@ func check_restrictions(place):
 func find_normal_neighbour(column, row):
 	# Pick random direction
 	var rand_dir = floor(rand_range(0, 3))
-	
+
 	# Check right first
 	if rand_dir == 0 and is_in_grid(Vector2(column + 1, row)):
 		if !check_restrictions(Vector2(column + 1, row)) and !is_piece_sinker(column + 1, row):
@@ -706,7 +707,7 @@ func find_adjacent_pieces(column, row):
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			if is_in_grid(Vector2(column + i, row + j)):
-				if all_pieces[column + i][row + j] != null and !is_piece_sinker(column + i, row + j) and !is_color_bomb(all_pieces[column + i][row + j]):
+				if !is_piece_null(column + i, row + j) and !is_piece_sinker(column + i, row + j) and !is_color_bomb(all_pieces[column + i][row + j]):
 					if all_pieces[column][j].is_row_bomb:
 						match_all_in_row(j)
 					if all_pieces[i][row].is_column_bomb:
@@ -730,7 +731,7 @@ func destroy_sinkers():
 				current_sinkers -= 1
 
 func _on_DestroyTimer_timeout():
-	find_bombs()
+	#find_bombs()
 	destroy_matched()
 
 func _on_CollapseTimer_timeout():
@@ -756,7 +757,7 @@ func _on_Timer_timeout():
 	if current_counter_value == 0:
 		declare_game_over()
 		$Timer.stop()
-	
+
 func declare_game_over():
 	emit_signal("game_over")
 	state = game_over
