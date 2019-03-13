@@ -11,6 +11,7 @@ export (int) var x_start
 export (int) var y_start
 export (int) var offset
 export (int) var y_offset
+export (int) var max_piece_types
 
 # Obstacle Variables
 export (PoolVector2Array) var empty_spaces
@@ -39,7 +40,8 @@ var piece_green = preload("res://scenes/pieces/GreenPiece.tscn")
 var piece_lgreen = preload("res://scenes/pieces/LightGreenPiece.tscn")
 var piece_red = preload("res://scenes/pieces/RedPiece.tscn")
 var piece_purple = preload("res://scenes/pieces/PurplePiece.tscn")
-var possible_pieces = [piece_blue, piece_lgreen]
+var available_pieces = [piece_red, piece_lgreen, piece_blue, piece_yellow, piece_orange, piece_pink, piece_green, piece_purple]
+var possible_pieces = []
 
 # The current pieces in the scene
 var all_pieces = []
@@ -96,6 +98,8 @@ var explosion_animation = preload("res://scenes/ExplosionAnimation.tscn")
 signal game_over
 
 func _ready():
+	for i in range(0, max_piece_types):
+		possible_pieces.append(available_pieces[i])
 	state = move
 	all_pieces = make_2d_array()
 	if sinkers_in_scene:
