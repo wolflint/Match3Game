@@ -405,36 +405,38 @@ func add_to_array(value, array_to_add = current_matches):
 		array_to_add.append(value)
 
 func find_bombs():
+	if !color_bomb_used:
 	# Iterate ove the current_matches array
-	for i in current_matches.size():
-		# Store some values for this match
-		var current_column = current_matches[i].x
-		var current_row = current_matches[i].y
-		var current_color = all_pieces[current_column][current_row].color
-		var col_matched = 0
-		var row_matched = 0
-		# Iterate over the current matches to check for column, row and color
-		for j in current_matches.size():
-			var this_column = current_matches[j].x
-			var this_row = current_matches[j].y
-			var this_color = all_pieces[current_column][current_row].color
-			if this_column == current_column and current_color == this_color:
-				col_matched += 1
-			if this_row == current_row and this_color == current_color:
-				row_matched += 1
-		# 0 is an adj bomb, 1 is a column bomb, and 2 is a row bomb
-		# 3 is a color bomb
-		if col_matched == 5 or row_matched == 5:
-			make_bomb(3, current_color)
-		elif col_matched == 3 and row_matched ==3:
-			make_bomb(0, current_color)
-			return
-		elif col_matched == 4:
-			make_bomb(1, current_color)
-			return
-		elif row_matched == 4:
-			make_bomb(2, current_color)
-			return
+		for i in current_matches.size():
+			# Store some values for this match
+			var current_column = current_matches[i].x
+			var current_row = current_matches[i].y
+			var current_color = all_pieces[current_column][current_row].color
+			var col_matched = 0
+			var row_matched = 0
+			# Iterate over the current matches to check for column, row and color
+			for j in current_matches.size():
+				var this_column = current_matches[j].x
+				var this_row = current_matches[j].y
+				var this_color = all_pieces[this_column][this_row].color
+				if this_column == current_column and current_color == this_color:
+					col_matched += 1
+				if this_row == current_row and this_color == current_color:
+					row_matched += 1
+			# 0 is an adj bomb, 1 is a column bomb, and 2 is a row bomb
+			# 3 is a color bomb
+			if col_matched == 5 or row_matched == 5:
+				make_bomb(3, current_color)
+				continue
+			elif col_matched == 3 and row_matched ==3:
+				make_bomb(0, current_color)
+				continue
+			elif col_matched == 4:
+				make_bomb(1, current_color)
+				continue
+			elif row_matched == 4:
+				make_bomb(2, current_color)
+				continue
 
 func make_bomb(bomb_type, color):
 	# Iterate over current_matches
@@ -442,13 +444,17 @@ func make_bomb(bomb_type, color):
 		# Cache a few variables
 		var current_column = current_matches[i].x
 		var current_row = current_matches[i].y
-		if !color_bomb_used and !cleared_board:
+		if !cleared_board:
 			if all_pieces[current_column][current_row] == piece_one and piece_one.color == color:
 				# Make piece_one a bomb
+				damage_special(current_column, current_row)
+				emit_signal("check_goal", piece_one.color)
 				piece_one.matched = false
 				change_bomb(bomb_type, piece_one)
 			if all_pieces[current_column][current_row] == piece_two and piece_two.color == color:
 				# Make piece_two a bomb
+				damage_special(current_column, current_row)
+				emit_signal("check_goal", piece_two.color)
 				piece_two.matched = false
 				change_bomb(bomb_type, piece_two)
 
@@ -542,6 +548,12 @@ func match_color(color):
 		for j in height:
 			if all_pieces[i][j] != null and !is_piece_sinker(i, j):
 				if all_pieces[i][j].color == color:
+					if all_pieces[i][j].is_column_bomb:
+						match_all_in_column(i)
+					if all_pieces[i][j].is_row_bomb:
+						match_all_in_column(j)
+					if all_pieces[i][j].is_adjacent_bomb:
+						find_adjacent_pieces(i, j)
 					match_and_dim(all_pieces[i][j])
 					add_to_array(Vector2(i, j))
 	color_bomb_used = true
@@ -687,6 +699,8 @@ func match_all_in_column(column):
 			# if piece is a adjacent bomb
 			if all_pieces[column][i].is_adjacent_bomb:
 				find_adjacent_pieces(column, i)
+#			if all_pieces[column][i].is_color_bomb:
+#				match
 			# match all in column
 			all_pieces[column][i].matched = true
 
