@@ -1,7 +1,7 @@
 extends Node2D
 
 # State machine
-enum {wait, move, game_over}
+enum {wait, move, game_over, game_win}
 var state
 
 # Grid Variables
@@ -708,9 +708,9 @@ func find_adjacent_pieces(column, row):
 		for j in range(-1, 2):
 			if is_in_grid(Vector2(column + i, row + j)):
 				if !is_piece_null(column + i, row + j) and !is_piece_sinker(column + i, row + j) and !is_color_bomb(all_pieces[column + i][row + j]):
-					if all_pieces[column][j].is_row_bomb:
+					if all_pieces[column][row + j].is_row_bomb:
 						match_all_in_row(j)
-					if all_pieces[i][row].is_column_bomb:
+					if all_pieces[column + i][row].is_column_bomb:
 						match_all_in_column(i)
 					all_pieces[column+i][row+j].matched = true
 #	for i in range(-1, 2):
@@ -768,3 +768,7 @@ func _on_Grid_maximum_streak_reached():
 
 func _on_IceHolder_break_ice():
 	pass # replace with function body
+
+
+func _on_GoalHolder_game_win():
+	state = game_win

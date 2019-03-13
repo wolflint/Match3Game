@@ -1,6 +1,7 @@
 extends Node
 
 signal create_goal
+signal game_win
 
 func _ready():
 	create_goals()
@@ -23,7 +24,7 @@ func goals_met():
 
 func check_game_win():
 	if goals_met():
-		print('You won!')
+		emit_signal("game_win")
 
 func _on_Grid_check_goal(goal_type):
 	check_goals(goal_type)

@@ -8,7 +8,7 @@
 [ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=6]
 [ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=7]
 
-[node name="SettingsMenu" instance=ExtResource( 1 )]
+[node name="SettingsMenu" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
