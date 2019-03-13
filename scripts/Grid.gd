@@ -31,13 +31,15 @@ signal make_slime
 signal damage_slime
 
 # The piece array
-var piece_yellow = preload("res://scenes/YellowPiece.tscn")
-var piece_blue = preload("res://scenes/BluePiece.tscn")
-var piece_pink = preload("res://scenes/PinkPiece.tscn")
-var piece_orange = preload("res://scenes/OrangePiece.tscn")
-var piece_green = preload("res://scenes/GreenPiece.tscn")
-var piece_lgreen = preload("res://scenes/LightGreenPiece.tscn")
-var possible_pieces = [piece_green, piece_orange]
+var piece_yellow = preload("res://scenes/pieces/YellowPiece.tscn")
+var piece_blue = preload("res://scenes/pieces/BluePiece.tscn")
+var piece_pink = preload("res://scenes/pieces/PinkPiece.tscn")
+var piece_orange = preload("res://scenes/pieces/OrangePiece.tscn")
+var piece_green = preload("res://scenes/pieces/GreenPiece.tscn")
+var piece_lgreen = preload("res://scenes/pieces/LightGreenPiece.tscn")
+var piece_red = preload("res://scenes/pieces/RedPiece.tscn")
+var piece_purple = preload("res://scenes/pieces/PurplePiece.tscn")
+var possible_pieces = [piece_blue, piece_lgreen]
 
 # The current pieces in the scene
 var all_pieces = []
@@ -474,7 +476,7 @@ func destroy_matched(was_matched = false):
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
 					make_particle_effect(i, j, piece_color)
-					make_effect(explosion_animation, i, j)
+#					make_effect(explosion_animation, i, j)
 					emit_signal("update_score", piece_value * streak)
 	move_checked = true	
 	if was_matched:

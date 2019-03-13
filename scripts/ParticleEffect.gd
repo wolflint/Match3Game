@@ -8,3 +8,5 @@ func change_color(effect_color):
 		"orange": $Particles2D.modulate = Color(0.933, 0.556, 0.18, 2)
 		"lgreen": $Particles2D.modulate = Color(0.592, 0.855, 0.247, 2)
 		"pink": $Particles2D.modulate = Color(0.863, 0.29, 0.482, 2)
+		"red": $Particles2D.modulate = Color(0.218, 0.78, 0.56, 2)
+		"purple": $Particles2D.modulate = Color(0.153, 0.57, 0.112, 2)

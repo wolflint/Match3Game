@@ -63,8 +63,8 @@ script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 width = 6
 height = 6
-x_start = 64
-y_start = 800
+x_start = 128
+y_start = 600
 offset = 64
 y_offset = -2
 empty_spaces = PoolVector2Array(  )
@@ -74,7 +74,7 @@ concrete_spaces = PoolVector2Array(  )
 slime_spaces = PoolVector2Array(  )
 max_score = 2000
 piece_value = 10
-current_counter_value = 100
+current_counter_value = 10
 is_moves = true
 sinker_piece = ExtResource( 6 )
 sinkers_in_scene = false
@@ -138,9 +138,9 @@ goal_texture = ExtResource( 14 )
 max_needed = 22
 goal_string = "ice"
 
-[connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
-
 [connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
+
+[connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
 
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
 
@@ -170,9 +170,9 @@ goal_string = "ice"
 
 [connection signal="timeout" from="Grid/Timer" to="Grid" method="_on_Timer_timeout"]
 
-[connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
-
 [connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
+
+[connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
 
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
 
