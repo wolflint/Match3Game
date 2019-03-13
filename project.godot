@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Shape-Shift"
-run/main_scene="res://scenes/GameWindow.tscn"
+run/main_scene="res://scenes/levels/GameWindow.tscn"
 config/icon="res://icon.png"
 
 [display]

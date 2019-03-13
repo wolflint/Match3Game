@@ -1,12 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://art/ui/goal background.png" type="Texture" id=1]
+[ext_resource path="res://art/ui/goal_background.png" type="Texture" id=1]
 [ext_resource path="res://scripts/GoalPrefab.gd" type="Script" id=2]
 [ext_resource path="res://art/pieces_alt/Rainbow.png" type="Texture" id=3]
 [ext_resource path="res://fonts/Kenney Future.ttf" type="DynamicFontData" id=4]
-
-
-
 
 [sub_resource type="DynamicFont" id=1]
 

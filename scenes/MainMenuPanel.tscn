@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/BaseMenuPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/MainMenuPanel.gd" type="Script" id=2]
-[ext_resource path="res://art/ui/godot match 3 logo.png" type="Texture" id=3]
-[ext_resource path="res://art/ui/Play Button.png" type="Texture" id=4]
-[ext_resource path="res://art/ui/Settings Button.png" type="Texture" id=5]
-
+[ext_resource path="res://art/ui/menu_logo.png" type="Texture" id=3]
+[ext_resource path="res://art/ui/buttons/btn_play1.png" type="Texture" id=4]
+[ext_resource path="res://art/ui/buttons/btn_play2.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/buttons/btn_settings1.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/buttons/btn_settings2.png" type="Texture" id=7]
 
 [node name="Main" instance=ExtResource( 1 )]
 
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="MarginContainer" parent="." index="0"]
@@ -35,6 +34,7 @@ margin_bottom = 922.0
 margin_bottom = 256.0
 rect_min_size = Vector2( 512, 256 )
 texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
@@ -44,7 +44,8 @@ _sections_unfolded = [ "Rect", "Textures" ]
 margin_top = 276.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 512, 128 )
-texture_normal = ExtResource( 5 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
 expand = true
 stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]

@@ -9,7 +9,6 @@
 [ext_resource path="res://art/particles_effects/Explosion V2/explode_6_1.png" type="Texture" id=7]
 [ext_resource path="res://art/particles_effects/Explosion V2/explode_7.png" type="Texture" id=8]
 
-
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
@@ -19,7 +18,7 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[node name="ExplosionAnimation" type="Node2D" index="0"]
+[node name="ExplosionAnimation" type="Node2D"]
 
 script = ExtResource( 1 )
 
