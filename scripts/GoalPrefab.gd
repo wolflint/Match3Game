@@ -3,7 +3,6 @@ extends TextureRect
 var current_number = 0
 var max_value
 var goal_value = ""
-var goal_texture
 onready var goal_label = $VBoxContainer/Label
 onready var this_texture = $VBoxContainer/TextureRect
 

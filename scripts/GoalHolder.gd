@@ -2,6 +2,7 @@ extends Node
 
 signal create_goal
 signal game_win
+var game_won = false
 
 func _ready():
 	create_goals()
@@ -14,7 +15,8 @@ func create_goals():
 func check_goals(goal_type):
 	for i in get_child_count():
 		get_child(i).check_goal(goal_type)
-	check_game_win()
+	if !game_won:
+		check_game_win()
 
 func goals_met():
 	for i in get_child_count():
@@ -25,6 +27,8 @@ func goals_met():
 func check_game_win():
 	if goals_met():
 		emit_signal("game_win")
+		game_won = true
+#		get_tree().paused = true
 
 func _on_Grid_check_goal(goal_type):
 	check_goals(goal_type)
