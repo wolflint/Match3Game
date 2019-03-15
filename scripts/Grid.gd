@@ -892,3 +892,26 @@ func _on_GoalHolder_game_win():
 
 func _on_ShuffleTimer_timeout():
 	shuffle_board()
+
+
+func _on_BottomUI_random_color_bomb():
+	
+	var x = rand_range(0, width)
+	var y = rand_range(0, height)
+	var new_piece = all_pieces[x][y]
+	var found_piece = false
+	
+	if !is_piece_null(x, y):
+		if !restricted_fill(Vector2(x, y)) and !restricted_move(Vector2(x, y)):
+			if !cleared_board:
+				damage_special(x, y)
+				emit_signal("check_goal", new_piece.color)
+				new_piece.matched = false
+				change_bomb(3, new_piece)
+				found_piece = true
+		else:
+			x = rand_range(0, width)
+			y = rand_range(0, height)
+			new_piece = all_pieces[x][y]
+	
+	

@@ -30,16 +30,22 @@ goal_prefab = ExtResource( 3 )
 [node name="BottomUI" parent="." instance=ExtResource( 4 )]
 margin_bottom = 1024.0
 
+[node name="ColorBombTimer" type="Timer" parent="BottomUI"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Grid" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
 script = ExtResource( 5 )
-width = 4
-height = 4
+width = 8
+height = 10
 x_start = 64
 y_start = 800
 offset = 64
 y_offset = -2
 max_piece_types = 8
+empty_spaces = PoolVector2Array( 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 5, 9, 1, 1, 0, 9, 0, 8, 0, 7, 1, 9, 1, 8, 2, 9, 7, 0, 6, 0, 5, 0, 7, 1, 6, 1, 7, 2, 7, 9, 7, 8, 7, 7, 6, 9, 6, 8 )
+ice_spaces = PoolVector2Array( 0, 3, 0, 6, 7, 3, 7, 6 )
 max_score = 3000
 piece_value = 20
 current_counter_value = 60
@@ -93,6 +99,8 @@ goal_string = "ice"
 
 [connection signal="final_score" from="TopUI" to="GameWinPanel" method="_on_TopUI_final_score"]
 [connection signal="pause_game" from="BottomUI" to="PausePanel" method="_on_BottomUI_pause_game"]
+[connection signal="random_color_bomb" from="BottomUI" to="Grid" method="_on_BottomUI_random_color_bomb"]
+[connection signal="timeout" from="BottomUI/ColorBombTimer" to="BottomUI" method="_on_ColorBombTimer_timeout"]
 [connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
 [connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
