@@ -33,19 +33,17 @@ margin_bottom = 1024.0
 [node name="Grid" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
 script = ExtResource( 5 )
-width = 8
-height = 10
+width = 4
+height = 4
 x_start = 64
 y_start = 800
 offset = 64
 y_offset = -2
-max_piece_types = 3
-empty_spaces = PoolVector2Array( 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 0, 1, 1, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 0, 8, 1, 8, 2, 8, 3, 8, 4, 8, 5, 8, 6, 8, 7, 8, 0, 9, 1, 9, 2, 9, 3, 9, 4, 9, 5, 9, 6, 9, 7, 9 )
-ice_spaces = PoolVector2Array( 4, 5, 3, 4, 3, 5, 4, 4 )
-preset_spaces = PoolVector3Array( 0, 0, 0, 1, 0, 0, 2, 0, 1, 3, 0, 0, 4, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 0, 3, 1, 1, 4, 1, 1 )
+max_piece_types = 8
 max_score = 3000
 piece_value = 20
 current_counter_value = 60
+is_moves = true
 sinker_piece = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="Grid"]
