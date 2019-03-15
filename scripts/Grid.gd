@@ -120,7 +120,7 @@ func _ready():
 	spawn_concrete()
 	spawn_slime()
 	if is_deadlocked():
-		print('deadlocked from the start')
+		shuffle_board()
 	emit_signal("update_counter", current_counter_value)
 	emit_signal("setup_max_score", max_score)
 	if !is_moves:
@@ -664,7 +664,7 @@ func after_refill():
 		$Timer.stop()
 		emit_signal("open_game_win_panel")
 	if is_deadlocked():
-		print('deadlocked')
+		$ShuffleTimer.start()
 	if is_moves:
 		current_counter_value -= 1
 		emit_signal("update_counter")
@@ -780,6 +780,35 @@ func copy_array(array_to_copy):
 			new_array[i][j] = array_to_copy[i][j]
 	return new_array
 
+func clear_and_store_board():
+	var holder_array = []
+	for i in width:
+		for j in height:
+			if !is_piece_null(i, j):
+				holder_array.append(all_pieces[i][j])
+				all_pieces[i][j] = null
+	return holder_array
+
+func shuffle_board():
+	var holder_array = clear_and_store_board()
+	for i in width:
+		for j in height:
+			if !restricted_fill(Vector2(i, j)) and all_pieces[i][j] == null:
+				# Choose a random number and store it
+				var rand = floor(rand_range(0, holder_array.size()))
+				var piece = holder_array[rand]
+				var loops = 0
+				while(match_at(i, j, piece.color) && loops < 100):
+					rand = floor(rand_range(0, holder_array.size()))
+					loops += 1;
+					piece = holder_array[rand]
+				piece.move(grid_to_pixel(i, j))
+				all_pieces[i][j] = piece;
+				holder_array.remove(rand)
+	if is_deadlocked():
+		$ShuffleTimer.start()
+	state = move
+
 func switch_pieces(place, direction, array):
 	if is_in_grid(place) and !restricted_fill(place):
 		if is_in_grid(place + direction) and !restricted_fill(place + direction):
@@ -859,3 +888,7 @@ func _on_GoalHolder_game_win():
 	state = game_over
 	goals_met = true
 	$Timer.stop()
+
+
+func _on_ShuffleTimer_timeout():
+	shuffle_board()

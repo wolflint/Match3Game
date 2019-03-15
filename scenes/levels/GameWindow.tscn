@@ -48,6 +48,10 @@ sinker_piece = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="Grid"]
 
+[node name="ShuffleTimer" type="Timer" parent="Grid"]
+wait_time = 0.5
+one_shot = true
+
 [node name="IceHolder" type="Node2D" parent="."]
 script = ExtResource( 7 )
 value = "ice"
@@ -107,6 +111,7 @@ goal_string = "ice"
 [connection signal="update_counter" from="Grid" to="TopUI" method="_on_Grid_update_counter"]
 [connection signal="update_score" from="Grid" to="TopUI" method="_on_Grid_update_score"]
 [connection signal="timeout" from="Grid/Timer" to="Grid" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Grid/ShuffleTimer" to="Grid" method="_on_ShuffleTimer_timeout"]
 [connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
 [connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
