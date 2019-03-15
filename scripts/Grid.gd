@@ -31,6 +31,9 @@ signal damage_concrete
 signal make_slime
 signal damage_slime
 
+# Preset spaces
+export (PoolVector3Array) var preset_spaces
+
 # The piece array
 var piece_yellow = preload("res://scenes/pieces/YellowPiece.tscn")
 var piece_blue = preload("res://scenes/pieces/BluePiece.tscn")
@@ -102,6 +105,7 @@ func _ready():
 		possible_pieces.append(available_pieces[i])
 	state = move
 	all_pieces = make_2d_array()
+	spawn_preset_pieces()
 	if sinkers_in_scene:
 		spawn_sinkers(max_sinkers)
 	spawn_pieces()
@@ -269,17 +273,20 @@ func swap_pieces(column, row, direction):
 		if first_piece != null  && other_piece != null:
 			if !restricted_move(Vector2(column, row)) and !restricted_move(Vector2(column, row) + direction):
 				if is_color_bomb(first_piece) and is_color_bomb(other_piece):
+					# TODO: I don't like this fix. Need to change this
+					if is_piece_sinker(column, row) or is_piece_sinker(column + direction.x, row + direction.y):
+						swap_back()
 					clear_board()
 					match_and_dim(first_piece)
 					add_to_array(Vector2(column, row))
 					match_and_dim(other_piece)
 					add_to_array(Vector2(column + direction.x, row + direction.y))
 				elif is_color_bomb(first_piece) or is_color_bomb(other_piece):
-					if first_piece.color == "Color":
+					if is_color_bomb(first_piece):
 						match_color(other_piece.color)
 						match_and_dim(first_piece)
 						add_to_array(Vector2(column, row))
-					else:
+					elif is_color_bomb(other_piece):
 						match_color(first_piece.color)
 						match_and_dim(other_piece)
 						add_to_array(Vector2(column + direction.x, row + direction.y))
@@ -323,6 +330,17 @@ func spawn_sinkers(number_to_spawn):
 		current.position = grid_to_pixel(column, height - 1)
 		all_pieces[column][height - 1] = current
 		current_sinkers += 1
+
+func spawn_preset_pieces():
+	if preset_spaces.size() > 0:
+		for i in preset_spaces.size():
+			var piece = possible_pieces[preset_spaces[i].z].instance()
+			add_child(piece)
+			var col = preset_spaces[i].x
+			var row = preset_spaces[i].y
+			piece.position = grid_to_pixel(col, row)
+			all_pieces[col][row] = piece
+			
 
 func store_info(first_piece, other_piece, place, direction):
 	piece_one = first_piece
@@ -692,7 +710,7 @@ func find_normal_neighbour(column, row):
 func match_all_in_column(column):
 	for i in height:
 		# if piece isn't null, a sinker or a colour bomb
-		if all_pieces[column][i] != null and !is_piece_sinker(column, i) and !is_color_bomb(all_pieces[column][i]):
+		if all_pieces[column][i] != null and !is_piece_sinker(column, i):
 			# if piece is a row bomb
 			if all_pieces[column][i].is_row_bomb:
 				match_all_in_row(i)
@@ -702,12 +720,14 @@ func match_all_in_column(column):
 #			if all_pieces[column][i].is_color_bomb:
 #				match
 			# match all in column
+			if all_pieces[column][i].is_color_bomb:
+				match_color(all_pieces[column][i].color)
 			all_pieces[column][i].matched = true
 
 func match_all_in_row(row):
 	for i in width:
 		# if piece isn't null, a sinker or a colour bomb
-		if all_pieces[i][row] != null and !is_piece_sinker(i, row) and !is_color_bomb(all_pieces[i][row]):
+		if all_pieces[i][row] != null and !is_piece_sinker(i, row):
 			# if_piece is a column bomb
 			if all_pieces[i][row].is_column_bomb:
 				match_all_in_column(i)
@@ -715,17 +735,21 @@ func match_all_in_row(row):
 			if all_pieces[i][row].is_adjacent_bomb:
 				find_adjacent_pieces(i, row)
 			# match all in row
+			if all_pieces[i][row].is_color_bomb:
+				match_color(all_pieces[i][row].color)
 			all_pieces[i][row].matched = true
 
 func find_adjacent_pieces(column, row):
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			if is_in_grid(Vector2(column + i, row + j)):
-				if !is_piece_null(column + i, row + j) and !is_piece_sinker(column + i, row + j) and !is_color_bomb(all_pieces[column + i][row + j]):
-					if all_pieces[column][row + j].is_row_bomb:
+				if !is_piece_null(column + i, row + j) and !is_piece_sinker(column + i, row + j):
+					if all_pieces[column + i][row + j].is_row_bomb:
 						match_all_in_row(j)
-					if all_pieces[column + i][row].is_column_bomb:
+					if all_pieces[column + i][row + j].is_column_bomb:
 						match_all_in_column(i)
+					if all_pieces[column + i][row + j].is_color_bomb:
+						match_color(all_pieces[column][row].color)
 					all_pieces[column+i][row+j].matched = true
 #	for i in range(-1, 2):
 #		for j in range(-1, 2):
