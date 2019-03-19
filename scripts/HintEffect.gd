@@ -14,12 +14,12 @@ func setup(new_sprite):
 	slowly_dimmer()
 
 func slowly_larger():
-	size_tween.interpolate_property(this_sprite, "scale", Vector2(0.5, 0.5), Vector2(0.75, 0.75), 3, Tween.TRANS_SINE, Tween.EASE_OUT)
+	size_tween.interpolate_property(this_sprite, "scale", Vector2(0.5, 0.5), Vector2(1, 1), 3, Tween.TRANS_SINE, Tween.EASE_OUT)
 	size_tween.start()
 	
 
 func slowly_dimmer():
-	color_tween.interpolate_property(this_sprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), 3, Tween.TRANS_SINE, Tween.EASE_OUT)
+	color_tween.interpolate_property(this_sprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 3, Tween.TRANS_SINE, Tween.EASE_OUT)
 	color_tween.start()
 
 func _on_SizeTween_tween_completed(object, key):

@@ -102,6 +102,11 @@ var current_sinkers = 0
 var particle_effect = preload("res://scenes/ParticleEffect.tscn")
 #var explosion_animation = preload("res://scenes/ExplosionAnimation.tscn")
 
+# Hint system stuff
+export(PackedScene) var hint_effect
+var hint = null
+var hint_color = ""
+
 # Game over
 signal game_over
 
@@ -189,6 +194,7 @@ func spawn_pieces():
 				add_child(piece);
 				piece.position = grid_to_pixel(i, j)
 				all_pieces[i][j] = piece;
+	$HintTimer.start()	
 
 func is_piece_sinker(col, row):
 	if all_pieces[col][row] != null:
@@ -268,6 +274,9 @@ func touch_input():
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)):
 			first_touch = pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)
 			controlling = true
+			if hint != null:
+				hint.queue_free()
+				hint = null
 	if Input.is_action_just_released("ui_touch"):
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)) && controlling:
 			controlling = false
@@ -367,6 +376,7 @@ func swap_back():
 		swap_pieces(last_place.x, last_place.y, last_direction)
 		state = move
 		move_checked = false
+		$HintTimer.start()
 
 func touch_difference(grid_1, grid_2):
 	var difference = grid_2 - grid_1
@@ -394,6 +404,7 @@ func find_matches(query = false, array = all_pieces):
 					if array[i - 1][j] and array[i + 1][j]:
 						if array[i - 1][j].color == current_color && array[i + 1][j].color == current_color:
 							if query:
+								hint_color = current_color
 								return true
 							match_and_dim(array[i - 1][j])
 							match_and_dim(array[i][j])
@@ -405,6 +416,7 @@ func find_matches(query = false, array = all_pieces):
 					if array[i][j - 1] and array[i][j + 1]:
 						if array[i][j - 1].color == current_color && array[i][j + 1].color == current_color:
 							if query:
+								hint_color = current_color
 								return true
 							match_and_dim(array[i][j - 1])
 							match_and_dim(array[i][j])
@@ -670,6 +682,7 @@ func after_refill():
 		emit_signal("update_counter")
 		if current_counter_value == 0:
 			declare_game_over()
+	$HintTimer.start()
 
 func generate_slime():
 	# Make sure there are slime pieces on the board
@@ -809,6 +822,38 @@ func shuffle_board():
 		$ShuffleTimer.start()
 	state = move
 
+func find_all_matches():
+	var hint_holder = []
+	var clone_array = copy_array(all_pieces)
+	for i in width:
+		for j in height:
+			if clone_array[i][j] != null:
+				if switch_and_check(Vector2(i, j), Vector2(1, 0), clone_array):
+					if hint_color != "":
+						if hint_color == clone_array[i][j].color:
+							hint_holder.append(clone_array[i][j])
+						else:
+							hint_holder.append(clone_array[i + 1][j])
+				if switch_and_check(Vector2(i, j), Vector2(0, 1), clone_array):
+					if hint_color != "":
+						if hint_color == clone_array[i][j].color:
+							hint_holder.append(clone_array[i][j])
+						else:
+							hint_holder.append(clone_array[i][j + 1])
+	return hint_holder
+
+func generate_hint():
+	if hint != null:
+		hint.queue_free()
+		hint = null
+	var hints = find_all_matches()
+	if hints != null:
+		var rand = floor(rand_range(0, hints.size()))
+		hint = hint_effect.instance()
+		add_child(hint)
+		hint.position = hints[rand].position
+		hint.setup(hints[rand].get_node("Sprite").texture)
+
 func switch_pieces(place, direction, array):
 	if is_in_grid(place) and !restricted_fill(place):
 		if is_in_grid(place + direction) and !restricted_fill(place + direction):
@@ -896,22 +941,24 @@ func _on_ShuffleTimer_timeout():
 
 func _on_BottomUI_random_color_bomb():
 	
-	var x = rand_range(0, width)
-	var y = rand_range(0, height)
+	var x = floor(rand_range(0, width))
+	var y = floor(rand_range(0, height))
 	var new_piece = all_pieces[x][y]
-	var found_piece = false
 	
-	if !is_piece_null(x, y):
-		if !restricted_fill(Vector2(x, y)) and !restricted_move(Vector2(x, y)):
-			if !cleared_board:
+	for i in all_pieces:
+		if !is_piece_null(x, y) and !is_color_bomb(all_pieces[x][y]):
+			if !restricted_fill(Vector2(x, y)) and !restricted_move(Vector2(x, y)):
 				damage_special(x, y)
 				emit_signal("check_goal", new_piece.color)
 				new_piece.matched = false
 				change_bomb(3, new_piece)
-				found_piece = true
-		else:
-			x = rand_range(0, width)
-			y = rand_range(0, height)
-			new_piece = all_pieces[x][y]
+			else:
+				x = rand_range(0, width)
+				y = rand_range(0, height)
+				new_piece = all_pieces[x][y]
 	
 	
+
+
+func _on_HintTimer_timeout():
+	generate_hint()
