@@ -11,8 +11,12 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="SizeTween" type="Tween" parent="."]
+playback_speed = 3.0
+playback/speed = 3.0
 
 [node name="ColorTween" type="Tween" parent="."]
+playback_speed = 3.0
+playback/speed = 3.0
 
 [connection signal="tween_completed" from="SizeTween" to="." method="_on_SizeTween_tween_completed"]
 [connection signal="tween_completed" from="ColorTween" to="." method="_on_ColorTween_tween_completed"]

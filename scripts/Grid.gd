@@ -825,6 +825,8 @@ func shuffle_board():
 func find_all_matches():
 	var hint_holder = []
 	var clone_array = copy_array(all_pieces)
+	print("CLONE ARRAY")
+	print (clone_array)
 	for i in width:
 		for j in height:
 			if clone_array[i][j] != null:
