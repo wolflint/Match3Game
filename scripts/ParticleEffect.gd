@@ -2,11 +2,11 @@ extends Node2D
 
 func change_color(effect_color):
 	match effect_color:
-		"blue": $Particles2D.modulate = Color(0.337, 0.596, 0.8, 2)
-		"yellow": $Particles2D.modulate = Color(0.98, 0.796, 0.243, 2)
-		"green": $Particles2D.modulate = Color(0.286, 0.655, 0.565, 2)
-		"orange": $Particles2D.modulate = Color(0.933, 0.556, 0.18, 2)
-		"lgreen": $Particles2D.modulate = Color(0.592, 0.855, 0.247, 2)
-		"pink": $Particles2D.modulate = Color(0.863, 0.29, 0.482, 2)
-		"red": $Particles2D.modulate = Color(0.218, 0.78, 0.56, 2)
-		"purple": $Particles2D.modulate = Color(0.153, 0.57, 0.112, 2)
+		"blue": $Particles2D.modulate = Color("#0057e7")
+		"yellow": $Particles2D.modulate = Color("#ffa700")
+		"green": $Particles2D.modulate = Color("#008744")
+		"orange": $Particles2D.modulate = Color("#FFA500")
+		"lgreen": $Particles2D.modulate = Color("#00FF00")
+		"pink": $Particles2D.modulate = Color("#FF00FF")
+		"red": $Particles2D.modulate = Color("#FF0000")
+		"purple": $Particles2D.modulate = Color("#800080")

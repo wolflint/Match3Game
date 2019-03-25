@@ -11,7 +11,7 @@ export (int) var x_start
 export (int) var y_start
 export (int) var offset
 export (int) var y_offset
-export (int) var max_piece_types
+export (int, 2, 8) var max_piece_types
 
 # Obstacle Variables
 export (PoolVector2Array) var empty_spaces
@@ -89,8 +89,6 @@ signal open_game_win_panel
 # bomb effect variables
 var color_bomb_used = false
 var cleared_board = false
-#var just_matched_in_column = false
-#var just_matched_in_row = false
 
 # Sinkers
 export (PackedScene) var sinker_piece
@@ -155,7 +153,6 @@ func is_ice_block(place):
 		return true
 	return false
 
-
 func is_in_array(array, item):
 	if array != null:
 		for i in array.size():
@@ -194,15 +191,13 @@ func spawn_pieces():
 				add_child(piece);
 				piece.position = grid_to_pixel(i, j)
 				all_pieces[i][j] = piece;
-	$HintTimer.start()	
+	$HintTimer.start()
 
 func is_piece_sinker(col, row):
 	if all_pieces[col][row] != null:
 		if all_pieces[col][row].color == "None":
 			return true
 	return false
-
-# i = the column, j = the row
 
 func match_at(i, j, color):
 	if i > 1:
@@ -256,7 +251,6 @@ func grid_to_pixel(column, row):
 	var new_x = x_start + offset * column;
 	var new_y = y_start + -offset * row;
 	return Vector2(new_x, new_y)
-
 
 func pixel_to_grid(pixel_x, pixel_y):
 	var new_x = round((pixel_x - x_start) / offset)
@@ -362,7 +356,6 @@ func spawn_preset_pieces():
 				var row = preset_spaces[i].y
 				piece.position = grid_to_pixel(col, row)
 				all_pieces[col][row] = piece
-
 
 func store_info(first_piece, other_piece, place, direction):
 	piece_one = first_piece
@@ -829,19 +822,20 @@ func find_all_matches():
 	print (clone_array)
 	for i in width:
 		for j in height:
-			if clone_array[i][j] != null:
-				if switch_and_check(Vector2(i, j), Vector2(1, 0), clone_array):
-					if hint_color != "":
-						if hint_color == clone_array[i][j].color:
-							hint_holder.append(clone_array[i][j])
-						else:
-							hint_holder.append(clone_array[i + 1][j])
-				if switch_and_check(Vector2(i, j), Vector2(0, 1), clone_array):
-					if hint_color != "":
-						if hint_color == clone_array[i][j].color:
-							hint_holder.append(clone_array[i][j])
-						else:
-							hint_holder.append(clone_array[i][j + 1])
+			if is_in_grid(Vector2(i, j)) and not clone_array[i][j] == null:
+				if is_in_grid(Vector2(i+1, j+1)) and not clone_array[i+1][j+1] == null:
+					if switch_and_check(Vector2(i, j), Vector2(1, 0), clone_array):
+						if hint_color != "":
+							if hint_color == clone_array[i][j].color:
+								hint_holder.append(clone_array[i][j])
+							else:
+								hint_holder.append(clone_array[i + 1][j])
+					if switch_and_check(Vector2(i, j), Vector2(0, 1), clone_array):
+						if hint_color != "":
+							if hint_color == clone_array[i][j].color:
+								hint_holder.append(clone_array[i][j])
+							else:
+								hint_holder.append(clone_array[i][j + 1])
 	return hint_holder
 
 func generate_hint():
@@ -850,7 +844,7 @@ func generate_hint():
 		hint = null
 	var hints = find_all_matches()
 	if hints != null:
-		var rand = floor(rand_range(0, hints.size()))
+		var rand = randi() % hints.size()
 		hint = hint_effect.instance()
 		add_child(hint)
 		hint.position = hints[rand].position
@@ -881,12 +875,11 @@ func is_deadlocked():
 				return false
 	return true
 
-
 func switch_and_check(place, direction, array):
 	switch_pieces(place, direction, array)
 	if find_matches(true, array):
 		switch_pieces(place, direction, array)
-		print('found matches')		
+		print('found matches')
 		return true
 	switch_pieces(place, direction, array)
 	return false
@@ -911,7 +904,6 @@ func _on_SlimeHolder_remove_slime(item):
 	damaged_slime = true
 	slime_spaces = remove_from_array(slime_spaces, item)
 
-
 func _on_Timer_timeout():
 	current_counter_value -=1
 	emit_signal("update_counter")
@@ -926,27 +918,21 @@ func declare_game_over():
 func _on_Grid_maximum_streak_reached():
 	clear_board()
 
-
-#func _on_IceHolder_break_ice():
-#	pass # replace with function body
-
-
 func _on_GoalHolder_game_win():
 	state = game_over
 	goals_met = true
 	$Timer.stop()
 
-
 func _on_ShuffleTimer_timeout():
 	shuffle_board()
-
+	generate_hint()
 
 func _on_BottomUI_random_color_bomb():
-	
+
 	var x = floor(rand_range(0, width))
 	var y = floor(rand_range(0, height))
 	var new_piece = all_pieces[x][y]
-	
+
 	for i in all_pieces:
 		if !is_piece_null(x, y) and !is_color_bomb(all_pieces[x][y]):
 			if !restricted_fill(Vector2(x, y)) and !restricted_move(Vector2(x, y)):
@@ -958,9 +944,6 @@ func _on_BottomUI_random_color_bomb():
 				x = rand_range(0, width)
 				y = rand_range(0, height)
 				new_piece = all_pieces[x][y]
-	
-	
-
 
 func _on_HintTimer_timeout():
 	generate_hint()
