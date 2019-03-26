@@ -9,38 +9,30 @@
 [ext_resource path="res://art/ui/buttons/btn_settings2.png" type="Texture" id=7]
 
 [node name="Main" instance=ExtResource( 1 )]
-
 script = ExtResource( 2 )
 
 [node name="MarginContainer" parent="." index="0"]
-
 editor/display_folded = false
 
 [node name="Graphic" parent="MarginContainer/GraphicAndButtons" index="0"]
-
 margin_bottom = 488.0
 rect_min_size = Vector2( 488, 488 )
 texture = ExtResource( 3 )
 expand = true
-_sections_unfolded = [ "Rect" ]
 
 [node name="Buttons" parent="MarginContainer/GraphicAndButtons" index="1"]
-
 margin_top = 518.0
 margin_bottom = 922.0
 
 [node name="Button1" parent="MarginContainer/GraphicAndButtons/Buttons" index="0"]
-
 margin_bottom = 256.0
 rect_min_size = Vector2( 512, 256 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Rect", "Textures" ]
 
 [node name="Button2" parent="MarginContainer/GraphicAndButtons/Buttons" index="1"]
-
 margin_top = 276.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 512, 128 )
@@ -48,10 +40,6 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Rect", "Textures" ]
 
 [connection signal="pressed" from="MarginContainer/GraphicAndButtons/Buttons/Button1" to="." method="_on_Button1_pressed"]
-
 [connection signal="pressed" from="MarginContainer/GraphicAndButtons/Buttons/Button2" to="." method="_on_Button2_pressed"]
-
-
