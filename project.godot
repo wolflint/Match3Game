@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Shape-Shift"
-run/main_scene="res://scenes/levels/GameWindow.tscn"
+run/main_scene="res://scenes/GameMenu.tscn"
 config/icon="res://art/ui/game_start_menu.png"
 
 [display]

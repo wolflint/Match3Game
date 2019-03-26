@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Question.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Answer.tscn" type="PackedScene" id=2]
+
+[node name="QuestionDatabase" type="Node"]
+
+[node name="Question1" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a square have?"
+
+[node name="Q1Answer1" parent="Question1" instance=ExtResource( 2 )]
+is_correct = true
+answer = "4"
+
+[node name="Q1Answer2" parent="Question1" instance=ExtResource( 2 )]
+answer = "6"
+
+[node name="Q1Answer3" parent="Question1" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q1Answer4" parent="Question1" instance=ExtResource( 2 )]
+answer = "3"
+
+[node name="Question2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a triangle have?"
+
+[node name="Q2Answer1" parent="Question2" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question2" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question2" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question2" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a rectangle have?"
+
+[node name="Q2Answer1" parent="Question3" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question3" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question3" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question3" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question4" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a hexagon have?"
+
+[node name="Q2Answer1" parent="Question4" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question4" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question4" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question4" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question5" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a octagon have?"
+
+[node name="Q2Answer1" parent="Question5" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question5" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question5" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question5" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question6" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a rhombus have?"
+
+[node name="Q2Answer1" parent="Question6" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question6" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question6" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question6" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question7" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a circle have?"
+
+[node name="Q2Answer1" parent="Question7" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question7" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question7" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question7" instance=ExtResource( 2 )]
+answer = "1"
+
+[node name="Question8" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many sides does a right-angled triangle have?"
+
+[node name="Q2Answer1" parent="Question8" instance=ExtResource( 2 )]
+answer = "2"
+
+[node name="Q2Answer2" parent="Question8" instance=ExtResource( 2 )]
+is_correct = true
+answer = "3"
+
+[node name="Q2Answer3" parent="Question8" instance=ExtResource( 2 )]
+answer = "5"
+
+[node name="Q2Answer4" parent="Question8" instance=ExtResource( 2 )]
+answer = "1"
+

@@ -4,14 +4,11 @@
 [ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=2]
 
 [node name="Ice" type="Node2D"]
-
+modulate = Color( 1, 1, 1, 0.784314 )
 script = ExtResource( 1 )
 health = 1
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
 
