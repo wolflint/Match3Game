@@ -1,4 +1,4 @@
-extends "res://scripts/BaseMenuPanel.gd"
+extends "BaseMenuPanel.gd"
 
 signal sound_changed
 signal back_button

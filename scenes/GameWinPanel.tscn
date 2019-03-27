@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/GameWinPanel.gd" type="Script" id=1]
+[ext_resource path="res://scripts/GameWinPanel.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/panels/win_panel.png" type="Texture" id=2]
 [ext_resource path="res://art/ui/buttons/btn_continue.png" type="Texture" id=3]
 [ext_resource path="res://animations/slide_in_animation.tres" type="Animation" id=4]

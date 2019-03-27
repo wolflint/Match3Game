@@ -23,6 +23,9 @@ func _ready():
 func get_question():
 	if all_questions.empty():
 		question_label.text = "No more questions. \n Your score is : %s/%s" % [score, total_questions]
+		for i in 3:
+			answer_buttons[i].text = ""
+		answer_buttons[3].text = "Restart"
 		return
 	randomize()
 	var rand = randi() % all_questions.size()
@@ -73,24 +76,33 @@ func next_question():
 
 
 func _on_Button1_pressed():
+	if not current_answers:
+		return
 	if current_answers[0].is_correct:
 		score += 1
 	next_question()
 
 
 func _on_Button2_pressed():
+	if not current_answers:
+		return
 	if current_answers[1].is_correct:
 		score += 1
 	next_question()
 
 
 func _on_Button3_pressed():
+	if not current_answers:
+		return
 	if current_answers[2].is_correct:
 		score += 1
 	next_question()
 
 
 func _on_Button4_pressed():
+	if not current_answers:
+		get_tree().reload_current_scene()
+		return
 	if current_answers[3].is_correct:
 		score += 1
 	next_question()

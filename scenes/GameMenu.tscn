@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/GameMenu.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
 [ext_resource path="res://scenes/GameStartMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/SettingsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/LearnMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/MainLearnMenuSelectionPanel.tscn" type="PackedScene" id=6]
 
 [node name="GameMenu" type="Control"]
 margin_left = -3.0
@@ -24,7 +26,19 @@ transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 offset = Vector2( 576, 0 )
 transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 
+[node name="LearnMenu" parent="." instance=ExtResource( 5 )]
+offset = Vector2( 576, 0 )
+transform = Transform2D( 1, 0, 0, 1, 576, 0 )
+
+[node name="MainLearnMenuSelectionPanel" parent="." instance=ExtResource( 6 )]
+offset = Vector2( 576, 0 )
+transform = Transform2D( 1, 0, 0, 1, 576, 0 )
+
 [connection signal="learn_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_learn_button_pressed"]
 [connection signal="play_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_play_button_pressed"]
 [connection signal="settings_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_settings_button_pressed"]
 [connection signal="back_button" from="SettingsMenu" to="." method="_on_SettingsMenu_back_button"]
+[connection signal="learn_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_learn_button_pressed"]
+[connection signal="quiz_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_quiz_button_pressed"]
+[connection signal="properties_button_pressed" from="MainLearnMenuSelectionPanel" to="." method="_on_MainLearnMenuSelectionPanel_properties_button_pressed"]
+[connection signal="shapes_button_pressed" from="MainLearnMenuSelectionPanel" to="." method="_on_MainLearnMenuSelectionPanel_shapes_button_pressed"]
