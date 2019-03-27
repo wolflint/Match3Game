@@ -32,19 +32,56 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 536.0
-margin_bottom = 75.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Question"
 align = 1
+valign = 1
 autowrap = true
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 924.0
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 724.0
 margin_right = 536.0
 margin_bottom = 984.0
-rect_min_size = Vector2( 0, 60 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="Button1" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_right = 258.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
 text = "Next Question"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 278.0
+margin_right = 536.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
+text = "Next Question"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 140.0
+margin_right = 258.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
+text = "Next Question"
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 278.0
+margin_top = 140.0
+margin_right = 536.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
+text = "Next Question"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Button1" to="." method="_on_Button1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Button4" to="." method="_on_Button4_pressed"]

@@ -3,19 +3,26 @@ extends Control
 
 onready var question_database = $QuestionDatabase
 onready var question_label = $MarginContainer/VBoxContainer/Label
+onready var answer_buttons = [$MarginContainer/VBoxContainer/GridContainer/Button1, $MarginContainer/VBoxContainer/GridContainer/Button2, $MarginContainer/VBoxContainer/GridContainer/Button3, $MarginContainer/VBoxContainer/GridContainer/Button4]
 var all_questions = []
 var used_questions = []
 var current_question
+var current_answers = []
+var total_questions = 0
+var score = 0
 
 func _ready():
 	for i in question_database.get_child_count():
 		all_questions.append(question_database.get_child(i))
 
 	current_question = get_question()
+	current_answers = get_answers(current_question)
 	update_label(current_question)
+	update_button_text(current_answers)
 
 func get_question():
 	if all_questions.empty():
+		question_label.text = "No more questions. \n Your score is : %s/%s" % [score, total_questions]
 		return
 	randomize()
 	var rand = randi() % all_questions.size()
@@ -26,12 +33,29 @@ func get_question():
 
 	all_questions.remove(rand)
 	used_questions.append(new_question)
+	total_questions += 1
 	return new_question
+
+func get_answers(current_question):
+	var new_current_answers = []
+	if current_question != null:
+		for i in current_question.get_child_count():
+			var new_answer = current_question.get_child(i)
+#			print(new_answer)
+			new_current_answers.append(new_answer)
+#			print(new_current_answers)
+		return new_current_answers
 
 func update_label(current_question):
 	if current_question != null:
 		question_label.text = current_question.question
 
+func update_button_text(current_answers):
+	if current_answers != null:
+		for i in current_answers.size():
+			answer_buttons[i].text = current_answers[i].answer
+			print(current_answers[i])
+#			answer_buttons[0].text = "This is a test man!"
 
 func check_if_in_array(array,item):
 	if not array.empty():
@@ -41,6 +65,32 @@ func check_if_in_array(array,item):
 			continue
 		return false
 
-func _on_Button_pressed():
+func next_question():
 	current_question = get_question()
+	current_answers = get_answers(current_question)
 	update_label(current_question)
+	update_button_text(current_answers)
+
+
+func _on_Button1_pressed():
+	if current_answers[0].is_correct:
+		score += 1
+	next_question()
+
+
+func _on_Button2_pressed():
+	if current_answers[1].is_correct:
+		score += 1
+	next_question()
+
+
+func _on_Button3_pressed():
+	if current_answers[2].is_correct:
+		score += 1
+	next_question()
+
+
+func _on_Button4_pressed():
+	if current_answers[3].is_correct:
+		score += 1
+	next_question()
