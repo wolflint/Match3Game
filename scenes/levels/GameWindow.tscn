@@ -36,6 +36,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Grid" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 0, 1 )
 script = ExtResource( 5 )
 width = 8
@@ -49,7 +50,7 @@ empty_spaces = PoolVector2Array( 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 5, 9, 1, 1, 0, 9,
 ice_spaces = PoolVector2Array( 0, 3, 0, 6, 7, 3, 7, 6 )
 max_score = 3000
 piece_value = 20
-current_counter_value = 60
+current_counter_value = 5
 is_moves = true
 sinker_piece = ExtResource( 6 )
 hint_effect = ExtResource( 7 )

@@ -19,6 +19,10 @@ config/name="Shape-Shift"
 run/main_scene="res://scenes/GameMenu.tscn"
 config/icon="res://art/ui/game_start_menu.png"
 
+[autoload]
+
+Points="*res://scripts/points.gd"
+
 [display]
 
 window/size/width=576

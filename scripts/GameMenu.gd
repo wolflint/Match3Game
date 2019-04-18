@@ -8,6 +8,9 @@ func _on_SettingsMenu_back_button():
 	$GameStartMenu.slide_in()
 
 func _on_GameStartMenu_play_button_pressed():
+	if Points.get_current_points() <= 0:
+		return
+	Points.remove_point()
 	get_tree().change_scene("res://scenes/levels/GameWindow.tscn")
 
 
