@@ -33,4 +33,7 @@ func setup():
 
 func _on_TextureButton_pressed() -> void:
 	if enabled:
+		if Points.get_current_points() <= 0:
+			return
+		Points.remove_point()
 		get_tree().change_scene(level_to_load)
