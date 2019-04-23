@@ -23,6 +23,7 @@ config/icon="res://art/ui/game_start_menu.png"
 
 Points="*res://scenes/Points.tscn"
 ConfigManager="*res://scripts/ConfigManager.gd"
+GameDataManager="*res://scripts/GameDataManager.gd"
 
 [debug]
 

@@ -268,7 +268,7 @@ func touch_input():
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)):
 			first_touch = pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)
 			controlling = true
-			if hint != null:
+			if hint:
 				hint.queue_free()
 				hint = null
 	if Input.is_action_just_released("ui_touch"):
