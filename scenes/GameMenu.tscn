@@ -34,10 +34,12 @@ transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 offset = Vector2( 576, 0 )
 transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 
+[connection signal="read_sound" from="." to="SettingsMenu" method="_on_GameMenu_read_sound"]
 [connection signal="learn_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_learn_button_pressed"]
 [connection signal="play_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_play_button_pressed"]
 [connection signal="settings_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_settings_button_pressed"]
 [connection signal="back_button" from="SettingsMenu" to="." method="_on_SettingsMenu_back_button"]
+[connection signal="sound_changed" from="SettingsMenu" to="." method="_on_SettingsMenu_sound_changed"]
 [connection signal="learn_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_learn_button_pressed"]
 [connection signal="quiz_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_quiz_button_pressed"]
 [connection signal="properties_button_pressed" from="MainLearnMenuSelectionPanel" to="." method="_on_MainLearnMenuSelectionPanel_properties_button_pressed"]
