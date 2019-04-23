@@ -8,7 +8,8 @@ func _on_Pause_pressed():
 	emit_signal("pause_game")
 	get_tree().paused = true
 
-func _on_Booster2_pressed():
+
+func _on_ColourBombBooster_pressed() -> void:
 	if Points.points > 0:
 		Points.remove_point()
 		emit_signal("random_color_bomb")
