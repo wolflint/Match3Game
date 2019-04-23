@@ -30,6 +30,16 @@ func get_question():
 			answer_buttons[i].text = ""
 		answer_buttons[2].text = "Quit"
 		answer_buttons[3].text = "Restart"
+
+		var result = float(score / total_questions)
+		if result == DISTINCTION:
+			Points.add_points(5)
+		elif result >= MERIT:
+			Points.add_points(3)
+		elif result >= PASS:
+			Points.add_points(1)
+		print(Points.points)
+
 		return
 	randomize()
 	var rand = randi() % all_questions.size()

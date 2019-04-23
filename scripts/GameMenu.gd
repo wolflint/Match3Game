@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	$GameStartMenu.slide_in()
+	print(Points.points)
 
 func _on_SettingsMenu_back_button():
 	$SettingsMenu.slide_out()
