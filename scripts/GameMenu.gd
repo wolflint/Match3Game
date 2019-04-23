@@ -12,7 +12,7 @@ func _on_GameStartMenu_play_button_pressed():
 	if Points.get_current_points() <= 0:
 		return
 	Points.remove_point()
-	get_tree().change_scene("res://scenes/levels/GameWindow.tscn")
+	get_tree().change_scene("res://scenes/LevelSelectScene.tscn")
 
 
 func _on_GameStartMenu_learn_button_pressed():
