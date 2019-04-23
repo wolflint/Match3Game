@@ -21,7 +21,11 @@ config/icon="res://art/ui/game_start_menu.png"
 
 [autoload]
 
-Points="*res://scripts/points.gd"
+Points="*res://scenes/Points.tscn"
+
+[debug]
+
+gdscript/warnings/enable=false
 
 [display]
 

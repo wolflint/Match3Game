@@ -10,6 +10,9 @@ var current_question
 var current_answers = []
 var total_questions = 0
 var score = 0
+const PASS = 0.5
+const MERIT = 0.7
+const DISTINCTION = 1.0
 
 func _ready():
 	for i in question_database.get_child_count():
@@ -23,8 +26,9 @@ func _ready():
 func get_question():
 	if all_questions.empty():
 		question_label.text = "No more questions. \n Your score is : %s/%s" % [score, total_questions]
-		for i in 3:
+		for i in 2:
 			answer_buttons[i].text = ""
+		answer_buttons[2].text = "Quit"
 		answer_buttons[3].text = "Restart"
 		return
 	randomize()
@@ -93,6 +97,7 @@ func _on_Button2_pressed():
 
 func _on_Button3_pressed():
 	if not current_answers:
+		get_tree().change_scene("res://scenes/GameMenu.tscn")
 		return
 	if current_answers[2].is_correct:
 		score += 1
