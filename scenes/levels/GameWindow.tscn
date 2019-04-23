@@ -36,7 +36,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Grid" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 0, 1 )
 script = ExtResource( 5 )
 width = 8
