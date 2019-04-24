@@ -6,7 +6,6 @@
 [ext_resource path="res://art/ui/buttons/btn_pause_continue.png" type="Texture" id=4]
 [ext_resource path="res://animations/slide_in_animation.tres" type="Animation" id=5]
 
-
 [node name="PausePanel" type="CanvasLayer"]
 pause_mode = 2
 offset = Vector2( 576, 0 )

@@ -31,6 +31,7 @@ signal damage_concrete
 signal make_slime
 signal damage_slime
 
+# Robot messages
 signal print_positive_message
 
 # Preset spaces
