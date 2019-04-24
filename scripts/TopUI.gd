@@ -18,7 +18,6 @@ func _on_Grid_update_score(amount_to_change):
 	current_score += amount_to_change
 	update_score_bar()
 	score_label.text = str(current_score)
-	print(current_score)
 
 
 func _on_Grid_update_counter(amount_to_change = -1):

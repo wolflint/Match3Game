@@ -121,6 +121,7 @@ goal_string = "ice"
 [connection signal="maximum_streak_reached" from="Grid" to="Grid" method="_on_Grid_maximum_streak_reached"]
 [connection signal="open_game_win_panel" from="Grid" to="GameWinPanel" method="_on_Grid_open_game_win_panel"]
 [connection signal="open_game_win_panel" from="Grid" to="TopUI" method="_on_Grid_open_game_win_panel"]
+[connection signal="print_positive_message" from="Grid" to="BottomUI" method="_on_Grid_print_positive_message"]
 [connection signal="setup_max_score" from="Grid" to="TopUI" method="_on_Grid_setup_max_score"]
 [connection signal="update_counter" from="Grid" to="TopUI" method="_on_Grid_update_counter"]
 [connection signal="update_score" from="Grid" to="TopUI" method="_on_Grid_update_score"]

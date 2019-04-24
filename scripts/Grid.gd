@@ -31,6 +31,8 @@ signal damage_concrete
 signal make_slime
 signal damage_slime
 
+signal print_positive_message
+
 # Preset spaces
 export (PoolVector3Array) var preset_spaces
 
@@ -581,7 +583,6 @@ func check_slime(column, row):
 func damage_special(column, row):
 	emit_signal("damage_ice", Vector2(column, row))
 #	if is_in_array(ice_spaces, Vector2(column, row)):
-#		print("damage_ice: " + str(column) + "," + str(row))
 	emit_signal("damage_lock", Vector2(column, row))
 	check_concrete(column, row)
 	check_slime(column, row)
@@ -592,11 +593,14 @@ func match_color(color):
 			if all_pieces[i][j] != null and !is_piece_sinker(i, j):
 				if all_pieces[i][j].color == color:
 					if all_pieces[i][j].is_column_bomb:
-						match_all_in_column(i, j)
+						if !is_piece_null(i, j):						
+							match_all_in_column(i, j)
 					if all_pieces[i][j].is_row_bomb:
-						match_all_in_row(i, j)
+						if !is_piece_null(i, j):
+							match_all_in_row(i, j)
 					if all_pieces[i][j].is_adjacent_bomb:
-						find_adjacent_pieces(i, j)
+						if !is_piece_null(i, j):
+							find_adjacent_pieces(i, j)
 					match_and_dim(all_pieces[i][j])
 					add_to_array(Vector2(i, j))
 	color_bomb_used = true
@@ -626,6 +630,8 @@ func refill_columns():
 	if current_sinkers < max_sinkers:
 		spawn_sinkers(max_sinkers - current_sinkers)
 	streak += 1
+	if streak == 5:
+		emit_signal("print_positive_message")
 	if streak == 100:
 		emit_signal("maximum_streak_reached")
 	for i in width:
@@ -820,8 +826,6 @@ func shuffle_board():
 func find_all_matches():
 	var hint_holder = []
 	var clone_array = copy_array(all_pieces)
-	print("CLONE ARRAY")
-	print (clone_array)
 	for i in width:
 		for j in height:
 			if is_in_grid(Vector2(i, j)) and not clone_array[i][j] == null:
@@ -873,11 +877,9 @@ func is_deadlocked():
 		for j in height:
 			# Switch and check right
 			if switch_and_check(Vector2(i,j), Vector2(1,0), clone_array):
-#				print('able to swap right')
 				return false
 			# Switch and check up
 			if switch_and_check(Vector2(i,j), Vector2(0,1), clone_array):
-#				print('able to swap up')
 				return false
 	return true
 
@@ -885,7 +887,6 @@ func switch_and_check(place, direction, array):
 	switch_pieces(place, direction, array)
 	if find_matches(true, array):
 		switch_pieces(place, direction, array)
-		print('found matches')
 		return true
 	switch_pieces(place, direction, array)
 	return false

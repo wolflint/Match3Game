@@ -67,12 +67,13 @@ margin_bottom = 128.0
 texture = ExtResource( 5 )
 
 [node name="Speech" type="Panel" parent="."]
+visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -203.568
-margin_bottom = -103.568
-rect_min_size = Vector2( 576, 100 )
+margin_top = -166.568
+margin_bottom = -86.568
+rect_min_size = Vector2( 576, 80 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="Label" type="Label" parent="Speech"]
@@ -83,6 +84,10 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Hello there!"
 align = 1
 valign = 1
+
+[node name="SpeechTimer" type="Timer" parent="Speech"]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ColourBombBooster" to="." method="_on_ColourBombBooster_pressed"]
