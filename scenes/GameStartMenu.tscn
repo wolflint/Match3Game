@@ -4,7 +4,7 @@
 [ext_resource path="res://art/ui/game_start_menu.png" type="Texture" id=2]
 [ext_resource path="res://art/ui/buttons/btn_play1.png" type="Texture" id=3]
 [ext_resource path="res://art/ui/buttons/btn_play2.png" type="Texture" id=4]
-[ext_resource path="res://art/ui/buttons/btn_tmp_orange.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/buttons/btn_pause.png" type="Texture" id=5]
 [ext_resource path="res://art/ui/buttons/btn_settings1.png" type="Texture" id=6]
 [ext_resource path="res://art/ui/buttons/btn_settings2.png" type="Texture" id=7]
 

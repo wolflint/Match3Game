@@ -921,6 +921,7 @@ func _on_Timer_timeout():
 		$Timer.stop()
 
 func declare_game_over():
+	destroy_hint()
 	emit_signal("game_over")
 	state = game_over
 
