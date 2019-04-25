@@ -923,6 +923,7 @@ func _on_Timer_timeout():
 func declare_game_over():
 	destroy_hint()
 	emit_signal("game_over")
+	GameDataManager.save_data()
 	state = game_over
 
 func _on_Grid_maximum_streak_reached():
@@ -933,6 +934,7 @@ func _on_GoalHolder_game_win():
 	goals_met = true
 	destroy_hint()
 	$Timer.stop()
+	GameDataManager.save_data()
 
 func _on_ShuffleTimer_timeout():
 	shuffle_board()

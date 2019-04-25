@@ -12,6 +12,7 @@ func _on_SettingsMenu_back_button():
 
 func _on_GameStartMenu_play_button_pressed():
 	get_tree().change_scene("res://scenes/LevelSelectScene.tscn")
+	queue_free()
 
 
 func _on_GameStartMenu_learn_button_pressed():
