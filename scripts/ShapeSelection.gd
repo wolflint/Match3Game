@@ -7,28 +7,28 @@ func _ready():
 		shape.connect("pressed", self, "_on_" + shape.name + "_pressed")
 
 func _on_Square_pressed():
-	print("Square")
+	get_tree().change_scene("res://scenes/learn-shapes/Square.tscn")
 
 func _on_Circle_pressed():
-	print("Circle")
+	get_tree().change_scene("res://scenes/learn-shapes/Circle.tscn")
 
 func _on_Triangle_pressed():
-	print("Triangle")
+	get_tree().change_scene("res://scenes/learn-shapes/Triangle.tscn")
 
-func _on_RightTriangle_pressed():
-	print("RightTriangle")
+func _on_Rhombus_pressed():
+	get_tree().change_scene("res://scenes/learn-shapes/Rhombus.tscn")
 
 func _on_Rectangle_pressed():
-	print("Rectangle")
+	get_tree().change_scene("res://scenes/learn-shapes/Rectangle.tscn")
 
 func _on_Pentagon_pressed():
-	print("Pentagon")
+	get_tree().change_scene("res://scenes/learn-shapes/Pentagon.tscn")
 
 func _on_Hexagon_pressed():
-	print("Hexagon")
+	get_tree().change_scene("res://scenes/learn-shapes/Hexagon.tscn")
 
 func _on_Parallelogram_pressed():
-	print("Parallelogram")
+	get_tree().change_scene("res://scenes/learn-shapes/Parallelogram.tscn")
 
 func _on_Home_pressed():
 	get_tree().change_scene("res://scenes/GameMenu.tscn")

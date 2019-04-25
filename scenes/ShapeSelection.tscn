@@ -83,7 +83,7 @@ texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
-[node name="RightTriangle" type="TextureButton" parent="VBoxContainer/Shapes"]
+[node name="Rhombus" type="TextureButton" parent="VBoxContainer/Shapes"]
 margin_left = 369.0
 margin_top = 152.0
 margin_right = 497.0

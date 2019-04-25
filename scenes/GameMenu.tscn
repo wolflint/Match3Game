@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/GameMenu.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
 [ext_resource path="res://scenes/GameStartMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/SettingsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/LearnMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/MainLearnMenuSelectionPanel.tscn" type="PackedScene" id=6]
 
 [node name="GameMenu" type="Control"]
 margin_left = -3.0
@@ -30,10 +29,6 @@ transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 offset = Vector2( 576, 0 )
 transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 
-[node name="MainLearnMenuSelectionPanel" parent="." instance=ExtResource( 6 )]
-offset = Vector2( 576, 0 )
-transform = Transform2D( 1, 0, 0, 1, 576, 0 )
-
 [connection signal="read_sound" from="." to="SettingsMenu" method="_on_GameMenu_read_sound"]
 [connection signal="learn_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_learn_button_pressed"]
 [connection signal="play_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_play_button_pressed"]
@@ -42,5 +37,3 @@ transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 [connection signal="sound_changed" from="SettingsMenu" to="." method="_on_SettingsMenu_sound_changed"]
 [connection signal="learn_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_learn_button_pressed"]
 [connection signal="quiz_button_pressed" from="LearnMenu" to="." method="_on_LearnMenu_quiz_button_pressed"]
-[connection signal="properties_button_pressed" from="MainLearnMenuSelectionPanel" to="." method="_on_MainLearnMenuSelectionPanel_properties_button_pressed"]
-[connection signal="shapes_button_pressed" from="MainLearnMenuSelectionPanel" to="." method="_on_MainLearnMenuSelectionPanel_shapes_button_pressed"]
