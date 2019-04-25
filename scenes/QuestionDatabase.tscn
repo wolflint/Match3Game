@@ -125,6 +125,7 @@ answer = "6"
 answer = "7"
 
 [node name="Question8" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 question = "How many sides does a rhombus have?"
 
 [node name="Q2Answer1" parent="Question8" instance=ExtResource( 2 )]

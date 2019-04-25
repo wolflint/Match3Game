@@ -1,49 +1,86 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/BaseMenuPanel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/SettingsMenu.gd" type="Script" id=2]
-[ext_resource path="res://art/ui/buttons/btn_sound1.png" type="Texture" id=3]
-[ext_resource path="res://art/ui/buttons/btn_sound_off1.png" type="Texture" id=4]
-[ext_resource path="res://art/ui/settings_logo.png" type="Texture" id=5]
-[ext_resource path="res://art/ui/buttons/btn_sound2.png" type="Texture" id=6]
-[ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=7]
-[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=8]
+[ext_resource path="res://scripts/SettingsMenu.gd" type="Script" id=1]
+[ext_resource path="res://art/ui/buttons/btn_sound1.png" type="Texture" id=2]
+[ext_resource path="res://art/ui/buttons/btn_sound_off1.png" type="Texture" id=3]
+[ext_resource path="res://fonts/menu_title_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://art/ui/buttons/btn_sound2.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=7]
 
-[node name="SettingsMenu" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-sound_on_texture = ExtResource( 3 )
-sound_off_texture = ExtResource( 4 )
+[sub_resource type="Animation" id=1]
+resource_name = "slide_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 576, 0 ), Vector2( 0, 0 ) ]
+}
 
-[node name="MarginContainer" parent="." index="0"]
-editor/display_folded = false
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource( 1 )
+sound_on_texture = ExtResource( 2 )
+sound_off_texture = ExtResource( 3 )
 
-[node name="Graphic" parent="MarginContainer/GraphicAndButtons" index="0"]
-margin_bottom = 512.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="GraphicAndButtons" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 556.0
+margin_bottom = 1004.0
+custom_constants/separation = 30
+
+[node name="Graphic" type="Label" parent="MarginContainer/GraphicAndButtons"]
+margin_right = 536.0
+margin_bottom = 488.0
 rect_min_size = Vector2( 488, 488 )
-mouse_filter = 2
-size_flags_vertical = 4
-texture = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
+text = "Settings Menu"
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Buttons" parent="MarginContainer/GraphicAndButtons" index="1"]
-margin_top = 542.0
-margin_bottom = 946.0
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/GraphicAndButtons"]
+margin_top = 518.0
+margin_right = 536.0
+margin_bottom = 922.0
+custom_constants/separation = 20
 
-[node name="Button1" parent="MarginContainer/GraphicAndButtons/Buttons" index="0"]
+[node name="Button1" type="TextureButton" parent="MarginContainer/GraphicAndButtons/Buttons"]
+margin_right = 536.0
 margin_bottom = 256.0
 rect_min_size = Vector2( 512, 256 )
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 6 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Button2" parent="MarginContainer/GraphicAndButtons/Buttons" index="1"]
+[node name="Button2" type="TextureButton" parent="MarginContainer/GraphicAndButtons/Buttons"]
 margin_top = 276.0
+margin_right = 536.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 512, 128 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
 expand = true
 stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_in = SubResource( 1 )
 
 [connection signal="pressed" from="MarginContainer/GraphicAndButtons/Buttons/Button1" to="." method="_on_Button1_pressed"]
 [connection signal="pressed" from="MarginContainer/GraphicAndButtons/Buttons/Button2" to="." method="_on_Button2_pressed"]

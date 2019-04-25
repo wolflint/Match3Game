@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/LearnMenu.gd" type="Script" id=1]
-[ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/menu_title_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 60
-font_data = ExtResource( 2 )
+[ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=4]
+[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.262745, 0.592157, 0.25098, 1 )
@@ -63,10 +61,10 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/LabelAndButtons"]
 margin_right = 536.0
-margin_bottom = 490.0
+margin_bottom = 452.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "Time to 
 Learn!"
 align = 1
@@ -75,20 +73,21 @@ autowrap = true
 uppercase = true
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/LabelAndButtons"]
-margin_left = 68.0
-margin_top = 494.0
-margin_right = 468.0
-margin_bottom = 844.0
+margin_left = 12.0
+margin_top = 456.0
+margin_right = 524.0
+margin_bottom = 984.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 custom_constants/separation = 50
 alignment = 1
 
 [node name="LearnButton" type="Button" parent="MarginContainer/LabelAndButtons/Buttons"]
-margin_right = 400.0
+margin_left = 56.0
+margin_right = 456.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 400, 150 )
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 size_flags_vertical = 2
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
@@ -97,11 +96,12 @@ custom_fonts/font = SubResource( 3 )
 text = "Learn about shapes!"
 
 [node name="QuizButton" type="Button" parent="MarginContainer/LabelAndButtons/Buttons"]
+margin_left = 56.0
 margin_top = 200.0
-margin_right = 400.0
+margin_right = 456.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 400, 150 )
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 size_flags_vertical = 2
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 4 )
@@ -111,8 +111,20 @@ custom_styles/normal = SubResource( 4 )
 custom_fonts/font = SubResource( 3 )
 text = "Get points by finishing the quiz!"
 
+[node name="Back" type="TextureButton" parent="MarginContainer/LabelAndButtons/Buttons"]
+margin_top = 400.0
+margin_right = 512.0
+margin_bottom = 528.0
+rect_min_size = Vector2( 512, 128 )
+size_flags_horizontal = 6
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/slide_in = SubResource( 5 )
 
 [connection signal="pressed" from="MarginContainer/LabelAndButtons/Buttons/LearnButton" to="." method="_on_LearnButton_pressed"]
 [connection signal="pressed" from="MarginContainer/LabelAndButtons/Buttons/QuizButton" to="." method="_on_QuizButton_pressed"]
+[connection signal="pressed" from="MarginContainer/LabelAndButtons/Buttons/Back" to="." method="_on_Back_pressed"]

@@ -32,3 +32,8 @@ func _on_LearnMenu_quiz_button_pressed():
 
 func _on_SettingsMenu_sound_changed() -> void:
 	ConfigManager.sound_on = !ConfigManager.sound_on
+
+
+func _on_LearnMenu_back_button_pressed():
+	$LearnMenu.slide_out()
+	$GameStartMenu.slide_in()
