@@ -75,7 +75,7 @@ answer = "7"
 
 [node name="Question5" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
-question = "How many sides does a octagon have?"
+question = "How many sides does a pentagon have?"
 
 [node name="Q2Answer1" parent="Question5" instance=ExtResource( 2 )]
 answer = "1"
@@ -84,15 +84,15 @@ answer = "1"
 answer = "7"
 
 [node name="Q2Answer3" parent="Question5" instance=ExtResource( 2 )]
-answer = "5"
+answer = "8"
 
 [node name="Q2Answer4" parent="Question5" instance=ExtResource( 2 )]
 is_correct = true
-answer = "8"
+answer = "5"
 
 [node name="Question6" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
-question = "How many sides does a rhombus have?"
+question = "How many sides does a parallelogram have?"
 
 [node name="Q2Answer1" parent="Question6" instance=ExtResource( 2 )]
 answer = "3"
