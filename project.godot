@@ -21,7 +21,6 @@ config/icon="res://art/ui/game_start_menu.png"
 
 [autoload]
 
-Points="*res://scenes/Points.tscn"
 ConfigManager="*res://scripts/ConfigManager.gd"
 GameDataManager="*res://scripts/GameDataManager.gd"
 

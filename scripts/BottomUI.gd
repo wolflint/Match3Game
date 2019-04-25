@@ -38,10 +38,10 @@ func _on_Pause_pressed():
 
 
 func _on_ColourBombBooster_pressed() -> void:
-	if Points.points > 0 and not game_over:
-		Points.remove_point()
+	if GameDataManager.save_data["points"] > 0 and not game_over:
+		GameDataManager.remove_point()
 		emit_signal("random_color_bomb")
-		print(Points.points)
+		print(GameDataManager.get_current_points())
 
 
 func _on_Grid_print_positive_message():

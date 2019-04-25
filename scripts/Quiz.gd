@@ -32,12 +32,12 @@ func get_question():
 
 		var result = float(score / total_questions)
 		if result == DISTINCTION:
-			Points.add_points(5)
+			GameDataManager.add_points(5)
 		elif result >= MERIT:
-			Points.add_points(3)
+			GameDataManager.add_points(3)
 		elif result >= PASS:
-			Points.add_points(1)
-		print(Points.points)
+			GameDataManager.add_points(1)
+		print(GameDataManager.save_data["points"])
 
 		return
 	randomize()

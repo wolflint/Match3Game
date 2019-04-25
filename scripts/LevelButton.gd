@@ -17,8 +17,8 @@ onready var button = $TextureButton
 onready var star = $Sprite
 
 func _ready() -> void:
-	if GameDataManager.levels_info.has(level):
-		enabled = GameDataManager.levels_info[level]["unlocked"]
+	if GameDataManager.save_data["level_data"].has(level):
+		enabled = GameDataManager.save_data["level_data"][level]["unlocked"]
 	else:
 		enabled = false
 	setup()
@@ -37,7 +37,7 @@ func setup():
 
 func _on_TextureButton_pressed() -> void:
 	if enabled:
-		if Points.get_current_points() <= 0:
+		if GameDataManager.save_data["points"] <= 0:
 			return
-		Points.remove_point()
+		GameDataManager.remove_point()
 		get_tree().change_scene(level_to_load)
