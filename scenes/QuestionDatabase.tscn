@@ -108,12 +108,11 @@ answer = "7"
 answer = "17"
 
 [node name="Question7" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 question = "How many sides does a circle have?"
 
 [node name="Q2Answer1" parent="Question7" instance=ExtResource( 2 )]
 is_correct = true
-answer = "1"
+answer = "0"
 
 [node name="Q2Answer2" parent="Question7" instance=ExtResource( 2 )]
 answer = "3"
@@ -125,7 +124,6 @@ answer = "6"
 answer = "7"
 
 [node name="Question8" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 question = "How many sides does a rhombus have?"
 
 [node name="Q2Answer1" parent="Question8" instance=ExtResource( 2 )]
