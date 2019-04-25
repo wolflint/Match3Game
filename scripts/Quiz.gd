@@ -26,10 +26,9 @@ func _ready():
 func get_question():
 	if all_questions.empty():
 		question_label.text = "No more questions. \n Your score is : %s/%s" % [score, total_questions]
-		for i in 2:
+		for i in 3:
 			answer_buttons[i].text = ""
-		answer_buttons[2].text = "Quit"
-		answer_buttons[3].text = "Restart"
+		answer_buttons[3].text = "Try again!"
 
 		var result = float(score / total_questions)
 		if result == DISTINCTION:
@@ -121,3 +120,7 @@ func _on_Button4_pressed():
 	if current_answers[3].is_correct:
 		score += 1
 	next_question()
+
+
+func _on_Home_pressed():
+	get_tree().change_scene("res://scenes/GameMenu.tscn")

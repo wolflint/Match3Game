@@ -30,11 +30,13 @@ texture = ExtResource( 2 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
 alignment = 2
 
 [node name="ShapeName" type="Label" parent="VBoxContainer"]
 margin_top = 103.0
-margin_right = 576.0
+margin_right = 556.0
 margin_bottom = 203.0
 rect_min_size = Vector2( 0, 100 )
 custom_fonts/font = SubResource( 1 )
@@ -46,7 +48,7 @@ autowrap = true
 
 [node name="ShapeDiagram" type="TextureRect" parent="VBoxContainer"]
 margin_top = 207.0
-margin_right = 576.0
+margin_right = 556.0
 margin_bottom = 507.0
 rect_min_size = Vector2( 0, 300 )
 texture = ExtResource( 4 )
@@ -54,7 +56,7 @@ stretch_mode = 6
 
 [node name="Teacher" type="TextureRect" parent="VBoxContainer"]
 margin_top = 511.0
-margin_right = 576.0
+margin_right = 556.0
 margin_bottom = 716.0
 rect_min_size = Vector2( 150, 205 )
 texture = ExtResource( 5 )
@@ -63,7 +65,7 @@ stretch_mode = 6
 
 [node name="Properties" type="Label" parent="VBoxContainer"]
 margin_top = 720.0
-margin_right = 576.0
+margin_right = 556.0
 margin_bottom = 920.0
 rect_min_size = Vector2( 0, 200 )
 custom_fonts/font = SubResource( 2 )
@@ -75,14 +77,14 @@ autowrap = true
 
 [node name="Navigation" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 924.0
-margin_right = 576.0
+margin_right = 556.0
 margin_bottom = 1024.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Back" type="TextureButton" parent="VBoxContainer/Navigation"]
-margin_left = 178.0
-margin_right = 278.0
+margin_left = 168.0
+margin_right = 268.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 texture_normal = ExtResource( 7 )
@@ -90,8 +92,8 @@ expand = true
 stretch_mode = 4
 
 [node name="Home" type="TextureButton" parent="VBoxContainer/Navigation"]
-margin_left = 298.0
-margin_right = 398.0
+margin_left = 288.0
+margin_right = 388.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 texture_normal = ExtResource( 8 )
