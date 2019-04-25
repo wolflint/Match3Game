@@ -37,7 +37,8 @@ func get_question():
 			GameDataManager.add_points(3)
 		elif result >= PASS:
 			GameDataManager.add_points(1)
-		print(GameDataManager.save_data["points"])
+		print("Current Points: " + str(GameDataManager.get_current_points()))
+		GameDataManager.save_data()
 
 		return
 	randomize()
