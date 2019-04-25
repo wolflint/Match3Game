@@ -1,5 +1,8 @@
 extends Node
 
+
+signal points_changed()
+
 var save_data = {}
 var default_save_data = {
 	"level_data": {
@@ -20,10 +23,12 @@ func get_current_points():
 	return save_data["points"]
 
 func add_points(amount = 1):
-	save_data["points"] += amount
+	save_data["points"] += min(10, amount)
+	emit_signal("points_changed")
 
 func remove_point():
 	save_data["points"] -= 1
+	emit_signal("points_changed")
 
 
 func save_data():
