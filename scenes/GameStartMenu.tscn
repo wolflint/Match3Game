@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/GameStartMenu.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/game_start_menu.png" type="Texture" id=2]
 [ext_resource path="res://art/ui/buttons/btn_play1.png" type="Texture" id=3]
 [ext_resource path="res://art/ui/buttons/btn_play2.png" type="Texture" id=4]
-[ext_resource path="res://art/ui/buttons/btn_settings1.png" type="Texture" id=5]
-[ext_resource path="res://art/ui/buttons/btn_settings2.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/buttons/btn_learn1.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/buttons/btn_learn2.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/buttons/btn_settings1.png" type="Texture" id=7]
+[ext_resource path="res://art/ui/buttons/btn_settings2.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "slide_in"
@@ -69,7 +71,8 @@ margin_top = 155.0
 margin_right = 536.0
 margin_bottom = 305.0
 rect_min_size = Vector2( 150, 150 )
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
@@ -78,8 +81,8 @@ margin_top = 310.0
 margin_right = 536.0
 margin_bottom = 460.0
 rect_min_size = Vector2( 150, 150 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
 expand = true
 stretch_mode = 5
 
