@@ -1,9 +1,9 @@
 extends TextureRect
 
-onready var score_label = $MarginContainer/HBoxContainer/VBoxContainer/ScoreLabel
-onready var counter_label = $MarginContainer/HBoxContainer/Counter
-onready var score_bar = $MarginContainer/HBoxContainer/VBoxContainer/ScoreBar
-onready var goal_container = $MarginContainer/HBoxContainer/GoalContainer
+onready var score_label = $Score/VBoxContainer/ScoreLabel
+onready var score_bar = $Score/VBoxContainer/ScoreBar
+onready var counter_label = $Counter/CounterLabel
+onready var goal_container = $GoalContainer/HBoxContainer
 
 export (PackedScene) var goal_prefab
 

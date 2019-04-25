@@ -7,7 +7,7 @@ var game_over = false
 
 # Speech
 onready var speech_bubble = $Speech
-onready var speech_label = $Speech/Label 
+onready var speech_label = $Speech/Label
 onready var speech_timer = $Speech/SpeechTimer
 
 var speech_text = {

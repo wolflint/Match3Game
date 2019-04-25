@@ -594,7 +594,7 @@ func match_color(color):
 			if all_pieces[i][j] != null and !is_piece_sinker(i, j):
 				if all_pieces[i][j].color == color:
 					if all_pieces[i][j].is_column_bomb:
-						if !is_piece_null(i, j):						
+						if !is_piece_null(i, j):
 							match_all_in_column(i, j)
 					if all_pieces[i][j].is_row_bomb:
 						if !is_piece_null(i, j):

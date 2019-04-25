@@ -1,22 +1,21 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=1]
 [ext_resource path="res://scenes/TopUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/GoalPrefab.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/BottomUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/Grid.gd" type="Script" id=5]
-[ext_resource path="res://scenes/Sinker.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/HintEffect.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scripts/IceHolder.gd" type="Script" id=8]
-[ext_resource path="res://scripts/LockHolder.gd" type="Script" id=9]
-[ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=10]
-[ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=11]
-[ext_resource path="res://scenes/GameOverPanel.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/GameWinPanel.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scripts/GoalHolder.gd" type="Script" id=14]
-[ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=15]
-[ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=16]
-[ext_resource path="res://scenes/PausePanel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/BottomUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/Grid.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Sinker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/HintEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/IceHolder.gd" type="Script" id=7]
+[ext_resource path="res://scripts/LockHolder.gd" type="Script" id=8]
+[ext_resource path="res://scripts/ConcreteHolder.gd" type="Script" id=9]
+[ext_resource path="res://scripts/SlimeHolder.gd" type="Script" id=10]
+[ext_resource path="res://scenes/GameOverPanel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/GameWinPanel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scripts/GoalHolder.gd" type="Script" id=13]
+[ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=15]
+[ext_resource path="res://scenes/PausePanel.tscn" type="PackedScene" id=16]
 
 [node name="GameWindow" type="Node2D"]
 
@@ -26,9 +25,8 @@ margin_bottom = 1024.0
 texture = ExtResource( 1 )
 
 [node name="TopUI" parent="." instance=ExtResource( 2 )]
-goal_prefab = ExtResource( 3 )
 
-[node name="BottomUI" parent="." instance=ExtResource( 4 )]
+[node name="BottomUI" parent="." instance=ExtResource( 3 )]
 margin_bottom = 1024.0
 
 [node name="ColorBombTimer" type="Timer" parent="BottomUI"]
@@ -37,7 +35,7 @@ one_shot = true
 
 [node name="Grid" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 width = 8
 height = 10
 x_start = 64
@@ -51,8 +49,8 @@ max_score = 3000
 piece_value = 20
 current_counter_value = 5
 is_moves = true
-sinker_piece = ExtResource( 6 )
-hint_effect = ExtResource( 7 )
+sinker_piece = ExtResource( 5 )
+hint_effect = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="Grid"]
 
@@ -65,17 +63,17 @@ wait_time = 0.5
 one_shot = true
 
 [node name="IceHolder" type="Node2D" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 value = "ice"
 
 [node name="LockHolder" type="Node2D" parent="."]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="ConcreteHolder" type="Node2D" parent="."]
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 
 [node name="SlimeHolder" type="Node2D" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 
 [node name="DestroyTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -89,23 +87,23 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
-[node name="GameOverPanel" parent="." instance=ExtResource( 12 )]
+[node name="GameOverPanel" parent="." instance=ExtResource( 11 )]
 offset = Vector2( 576, -200 )
 transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 
-[node name="GameWinPanel" parent="." instance=ExtResource( 13 )]
+[node name="GameWinPanel" parent="." instance=ExtResource( 12 )]
 offset = Vector2( 576, -200 )
 transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 
 [node name="GoalHolder" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 
-[node name="Goal" parent="GoalHolder" instance=ExtResource( 15 )]
-goal_texture = ExtResource( 16 )
+[node name="Goal" parent="GoalHolder" instance=ExtResource( 14 )]
+goal_texture = ExtResource( 15 )
 max_needed = 4
 goal_string = "ice"
 
-[node name="PausePanel" parent="." instance=ExtResource( 17 )]
+[node name="PausePanel" parent="." instance=ExtResource( 16 )]
 offset = Vector2( 576, -200 )
 transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 
@@ -113,8 +111,8 @@ transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 [connection signal="pause_game" from="BottomUI" to="PausePanel" method="_on_BottomUI_pause_game"]
 [connection signal="random_color_bomb" from="BottomUI" to="Grid" method="_on_BottomUI_random_color_bomb"]
 [connection signal="timeout" from="BottomUI/ColorBombTimer" to="BottomUI" method="_on_ColorBombTimer_timeout"]
-[connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
 [connection signal="check_goal" from="Grid" to="GoalHolder" method="_on_Grid_check_goal"]
+[connection signal="check_goal" from="Grid" to="TopUI" method="_on_Grid_check_goal"]
 [connection signal="damage_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_damage_concrete"]
 [connection signal="damage_ice" from="Grid" to="IceHolder" method="_on_Grid_damage_ice"]
 [connection signal="damage_lock" from="Grid" to="LockHolder" method="_on_Grid_damage_lock"]
@@ -126,8 +124,8 @@ transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 [connection signal="make_lock" from="Grid" to="LockHolder" method="_on_Grid_make_lock"]
 [connection signal="make_slime" from="Grid" to="SlimeHolder" method="_on_Grid_make_slime"]
 [connection signal="maximum_streak_reached" from="Grid" to="Grid" method="_on_Grid_maximum_streak_reached"]
-[connection signal="open_game_win_panel" from="Grid" to="TopUI" method="_on_Grid_open_game_win_panel"]
 [connection signal="open_game_win_panel" from="Grid" to="GameWinPanel" method="_on_Grid_open_game_win_panel"]
+[connection signal="open_game_win_panel" from="Grid" to="TopUI" method="_on_Grid_open_game_win_panel"]
 [connection signal="print_positive_message" from="Grid" to="BottomUI" method="_on_Grid_print_positive_message"]
 [connection signal="setup_max_score" from="Grid" to="TopUI" method="_on_Grid_setup_max_score"]
 [connection signal="update_counter" from="Grid" to="TopUI" method="_on_Grid_update_counter"]
@@ -135,8 +133,8 @@ transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 [connection signal="timeout" from="Grid/Timer" to="Grid" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Grid/ShuffleTimer" to="Grid" method="_on_ShuffleTimer_timeout"]
 [connection signal="timeout" from="Grid/HintTimer" to="Grid" method="_on_HintTimer_timeout"]
-[connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
 [connection signal="break_ice" from="IceHolder" to="GoalHolder" method="_on_IceHolder_break_ice"]
+[connection signal="break_ice" from="IceHolder" to="TopUI" method="_on_IceHolder_break_ice"]
 [connection signal="remove_lock" from="LockHolder" to="Grid" method="_on_LockHolder_remove_lock"]
 [connection signal="remove_concrete" from="ConcreteHolder" to="Grid" method="_on_ConcreteHolder_remove_concrete"]
 [connection signal="remove_slime" from="SlimeHolder" to="Grid" method="_on_SlimeHolder_remove_slime"]
