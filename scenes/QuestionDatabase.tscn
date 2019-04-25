@@ -125,15 +125,14 @@ answer = "6"
 answer = "7"
 
 [node name="Question8" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
-question = "How many sides does a right-angled triangle have?"
+question = "How many sides does a rhombus have?"
 
 [node name="Q2Answer1" parent="Question8" instance=ExtResource( 2 )]
 answer = "2"
 
 [node name="Q2Answer2" parent="Question8" instance=ExtResource( 2 )]
 is_correct = true
-answer = "3"
+answer = "4"
 
 [node name="Q2Answer3" parent="Question8" instance=ExtResource( 2 )]
 answer = "5"

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Quiz.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
 [ext_resource path="res://scenes/QuestionDatabase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://quiz_btn.tres" type="StyleBox" id=5]
-[ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=7]
+[ext_resource path="res://art/characters/mechanic.png" type="Texture" id=5]
+[ext_resource path="res://quiz_btn.tres" type="StyleBox" id=6]
+[ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -14,7 +15,7 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
 [node name="Quiz" type="Control"]
 anchor_right = 1.0
@@ -45,7 +46,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 536.0
-margin_bottom = 616.0
+margin_bottom = 306.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -53,6 +54,18 @@ text = "Question"
 align = 1
 valign = 1
 autowrap = true
+
+[node name="Mechanic" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+margin_left = 18.0
+margin_top = 313.0
+margin_right = 518.0
+margin_bottom = 613.0
+rect_min_size = Vector2( 500, 300 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 620.0
@@ -67,11 +80,11 @@ margin_right = 258.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 120 )
 size_flags_horizontal = 3
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = SubResource( 2 )
 text = "Next Question"
 
@@ -81,11 +94,11 @@ margin_right = 536.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 120 )
 size_flags_horizontal = 3
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = SubResource( 2 )
 text = "Next Question"
 
@@ -95,11 +108,11 @@ margin_right = 258.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 0, 120 )
 size_flags_horizontal = 3
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = SubResource( 2 )
 text = "Next Question"
 
@@ -110,11 +123,11 @@ margin_right = 536.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 0, 120 )
 size_flags_horizontal = 3
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = SubResource( 2 )
 text = "Next Question"
 
@@ -130,7 +143,7 @@ margin_left = 218.0
 margin_right = 318.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 8 )
 expand = true
 stretch_mode = 4
 
