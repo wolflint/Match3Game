@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shape Shift Robot.png-bee204bccda97fbf967134a121de5d14.stex"
+path="res://.import/robot.png-c5275e441da8b5310cefb809a1c159ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shape Shift Robot.png"
-dest_files=[ "res://.import/Shape Shift Robot.png-bee204bccda97fbf967134a121de5d14.stex" ]
+source_file="res://art/characters/robot.png"
+dest_files=[ "res://.import/robot.png-c5275e441da8b5310cefb809a1c159ea.stex" ]
 
 [params]
 

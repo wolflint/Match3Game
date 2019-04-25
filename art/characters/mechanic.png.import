@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shape Shift Mechanic.png-33ea3a69e294fd9c085af69280aa351f.stex"
+path="res://.import/mechanic.png-118a38a25a726e96a7f933a98cf83dc7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shape Shift Mechanic.png"
-dest_files=[ "res://.import/Shape Shift Mechanic.png-33ea3a69e294fd9c085af69280aa351f.stex" ]
+source_file="res://art/characters/mechanic.png"
+dest_files=[ "res://.import/mechanic.png-118a38a25a726e96a7f933a98cf83dc7.stex" ]
 
 [params]
 

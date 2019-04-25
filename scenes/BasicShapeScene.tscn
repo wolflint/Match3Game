@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/BasicShapeScene.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
 [ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://art/shapes/circle.png" type="Texture" id=4]
-[ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=6]
-[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=7]
+[ext_resource path="res://art/characters/teacher.png" type="Texture" id=5]
+[ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=7]
+[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -14,7 +16,7 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
-font_data = ExtResource( 5 )
+font_data = ExtResource( 6 )
 
 [node name="BasicShapeScene" type="Control"]
 anchor_right = 1.0
@@ -32,9 +34,9 @@ anchor_bottom = 1.0
 alignment = 2
 
 [node name="ShapeName" type="Label" parent="VBoxContainer"]
-margin_top = 212.0
+margin_top = 103.0
 margin_right = 576.0
-margin_bottom = 312.0
+margin_bottom = 203.0
 rect_min_size = Vector2( 0, 100 )
 custom_fonts/font = SubResource( 1 )
 text = "Shape Name
@@ -43,18 +45,27 @@ align = 1
 valign = 1
 
 [node name="ShapeDiagram" type="TextureRect" parent="VBoxContainer"]
-margin_top = 316.0
+margin_top = 207.0
 margin_right = 576.0
-margin_bottom = 616.0
+margin_bottom = 507.0
 rect_min_size = Vector2( 0, 300 )
 texture = ExtResource( 4 )
 stretch_mode = 6
 
+[node name="Teacher" type="TextureRect" parent="VBoxContainer"]
+margin_top = 511.0
+margin_right = 576.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 150, 205 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
 [node name="Properties" type="Label" parent="VBoxContainer"]
-margin_top = 620.0
+margin_top = 720.0
 margin_right = 576.0
 margin_bottom = 920.0
-rect_min_size = Vector2( 0, 300 )
+rect_min_size = Vector2( 0, 200 )
 custom_fonts/font = SubResource( 2 )
 text = "A # has # sides.
 It also has # points called vertices. "
@@ -73,7 +84,7 @@ margin_left = 178.0
 margin_right = 278.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 7 )
 expand = true
 stretch_mode = 4
 
@@ -82,7 +93,7 @@ margin_left = 298.0
 margin_right = 398.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 8 )
 expand = true
 stretch_mode = 4
 

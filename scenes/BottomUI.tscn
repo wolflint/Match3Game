@@ -4,8 +4,9 @@
 [ext_resource path="res://scripts/BottomUI.gd" type="Script" id=2]
 [ext_resource path="res://art/ui/buttons/btn_pause.png" type="Texture" id=3]
 [ext_resource path="res://art/ui/buttons/btn_make_color.png" type="Texture" id=4]
-[ext_resource path="res://art/robot.png" type="Texture" id=5]
+[ext_resource path="res://art/characters/robot.png" type="Texture" id=5]
 [ext_resource path="res://fonts/Kenney Pixel.ttf" type="DynamicFontData" id=6]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
