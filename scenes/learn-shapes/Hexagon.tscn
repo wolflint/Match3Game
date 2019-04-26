@@ -14,5 +14,5 @@ texture = ExtResource( 2 )
 
 [node name="Properties" parent="VBoxContainer" index="3"]
 text = "A hexagon has 6 sides. When all the sides are the same, they are equal.
-It also has 6 points called vertices. "
+It also has 6 points called vertices. This hexagon is purple."
 

@@ -13,5 +13,5 @@ pentagon"
 texture = ExtResource( 2 )
 
 [node name="Properties" parent="VBoxContainer" index="3"]
-text = "A pentagon has 5 sides. It also has 5 points called vertices. It looks a lot like a hexagon, so remember to count the sides!"
+text = "A pentagon has 5 sides. It also has 5 points called vertices. It looks a lot like a hexagon, so remember to count the sides! This pentagon is orange."
 

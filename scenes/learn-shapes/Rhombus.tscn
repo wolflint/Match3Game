@@ -14,5 +14,5 @@ texture = ExtResource( 2 )
 
 [node name="Properties" parent="VBoxContainer" index="3"]
 text = "A rhombus has 4 sides. It looks a little bit like a kite.
-It also has 4 points called vertices. "
+It also has 4 points called vertices. This rhombus is yellow."
 

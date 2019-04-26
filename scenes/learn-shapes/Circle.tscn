@@ -10,5 +10,5 @@ circle"
 
 [node name="Properties" parent="VBoxContainer" index="3"]
 text = "A circle doesn't have sides and
-t doesn't have any vertices. It is perfectly round like a wheel."
+it doesn't have any vertices. It is  round like a wheel. This circle is green."
 

@@ -6,12 +6,21 @@
 [node name="Parallelogram" index="0" instance=ExtResource( 1 )]
 
 [node name="ShapeName" parent="VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 181.0
 text = "This is a parallelogram"
 
 [node name="ShapeDiagram" parent="VBoxContainer" index="1"]
+margin_top = 185.0
+margin_bottom = 485.0
 texture = ExtResource( 2 )
 
+[node name="Teacher" parent="VBoxContainer" index="2"]
+margin_top = 489.0
+margin_bottom = 694.0
+
 [node name="Properties" parent="VBoxContainer" index="3"]
+margin_top = 698.0
 text = "It looks like a slanted square. A parallelogram has 4 sides.
-It also has 4 points called vertices. Try drawing one on paper."
+It also has 4 points called vertices. Try drawing one on paper. This parallelogram is pink."
 

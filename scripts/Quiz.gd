@@ -30,18 +30,23 @@ func _ready():
 
 func get_question():
 	if all_questions.empty():
-		question_label.text = "No more questions. \n Your score is : %s/%s" % [score, total_questions]
+		var suffix = "\n Your score is : %s/%s" % [score, total_questions]
+		# Change button answers:
 		for i in 3:
 			answer_buttons[i].text = ""
 		answer_buttons[3].text = "Try again!"
 
-		var result = float(score / total_questions)
-		if result == DISTINCTION:
+		if score == 5:
+			question_label.text = "Perfect score! I'll charge your battery." + suffix
 			GameDataManager.add_points(3)
-		elif result >= MERIT:
+		elif score == 4:
+			question_label.text = "Nice score! I'll charge your battery a bit." + suffix
 			GameDataManager.add_points(2)
-		elif result >= PASS:
+		elif score == 3:
+			question_label.text = "Good attempt kid, I'll charge your battery a little bit." + suffix
 			GameDataManager.add_points(1)
+		else:
+			question_label.text = "Nice try, but you need to learn a bit more. Try again." + suffix
 		print("Current Points: " + str(GameDataManager.get_current_points()))
 		GameDataManager.save_data()
 

@@ -13,5 +13,5 @@ rectangle"
 texture = ExtResource( 2 )
 
 [node name="Properties" parent="VBoxContainer" index="3"]
-text = "A rectangle has 4 sides. It looks like a square that doesn't have equal sides. It also has 4 points called vertices. "
+text = "A rectangle has 4 sides. It looks like a square that doesn't have equal sides. It also has 4 points called vertices. This rectangle is green!"
 

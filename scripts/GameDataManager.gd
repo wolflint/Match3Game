@@ -22,7 +22,8 @@ func get_current_points():
 	return save_data["points"]
 
 func add_points(amount = 1):
-	save_data["points"] += min(10, amount)
+	amount = int(min(10, save_data["points"] + amount))
+	save_data["points"] = amount
 	emit_signal("points_changed")
 
 func remove_point():
