@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/GameWinPanel.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/panels/win_panel.png" type="Texture" id=2]
 [ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://art/ui/buttons/btn_continue.png" type="Texture" id=4]
-[ext_resource path="res://art/ui/buttons/btn_continue2.png" type="Texture" id=5]
-[ext_resource path="res://animations/slide_in_animation.tres" type="Animation" id=6]
+[ext_resource path="res://art/ui/buttons/btn_quit_pause.png" type="Texture" id=4]
+[ext_resource path="res://art/ui/buttons/btn_quit_pause2.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/buttons/btn_pause_continue.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/buttons/btn_pause_continue2.png" type="Texture" id=7]
+[ext_resource path="res://animations/slide_in_animation.tres" type="Animation" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -38,20 +40,37 @@ text = "Score: 000"
 align = 1
 valign = 2
 
-[node name="ContinueButton" type="TextureButton" parent="TextureRect/VBoxContainer"]
-margin_left = 128.0
-margin_top = 301.0
-margin_right = 384.0
-margin_bottom = 429.0
-rect_min_size = Vector2( 256, 128 )
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
+margin_left = 44.0
+margin_top = 315.0
+margin_right = 468.0
+margin_bottom = 415.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Quit" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer"]
+margin_right = 192.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 192, 100 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/slide_in = ExtResource( 6 )
+[node name="Continue" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer"]
+margin_left = 232.0
+margin_right = 424.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 192, 100 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+expand = true
+stretch_mode = 5
 
-[connection signal="pressed" from="TextureRect/VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_in = ExtResource( 8 )
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/Continue" to="." method="_on_Continue_pressed"]
