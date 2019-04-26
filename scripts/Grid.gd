@@ -785,7 +785,7 @@ func generate_slime():
 				# Add spot to array of slimes
 				slime_spaces.append(Vector2(neighbour.x, neighbour.y))
 				# Send a signal to the slime holder to make a new slime
-				emit_signal("make_slime", Vector2(neighbour.x, neighbour.y))
+				emit_signal("make_slime", Vector2(neighbour.x, neighbour.y), offset, x_start, y_start)
 				slime_made = true
 			tracker += 1
 

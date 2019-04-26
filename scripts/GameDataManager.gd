@@ -2,6 +2,7 @@ extends Node
 
 signal points_changed()
 
+onready var path = "res://save.dat"
 var save_data = {}
 var default_save_data = {
 	"level_data": {
@@ -89,13 +90,15 @@ var default_save_data = {
 	},
 	"points": 1,
 }
-onready var path = "user://save.dat"
 
 func _ready():
 	save_data = load_data()
 
 func get_current_points():
-	return save_data["points"]
+	if save_data.has("points"):
+		return save_data["points"]
+	else:
+		load_data()
 
 func add_points(amount = 1):
 	amount = int(min(10, save_data["points"] + amount))
