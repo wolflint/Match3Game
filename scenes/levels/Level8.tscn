@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/levels/GameWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://art/pieces/lgreen_tile.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/pieces/green_tile.png" type="Texture" id=4]
+[ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=5]
+
+[node name="Level8" index="0" instance=ExtResource( 1 )]
+level = 8
+next_level = "res://scenes/levels/Level1.tscn"
+
+[node name="Grid" parent="." index="3"]
+height = 8
+y_start = 736
+max_piece_types = 5
+empty_spaces = PoolVector2Array( 3, 3, 3, 4, 4, 3, 4, 4, 0, 1, 0, 6, 7, 6, 7, 1 )
+ice_spaces = PoolVector2Array( 0, 0, 7, 0, 0, 7, 7, 7 )
+max_score = 3500
+current_counter_value = 30
+
+[node name="Goal" parent="GoalHolder" index="0"]
+goal_texture = ExtResource( 2 )
+goal_string = "lightGreen"
+
+[node name="Goal2" parent="GoalHolder" index="1" instance=ExtResource( 3 )]
+goal_texture = ExtResource( 4 )
+max_needed = 10
+goal_string = "green"
+
+[node name="Goal3" parent="GoalHolder" index="2" instance=ExtResource( 3 )]
+goal_texture = ExtResource( 5 )
+max_needed = 4
+goal_string = "ice"
+

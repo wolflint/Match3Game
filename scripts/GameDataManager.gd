@@ -89,7 +89,7 @@ var default_save_data = {
 	},
 	"points": 1,
 }
-onready var path = "res://save.dat"
+onready var path = "user://save.dat"
 
 func _ready():
 	save_data = load_data()

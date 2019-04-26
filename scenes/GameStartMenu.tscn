@@ -58,29 +58,38 @@ margin_bottom = 990.0
 custom_constants/separation = 5
 
 [node name="PlayButton" type="TextureButton" parent="MarginContainer/GraphicAndButtons/Buttons"]
-margin_right = 536.0
+margin_left = 193.0
+margin_right = 343.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
 [node name="LearnButton" type="TextureButton" parent="MarginContainer/GraphicAndButtons/Buttons"]
+margin_left = 193.0
 margin_top = 155.0
-margin_right = 536.0
+margin_right = 343.0
 margin_bottom = 305.0
 rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
 [node name="SettingsButton" type="TextureButton" parent="MarginContainer/GraphicAndButtons/Buttons"]
+margin_left = 193.0
 margin_top = 310.0
-margin_right = 536.0
+margin_right = 343.0
 margin_bottom = 460.0
 rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 expand = true

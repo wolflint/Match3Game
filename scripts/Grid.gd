@@ -114,25 +114,40 @@ var hint_color = ""
 signal game_over
 
 func _ready():
+	# Select pieces that are available in current level from preloaded array
 	for i in range(0, max_piece_types):
 		possible_pieces.append(available_pieces[i])
-	state = move
+
 	all_pieces = make_2d_array()
 	clone_array = make_2d_array()
+	state = move
 	spawn_preset_pieces()
+
 	if sinkers_in_scene:
 		spawn_sinkers(max_sinkers)
+
+	# Spawn any special pieces in current level
 	spawn_pieces()
 	spawn_ice()
 	spawn_locks()
 	spawn_concrete()
 	spawn_slime()
+
+	# Check for deadlock and reshuffle
 	if is_deadlocked():
 		shuffle_board()
+
+	# Update counter and setup the score bar
 	emit_signal("update_counter", current_counter_value)
 	emit_signal("setup_max_score", max_score)
+
+	# Start timer if level isn't in move counter mode
 	if !is_moves:
 		$Timer.start()
+
+func _process(delta):
+	if state == move:
+		touch_input()
 
 func restricted_fill(place):
 	# Check empty pieces
@@ -149,8 +164,6 @@ func restricted_move(place):
 	# Check lock pieces
 	if is_in_array(lock_spaces, place):
 		return true
-#	elif is_in_array(ice_spaces, place):
-#		return true
 	return false
 
 func is_ice_block(place):
@@ -159,6 +172,7 @@ func is_ice_block(place):
 	return false
 
 func is_in_array(array, item):
+	# Check if item is in the array by scanning through using a for loop
 	if array != null:
 		for i in array.size():
 			if array[i] == item:
@@ -166,12 +180,14 @@ func is_in_array(array, item):
 		return false
 
 func remove_from_array(new_array, item):
+	# Scan the array and remove the item if it matches
 	for i in range(new_array.size() -1, -1, -1):
 		if new_array[i] == item:
 			new_array.remove(i)
 			return new_array
 
 func make_2d_array():
+	# Create a 2d array by looping heigh and width
 	var array = []
 	for i in width:
 		array.append([])
@@ -180,35 +196,44 @@ func make_2d_array():
 	return array
 
 func spawn_pieces():
-	randomize()
+	randomize() # randomise the seed every time so that the board is different
+	# loop the whole grid
 	for i in width:
 		for j in height:
+			# check if there are any restricted tiles and if the piece isn't null
 			if !restricted_fill(Vector2(i, j)) and all_pieces[i][j] == null:
 				# Choose a random number and store it
 				var rand = floor(rand_range(0, possible_pieces.size()))
+				# instance random piece
 				var piece = possible_pieces[rand].instance()
 				var loops = 0
+				# match pieces until board is full random without matches
 				while(match_at(i, j, piece.color) && loops < 100):
 					rand = floor(rand_range(0, possible_pieces.size()))
 					loops += 1;
-					piece = possible_pieces[rand].instance();
 				# Instance that piece from the array
+					piece = possible_pieces[rand].instance();
+				# add piece to grid and change position
 				add_child(piece);
 				piece.position = grid_to_pixel(i, j)
+				# reference piece in the all_pieces array
 				all_pieces[i][j] = piece;
 	$HintTimer.start()
 
 func is_piece_sinker(col, row):
+	# Scan pieces colors
 	if all_pieces[col][row] != null:
 		if all_pieces[col][row].color == "None":
 			return true
 	return false
 
 func match_at(i, j, color):
+	# check if piece to the left and right is of the same colour, return true if it is
 	if i > 1:
 		if all_pieces[i-1][j] != null && all_pieces[i-2][j] != null:
 			if all_pieces[i-1][j].color == color && all_pieces[i-2][j].color == color:
 				return true
+	# check if piece above and below is of the same colour, return true if it is
 	if j > 1:
 		if all_pieces[i][j-1] != null && all_pieces[i][j-2] != null:
 			if all_pieces[i][j-1].color == color && all_pieces[i][j-2].color == color:
@@ -218,6 +243,7 @@ func check_match_hlength(col, row, color):
 	var match_length = 0
 	var position_x = col
 
+	# Check match length left
 	while position_x > 0:
 		if all_pieces[position_x][row].color == color:
 			position_x -= 1
@@ -226,6 +252,7 @@ func check_match_hlength(col, row, color):
 			position_x = col
 			break
 
+	# Check match length right
 	while position_x < width:
 		if all_pieces[position_x][row].color == color:
 			position_x += 1
@@ -237,6 +264,7 @@ func check_match_vlength(col, row, color):
 	var match_length = 0
 	var position_y = row
 
+	# Check match length up, negative Y is up in Godot
 	while position_y > 0:
 		if all_pieces[col][position_y].color == color:
 			position_y -= 1
@@ -245,6 +273,7 @@ func check_match_vlength(col, row, color):
 			position_y = col
 			break
 
+	# Check match length down
 	while position_y < width:
 		if all_pieces[col][position_y].color == color:
 			position_y += 1
@@ -253,16 +282,19 @@ func check_match_vlength(col, row, color):
 			return match_length
 
 func grid_to_pixel(column, row):
+	# Apply offsets to convert grid position to pixels
 	var new_x = x_start + offset * column;
 	var new_y = y_start + -offset * row;
 	return Vector2(new_x, new_y)
 
 func pixel_to_grid(pixel_x, pixel_y):
+	# Remove offsets to convert pixel position to grid position
 	var new_x = round((pixel_x - x_start) / offset)
 	var new_y = round((pixel_y - y_start) / -offset)
 	return Vector2(new_x, new_y)
 
 func is_in_grid(grid_position):
+	# Check if value is in the current grid
 	if grid_position.x >= 0 && grid_position.x < width:
 		if grid_position.y >= 0 && grid_position.y < height:
 			return true
@@ -270,33 +302,44 @@ func is_in_grid(grid_position):
 
 func touch_input():
 	if Input.is_action_just_pressed("ui_touch"):
+		# Check if touch input is in grid
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)):
+			# Set first touch value for the swipe
 			first_touch = pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)
 			controlling = true
+			# Clear hint animation after first touch
 			if hint:
 				hint.queue_free()
 				hint = null
+
 	if Input.is_action_just_released("ui_touch"):
+		# Check if swipe released within the grid
 		if is_in_grid(pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)) && controlling:
+			# Set final touch and disable controlling
 			controlling = false
 			final_touch = pixel_to_grid(get_global_mouse_position().x, get_global_mouse_position().y)
 			touch_difference(first_touch, final_touch)
 
 func swap_pieces(column, row, direction):
+	# Assign the pieces from the all_pieces array to variables
 	var first_piece = all_pieces[column][row]
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
+	# Check that the pieces are not sinker pieces and check if they are not null or special restricted pieces
 	if !is_piece_sinker(column, row) and !is_piece_sinker(column + direction.x, row + direction.y):
 		if first_piece != null  && other_piece != null:
 			if !restricted_move(Vector2(column, row)) and !restricted_move(Vector2(column, row) + direction):
 				if is_color_bomb(first_piece) and is_color_bomb(other_piece):
-					# TODO: I don't like this fix. Need to change this
+					# Swap pieces pack if they are  sinkers, although they shouldn't be
 					if is_piece_sinker(column, row) or is_piece_sinker(column + direction.x, row + direction.y):
 						swap_back()
+					# clear board if 2 colour bombs are swapped
 					clear_board()
+					# match the colour bomb pieces
 					match_and_dim(first_piece)
 					add_to_array(Vector2(column, row))
 					match_and_dim(other_piece)
 					add_to_array(Vector2(column + direction.x, row + direction.y))
+				# if only one of the pieces is a colour bomb, call the function to match all pieces of that colour
 				elif is_color_bomb(first_piece) or is_color_bomb(other_piece):
 					if is_color_bomb(first_piece):
 						match_color(other_piece.color)
@@ -306,53 +349,70 @@ func swap_pieces(column, row, direction):
 						match_color(first_piece.color)
 						match_and_dim(other_piece)
 						add_to_array(Vector2(column + direction.x, row + direction.y))
+				# Store the piece info globally to be used in other methods
 				store_info(first_piece, other_piece, Vector2(column, row), direction)
+				# Change the state to wait
 				state = wait
+				# Swap the pieces
 				all_pieces[column][row] = other_piece
 				all_pieces[column + direction.x][row + direction.y] = first_piece
 				first_piece.move(grid_to_pixel(column + direction.x, row + direction.y))
 				other_piece.move(grid_to_pixel(column, row))
+				# Check for new matches after the swap
 				if !move_checked:
 					find_matches()
 
 func is_color_bomb(piece):
+	# Check if piece is a colour bomb by looking at it's colour property - if it's Color it is a colour bomb
 	if piece.color == "Color":
 		return true
 	return false
 
 func spawn_ice():
+	# Check the ice_spaces array (this is configured through the scene editor as an export var), then emit the info to spawn the ice block
 	if ice_spaces != null:
 		for i in ice_spaces.size():
 			emit_signal("make_ice", ice_spaces[i], offset, x_start, y_start)
 
 func spawn_locks():
+	# Check the lock_spaces array (this is configured through the scene editor as an export var), then emit the info to spawn the lock piece
 	if lock_spaces != null:
 		for i in lock_spaces.size():
-			emit_signal("make_lock", lock_spaces[i])
+			emit_signal("make_lock", lock_spaces[i], offset, x_start, y_start)
 
 func spawn_concrete():
+	# Check the concrete_spaces array (this is configured through the scene editor as an export var), then emit the info to spawn the concrete piece
 	if concrete_spaces != null:
 		for i in concrete_spaces.size():
-			emit_signal("make_concrete", concrete_spaces[i])
+			emit_signal("make_concrete", concrete_spaces[i], offset, x_start, y_start)
 
 func spawn_slime():
+	# Check the slime_spaces array (this is configured through the scene editor as an export var), then emit the info to spawn the smile piece
 	if slime_spaces != null:
 		for i in slime_spaces.size():
-			emit_signal("make_slime", slime_spaces[i])
+			emit_signal("make_slime", slime_spaces[i], offset, x_start, y_start)
 
 func spawn_sinkers(number_to_spawn):
+	# Spawn sinkers
 	for i in number_to_spawn:
+		# Select random column
 		var column = floor(rand_range(0, width))
 		while all_pieces[column][height-1] != null or restricted_fill(Vector2(column, height-1)):
+			# if column isn't suitable select a different one
 			column = floor(rand_range(0, width))
+		# instance a sinker piece and add it to the scene tree
 		var current = sinker_piece.instance()
 		add_child(current)
+		# setup sinker position
 		current.position = grid_to_pixel(column, height - 1)
+		# change grid reference to the sinker
 		all_pieces[column][height - 1] = current
-		current_sinkers += 1
+		current_sinkers += 1 # this is used to make sure that there aren't too many sinkers
 
 func spawn_preset_pieces():
+	# check that the preset_spaces export var isn't null
 	if preset_spaces != null:
+		# if the array is size is larger than 0, change the pieces to the preset pieces
 		if preset_spaces.size() > 0:
 			for i in preset_spaces.size():
 				var piece = possible_pieces[preset_spaces[i].z].instance()
@@ -377,6 +437,7 @@ func swap_back():
 		$HintTimer.start()
 
 func touch_difference(grid_1, grid_2):
+	# calculate the direction to swap the pieces back
 	var difference = grid_2 - grid_1
 	if abs(difference.x) > abs(difference.y):
 		if difference.x > 0:
@@ -389,39 +450,45 @@ func touch_difference(grid_1, grid_2):
 		elif difference.y < 0:
 			swap_pieces(grid_1.x, grid_1.y, Vector2(0, -1))
 
-func _process(delta):
-	if state == move:
-		touch_input()
-
 func find_matches(query = false, array = all_pieces):
+	# loop all pieces
 	for i in width:
 		for j in height:
+			# check that piece isn't null or a sinker
 			if array[i][j] != null and !is_piece_sinker(i, j):
+				# save piece colour
 				var current_color = array[i][j].color
+				# check if piece within width of grid
 				if i > 0 && i < width - 1:
+					# check piece isn't null and the colour matches the previously cached colour
 					if array[i - 1][j] != null and array[i + 1][j] != null:
 						if array[i - 1][j].color == current_color && array[i + 1][j].color == current_color:
+							# if scanning as a query for hint and reshuffle systems return true
 							if query:
 								hint_color = current_color
 								return true
+							# match the pieces and add them to the array
 							match_and_dim(array[i - 1][j])
 							match_and_dim(array[i][j])
 							match_and_dim(array[i + 1][j])
 							add_to_array(Vector2(i, j))
 							add_to_array(Vector2(i+1, j))
 							add_to_array(Vector2(i-1,j))
+				# check if piece within height of grid
 				if j > 0 && j < height - 1:
 					if array[i][j - 1] and array[i][j + 1]:
 						if array[i][j - 1].color == current_color && array[i][j + 1].color == current_color:
 							if query:
 								hint_color = current_color
 								return true
+							# match pieces and add to array
 							match_and_dim(array[i][j - 1])
 							match_and_dim(array[i][j])
 							match_and_dim(array[i][j + 1])
 							add_to_array(Vector2(i, j))
 							add_to_array(Vector2(i, j+1))
 							add_to_array(Vector2(i, j-1))
+	# if its a query for reshuffle or hint, and no matches were found, return false
 	if query:
 		return false
 	get_bombed_pieces()
@@ -430,6 +497,7 @@ func find_matches(query = false, array = all_pieces):
 func get_bombed_pieces():
 	for i in width:
 		for j in height:
+			# check for bombs in matched pieces and trigger them
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
 					if all_pieces[i][j].is_column_bomb:
@@ -520,7 +588,6 @@ func match_and_dim(item):
 	item.dim()
 
 func destroy_matched(was_matched = false):
-	# var was_matched = false
 	find_bombs()
 	for i in width:
 		for j in height:
@@ -534,8 +601,7 @@ func destroy_matched(was_matched = false):
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
 					make_particle_effect(i, j, piece_color)
-#					make_effect(explosion_animation, i, j)
-	#find_bombs()
+
 	move_checked = true
 	if was_matched:
 		destroy_hint()
@@ -630,6 +696,7 @@ func collapse_columns():
 	get_parent().get_node("RefillTimer").start()
 
 func refill_columns():
+	# spawn sinkers if below limit amount
 	if current_sinkers < max_sinkers:
 		spawn_sinkers(max_sinkers - current_sinkers)
 	streak += 1
@@ -637,13 +704,16 @@ func refill_columns():
 		emit_signal("print_positive_message")
 	if streak == 100:
 		emit_signal("maximum_streak_reached")
+
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] == null && !restricted_fill(Vector2(i, j)):
-				# Choose a random number and sotere it
+				# Choose a random number and store it
 				var rand = randi() % possible_pieces.size()
+				# refill column with random piece from possible_pieces
 				var piece = possible_pieces[rand].instance();
 				var loops = 0;
+				# make sure there are no new matches
 				while(match_at(i, j, piece.color) && loops < 100):
 					rand = randi() % possible_pieces.size()
 					loops += 1;
@@ -659,33 +729,40 @@ func after_refill():
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
+				# check for matches after refill
 				if match_at(i, j, all_pieces[i][j].color) or all_pieces[i][j].matched:
-#				if match_at(i, j, all_pieces[i][j].color):
 					find_matches()
-					#get_parent().get_node("DestroyTimer").start()
 					return
+	# spread slime if it wasn't damaged
 	if !damaged_slime:
 		generate_slime()
-	streak = 1
+	# reset score streak
+	streak = 1 # used for score multiplier
+	# reset booleans
 	move_checked = false
 	damaged_slime = false
 	color_bomb_used = false
 	cleared_board = false
-#	just_matched_in_column = false
-#	just_matched_in_row = false
+
 	if goals_met:
+		# trigger game win
 		$Timer.stop()
 		emit_signal("update_score", piece_value * current_counter_value, true)
 		emit_signal("open_game_win_panel")
 	if is_deadlocked():
+		# reshuffle
 		$ShuffleTimer.start()
 	if is_moves:
+		# update moves counter
 		current_counter_value -= 1
 		emit_signal("update_counter")
 	if current_counter_value == 0:
+		# if counter is 0 and the game wasn't won declare game over
 		if state != game_win:
 			declare_game_over()
+	# allow the player to move tiles
 	state = move
+	# start hint timer
 	$HintTimer.start()
 
 func generate_slime():
@@ -751,6 +828,7 @@ func find_normal_neighbour(column, row):
 func match_all_in_column(column, row):
 	for i in height:
 		if !is_piece_null(column, i) and !is_piece_sinker(column, i):
+			# detect bombs and trigger them
 			if all_pieces[column][i].is_row_bomb:
 				match_all_in_row(column, i)
 			if all_pieces[column][i].is_adjacent_bomb:
@@ -761,6 +839,7 @@ func match_all_in_column(column, row):
 
 func match_all_in_row(column, row):
 	for i in width:
+		# detect bombs and trgger them
 		if !is_piece_null(i, row) and !is_piece_sinker(i, row):
 			if all_pieces[i][row].is_column_bomb:
 				match_all_in_column(i, row)
@@ -815,10 +894,12 @@ func shuffle_board():
 				var rand = floor(rand_range(0, holder_array.size()))
 				var piece = holder_array[rand]
 				var loops = 0
+				# move piece to holder array
 				while(match_at(i, j, piece.color) && loops < 100):
 					rand = floor(rand_range(0, holder_array.size()))
 					loops += 1;
 					piece = holder_array[rand]
+				# move piece on grid
 				piece.move(grid_to_pixel(i, j))
 				all_pieces[i][j] = piece;
 				holder_array.remove(rand)
