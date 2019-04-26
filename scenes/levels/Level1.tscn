@@ -12,5 +12,6 @@ y_start = 736
 max_piece_types = 3
 empty_spaces = PoolVector2Array(  )
 ice_spaces = PoolVector2Array(  )
+max_score = 100
 current_counter_value = 20
 

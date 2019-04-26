@@ -4,7 +4,8 @@ signal read_sound
 
 func _ready():
 	$GameStartMenu.slide_in()
-	print("Current points: " + str(GameDataManager.get_current_points()))
+#	print("Current points: " + str(GameDataManager.get_current_points()))
+	print(GameDataManager.save_data)
 
 func _on_SettingsMenu_back_button():
 	$SettingsMenu.slide_out()

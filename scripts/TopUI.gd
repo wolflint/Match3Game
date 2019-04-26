@@ -9,8 +9,8 @@ export (PackedScene) var goal_prefab
 
 var current_score = 0
 var current_count = 0
-signal final_score
-signal score_goal_met
+signal final_score(final_score)
+signal score_goal_met(score_met)
 
 func _ready():
 	_on_Grid_update_score(current_score)
@@ -33,8 +33,9 @@ func setup_score_bar(max_score):
 
 func update_score_bar():
 	score_bar.value = current_score
-	if current_score >= score_bar.max_value:
-		emit_signal("score_goal_met")
+	if score_bar.value >= score_bar.max_value:
+		print("score_goal_met emitted")
+		emit_signal("score_goal_met", true)
 
 func make_goal(new_max, new_texture, new_value):
 	var current = goal_prefab.instance()
