@@ -1,141 +1,157 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Question.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Answer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/shapes/square.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Answer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/shapes/triangle.png" type="Texture" id=4]
+[ext_resource path="res://art/shapes/rectangle.png" type="Texture" id=5]
+[ext_resource path="res://art/shapes/hexagon.png" type="Texture" id=6]
+[ext_resource path="res://art/shapes/pentagon.png" type="Texture" id=7]
+[ext_resource path="res://art/shapes/parallelogram.png" type="Texture" id=8]
+[ext_resource path="res://art/shapes/circle.png" type="Texture" id=9]
+[ext_resource path="res://art/shapes/rhombus.png" type="Texture" id=10]
 
 [node name="QuestionDatabase" type="Node"]
 
 [node name="Question1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a square have?"
+diagram = ExtResource( 2 )
 
-[node name="Q1Answer1" parent="Question1" instance=ExtResource( 2 )]
+[node name="Q1Answer1" parent="Question1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q1Answer2" parent="Question1" instance=ExtResource( 2 )]
+[node name="Q1Answer2" parent="Question1" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q1Answer3" parent="Question1" instance=ExtResource( 2 )]
+[node name="Q1Answer3" parent="Question1" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q1Answer4" parent="Question1" instance=ExtResource( 2 )]
+[node name="Q1Answer4" parent="Question1" instance=ExtResource( 3 )]
 answer = "3"
 
 [node name="Question2" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a triangle have?"
+diagram = ExtResource( 4 )
 
-[node name="Q2Answer1" parent="Question2" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question2" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question2" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question2" instance=ExtResource( 3 )]
 is_correct = true
 answer = "3"
 
-[node name="Q2Answer3" parent="Question2" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question2" instance=ExtResource( 3 )]
 answer = "5"
 
-[node name="Q2Answer4" parent="Question2" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question2" instance=ExtResource( 3 )]
 answer = "1"
 
 [node name="Question3" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a rectangle have?"
+diagram = ExtResource( 5 )
 
-[node name="Q2Answer1" parent="Question3" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question3" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer2" parent="Question3" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question3" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q2Answer3" parent="Question3" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question3" instance=ExtResource( 3 )]
 answer = "9"
 
-[node name="Q2Answer4" parent="Question3" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question3" instance=ExtResource( 3 )]
 answer = "10"
 
 [node name="Question4" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a hexagon have?"
+diagram = ExtResource( 6 )
 
-[node name="Q2Answer1" parent="Question4" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question4" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question4" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question4" instance=ExtResource( 3 )]
 is_correct = true
 answer = "6"
 
-[node name="Q2Answer3" parent="Question4" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question4" instance=ExtResource( 3 )]
 answer = "8"
 
-[node name="Q2Answer4" parent="Question4" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question4" instance=ExtResource( 3 )]
 answer = "7"
 
 [node name="Question5" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a pentagon have?"
+diagram = ExtResource( 7 )
 
-[node name="Q2Answer1" parent="Question5" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question5" instance=ExtResource( 3 )]
 answer = "1"
 
-[node name="Q2Answer2" parent="Question5" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question5" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Q2Answer3" parent="Question5" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question5" instance=ExtResource( 3 )]
 answer = "8"
 
-[node name="Q2Answer4" parent="Question5" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question5" instance=ExtResource( 3 )]
 is_correct = true
 answer = "5"
 
 [node name="Question6" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a parallelogram have?"
+diagram = ExtResource( 8 )
 
-[node name="Q2Answer1" parent="Question6" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question6" instance=ExtResource( 3 )]
 answer = "3"
 
-[node name="Q2Answer2" parent="Question6" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question6" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer3" parent="Question6" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question6" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Q2Answer4" parent="Question6" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question6" instance=ExtResource( 3 )]
 answer = "17"
 
 [node name="Question7" parent="." instance=ExtResource( 1 )]
 question = "How many sides does a circle have?"
+diagram = ExtResource( 9 )
 
-[node name="Q2Answer1" parent="Question7" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question7" instance=ExtResource( 3 )]
 is_correct = true
 answer = "0"
 
-[node name="Q2Answer2" parent="Question7" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question7" instance=ExtResource( 3 )]
 answer = "3"
 
-[node name="Q2Answer3" parent="Question7" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question7" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q2Answer4" parent="Question7" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question7" instance=ExtResource( 3 )]
 answer = "7"
 
 [node name="Question8" parent="." instance=ExtResource( 1 )]
 question = "How many sides does a rhombus have?"
+diagram = ExtResource( 10 )
 
-[node name="Q2Answer1" parent="Question8" instance=ExtResource( 2 )]
+[node name="Q2Answer1" parent="Question8" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question8" instance=ExtResource( 2 )]
+[node name="Q2Answer2" parent="Question8" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer3" parent="Question8" instance=ExtResource( 2 )]
+[node name="Q2Answer3" parent="Question8" instance=ExtResource( 3 )]
 answer = "5"
 
-[node name="Q2Answer4" parent="Question8" instance=ExtResource( 2 )]
+[node name="Q2Answer4" parent="Question8" instance=ExtResource( 3 )]
 answer = "1"
 

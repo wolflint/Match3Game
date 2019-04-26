@@ -2,8 +2,9 @@ extends Control
 
 
 onready var question_database = $QuestionDatabase
-onready var question_label = $MarginContainer/VBoxContainer/Label
-onready var answer_buttons = [$MarginContainer/VBoxContainer/GridContainer/Button1, $MarginContainer/VBoxContainer/GridContainer/Button2, $MarginContainer/VBoxContainer/GridContainer/Button3, $MarginContainer/VBoxContainer/GridContainer/Button4]
+onready var question_label = $TextureRect/VBoxContainer/QuestionLbl
+onready var answer_buttons = $TextureRect/VBoxContainer/AnswerButtons.get_children()
+onready var shape_diagram = $TextureRect/VBoxContainer/HBoxContainer/ShapeDiagram
 var all_questions = []
 var used_questions = []
 var current_question
@@ -66,6 +67,7 @@ func get_answers(current_question):
 func update_label(current_question):
 	if current_question != null:
 		question_label.text = current_question.question
+		shape_diagram.texture = current_question.diagram
 
 func update_button_text(current_answers):
 	if current_answers != null:
