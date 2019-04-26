@@ -19,7 +19,7 @@ var speech_text = {
 		4: "You're a true shape-shifter!"
 	},
 	"negative": {
-		0: "Better luck next time!",
+		0: "The battery is empty, try the QUIZ!",
 		1: "You've got this! Try again.",
 		2: "That was close!",
 	},
@@ -57,8 +57,14 @@ func _on_Grid_print_positive_message():
 func _on_Grid_game_over():
 	game_over = true
 	randomize()
-	var rand = randi() % len(speech_text["negative"].values())
-	speech_label.text = speech_text["negative"][rand]
+	if GameDataManager.get_current_points() > 0:
+		# Random negative message excluding the one at index 0
+		var rand = (randi() % (len(speech_text["negative"].values()) - 1)) + 1
+		speech_label.text = speech_text["negative"][rand]
+	else:
+		# Battery empty message
+		speech_label.text = speech_text["negative"][0]
+
 	speech_bubble.show()
 	speech_timer.start()
 	yield(speech_timer, "timeout")

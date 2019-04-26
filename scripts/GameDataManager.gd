@@ -1,6 +1,5 @@
 extends Node
 
-
 signal points_changed()
 
 var save_data = {}

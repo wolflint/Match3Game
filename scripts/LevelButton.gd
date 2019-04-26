@@ -8,7 +8,9 @@ export (bool) var score_goal_met
 
 # Textures
 export (Texture) var blocked_texture
+export (Texture) var blocked_pressed_texture
 export (Texture) var open_texture
+export (Texture) var open_pressed_texture
 export (Texture) var goal_met
 export (Texture) var goal_not_met
 
@@ -27,8 +29,10 @@ func setup():
 	level_label.text = str(level)
 	if enabled:
 		button.texture_normal = open_texture
+		button.texture_pressed = open_pressed_texture
 	else:
 		button.texture_normal = blocked_texture
+		button.texture_pressed = blocked_pressed_texture
 
 	if score_goal_met:
 		star.texture = goal_met

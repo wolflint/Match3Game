@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/levels/GameWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://art/pieces/purple_tile.png" type="Texture" id=2]
 
 [node name="Level1" instance=ExtResource( 1 )]
 
@@ -11,4 +12,8 @@ max_piece_types = 3
 empty_spaces = PoolVector2Array(  )
 ice_spaces = PoolVector2Array(  )
 current_counter_value = 3
+
+[node name="Goal" parent="GoalHolder" index="0"]
+goal_texture = ExtResource( 2 )
+goal_string = "purple"
 

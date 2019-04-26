@@ -14,7 +14,7 @@
 [ext_resource path="res://scenes/GameWinPanel.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/GoalHolder.gd" type="Script" id=13]
 [ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=14]
-[ext_resource path="res://art/obstacles/Ice.png" type="Texture" id=15]
+[ext_resource path="res://art/pieces/blue_tile.png" type="Texture" id=15]
 [ext_resource path="res://scenes/PausePanel.tscn" type="PackedScene" id=16]
 
 [node name="GameWindow" type="Node2D"]
@@ -101,8 +101,8 @@ script = ExtResource( 13 )
 
 [node name="Goal" parent="GoalHolder" instance=ExtResource( 14 )]
 goal_texture = ExtResource( 15 )
-max_needed = 4
-goal_string = "ice"
+max_needed = 20
+goal_string = "blue"
 
 [node name="PausePanel" parent="." instance=ExtResource( 16 )]
 offset = Vector2( 576, -200 )
@@ -118,8 +118,8 @@ transform = Transform2D( 1, 0, 0, 1, 576, -200 )
 [connection signal="damage_ice" from="Grid" to="IceHolder" method="_on_Grid_damage_ice"]
 [connection signal="damage_lock" from="Grid" to="LockHolder" method="_on_Grid_damage_lock"]
 [connection signal="damage_slime" from="Grid" to="SlimeHolder" method="_on_Grid_damage_slime"]
-[connection signal="game_over" from="Grid" to="GameOverPanel" method="_on_Grid_game_over"]
 [connection signal="game_over" from="Grid" to="BottomUI" method="_on_Grid_game_over"]
+[connection signal="game_over" from="Grid" to="GameOverPanel" method="_on_Grid_game_over"]
 [connection signal="make_concrete" from="Grid" to="ConcreteHolder" method="_on_Grid_make_concrete"]
 [connection signal="make_ice" from="Grid" to="IceHolder" method="_on_Grid_make_ice"]
 [connection signal="make_lock" from="Grid" to="LockHolder" method="_on_Grid_make_lock"]

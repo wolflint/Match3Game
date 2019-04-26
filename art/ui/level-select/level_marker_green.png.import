@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green_btn2.png-99bca5ddbc92063b47a829e58093a0d5.stex"
+path="res://.import/level_marker_green.png-6ba767cf2a62876511f308525acf6080.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/level-select/green_btn2.png"
-dest_files=[ "res://.import/green_btn2.png-99bca5ddbc92063b47a829e58093a0d5.stex" ]
+source_file="res://art/ui/level-select/level_marker_green.png"
+dest_files=[ "res://.import/level_marker_green.png-6ba767cf2a62876511f308525acf6080.stex" ]
 
 [params]
 

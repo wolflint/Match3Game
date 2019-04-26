@@ -11,3 +11,6 @@ func _on_RestartButton_pressed():
 
 func _on_Grid_game_over():
 	slide_in()
+	yield($AnimationPlayer, "animation_finished")
+	if GameDataManager.get_current_points() <= 0:
+		$MarginContainer/TextureRect/HBoxContainer/RestartButton.set("disabled", true)

@@ -22,7 +22,7 @@ config/icon="res://art/ui/game_start_menu.png"
 [autoload]
 
 ConfigManager="*res://scripts/ConfigManager.gd"
-GameDataManager="*res://scripts/GameDataManager.gd"
+GameDataManager="*res://scenes/GameDataManager.tscn"
 
 [debug]
 

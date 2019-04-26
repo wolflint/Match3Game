@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/start_fill.png-e744394aafe3379c47a62a227e424eac.stex"
+path="res://.import/highscore_marker_empty.png-36b63d5f36a6de0f010362c2ce79ba8e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/level-select/start_fill.png"
-dest_files=[ "res://.import/start_fill.png-e744394aafe3379c47a62a227e424eac.stex" ]
+source_file="res://art/ui/level-select/highscore_marker_empty.png"
+dest_files=[ "res://.import/highscore_marker_empty.png-36b63d5f36a6de0f010362c2ce79ba8e.stex" ]
 
 [params]
 
