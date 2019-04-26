@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/LevelSelectScene.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
 [ext_resource path="res://scenes/LevelBackdrop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/ui/buttons/btn_home.png" type="Texture" id=4]
 [ext_resource path="res://art/ui/buttons/btn_home2.png" type="Texture" id=5]
+[ext_resource path="res://scenes/BatteryIndicator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://art/ui/battery_bg.png" type="Texture" id=7]
+[ext_resource path="res://art/ui/battery_fill.png" type="Texture" id=8]
+[ext_resource path="res://scripts/BatteryIndicator.gd" type="Script" id=9]
 
 [node name="LevelSelectScene" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -51,5 +55,24 @@ texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+margin_left = 465.0
+margin_top = 955.0
+margin_right = 685.0
+margin_bottom = 1083.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="BatteryIndicator" type="TextureProgress" parent="TextureRect/MarginContainer" instance=ExtResource( 6 )]
+margin_right = 220.0
+margin_bottom = 128.0
+max_value = 10.0
+value = 10.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [connection signal="pressed" from="TextureRect/Home" to="." method="_on_TextureButton_pressed"]

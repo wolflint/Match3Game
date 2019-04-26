@@ -13,145 +13,436 @@
 
 [node name="QuestionDatabase" type="Node"]
 
-[node name="Question1" parent="." instance=ExtResource( 1 )]
+[node name="Square1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a square have?"
 diagram = ExtResource( 2 )
 
-[node name="Q1Answer1" parent="Question1" instance=ExtResource( 3 )]
+[node name="A1" parent="Square1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q1Answer2" parent="Question1" instance=ExtResource( 3 )]
+[node name="A2" parent="Square1" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q1Answer3" parent="Question1" instance=ExtResource( 3 )]
+[node name="A3" parent="Square1" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q1Answer4" parent="Question1" instance=ExtResource( 3 )]
+[node name="A4" parent="Square1" instance=ExtResource( 3 )]
 answer = "3"
 
-[node name="Question2" parent="." instance=ExtResource( 1 )]
+[node name="Square2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a square have?"
+diagram = ExtResource( 2 )
+
+[node name="A1" parent="Square2" instance=ExtResource( 3 )]
+answer = "8"
+
+[node name="A2" parent="Square2" instance=ExtResource( 3 )]
+answer = "6"
+
+[node name="A3" parent="Square2" instance=ExtResource( 3 )]
+answer = "2"
+
+[node name="A4" parent="Square2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "4"
+
+[node name="Square3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this square?"
+diagram = ExtResource( 2 )
+
+[node name="A1" parent="Square3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Blue"
+
+[node name="A2" parent="Square3" instance=ExtResource( 3 )]
+answer = "Yellow"
+
+[node name="A3" parent="Square3" instance=ExtResource( 3 )]
+answer = "Purple"
+
+[node name="A4" parent="Square3" instance=ExtResource( 3 )]
+answer = "Pink"
+
+[node name="Triangle1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a triangle have?"
 diagram = ExtResource( 4 )
 
-[node name="Q2Answer1" parent="Question2" instance=ExtResource( 3 )]
+[node name="A1" parent="Triangle1" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question2" instance=ExtResource( 3 )]
+[node name="A2" parent="Triangle1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "3"
 
-[node name="Q2Answer3" parent="Question2" instance=ExtResource( 3 )]
+[node name="A3" parent="Triangle1" instance=ExtResource( 3 )]
 answer = "5"
 
-[node name="Q2Answer4" parent="Question2" instance=ExtResource( 3 )]
+[node name="A4" parent="Triangle1" instance=ExtResource( 3 )]
 answer = "1"
 
-[node name="Question3" parent="." instance=ExtResource( 1 )]
+[node name="Triangle2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a triangle have?"
+diagram = ExtResource( 4 )
+
+[node name="A1" parent="Triangle2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "3"
+
+[node name="A2" parent="Triangle2" instance=ExtResource( 3 )]
+answer = "2"
+
+[node name="A3" parent="Triangle2" instance=ExtResource( 3 )]
+answer = "5"
+
+[node name="A4" parent="Triangle2" instance=ExtResource( 3 )]
+answer = "1"
+
+[node name="Triangle3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this triangle?"
+diagram = ExtResource( 4 )
+
+[node name="A1" parent="Triangle3" instance=ExtResource( 3 )]
+answer = "Pink"
+
+[node name="A2" parent="Triangle3" instance=ExtResource( 3 )]
+answer = "Yellow"
+
+[node name="A3" parent="Triangle3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Red"
+
+[node name="A4" parent="Triangle3" instance=ExtResource( 3 )]
+answer = "Green"
+
+[node name="Rectangle1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a rectangle have?"
 diagram = ExtResource( 5 )
 
-[node name="Q2Answer1" parent="Question3" instance=ExtResource( 3 )]
+[node name="A1" parent="Rectangle1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer2" parent="Question3" instance=ExtResource( 3 )]
+[node name="A2" parent="Rectangle1" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q2Answer3" parent="Question3" instance=ExtResource( 3 )]
+[node name="A3" parent="Rectangle1" instance=ExtResource( 3 )]
 answer = "9"
 
-[node name="Q2Answer4" parent="Question3" instance=ExtResource( 3 )]
+[node name="A4" parent="Rectangle1" instance=ExtResource( 3 )]
 answer = "10"
 
-[node name="Question4" parent="." instance=ExtResource( 1 )]
+[node name="Rectangle2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a rectangle have?"
+diagram = ExtResource( 5 )
+
+[node name="A1" parent="Rectangle2" instance=ExtResource( 3 )]
+answer = "5"
+
+[node name="A2" parent="Rectangle2" instance=ExtResource( 3 )]
+answer = "6"
+
+[node name="A3" parent="Rectangle2" instance=ExtResource( 3 )]
+answer = "9"
+
+[node name="A4" parent="Rectangle2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "4"
+
+[node name="Rectangle3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this rectangle?"
+diagram = ExtResource( 5 )
+
+[node name="A1" parent="Rectangle3" instance=ExtResource( 3 )]
+answer = "Red"
+
+[node name="A2" parent="Rectangle3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Green"
+
+[node name="A3" parent="Rectangle3" instance=ExtResource( 3 )]
+answer = "Blue"
+
+[node name="A4" parent="Rectangle3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Yellow"
+
+[node name="Hexagon1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a hexagon have?"
 diagram = ExtResource( 6 )
 
-[node name="Q2Answer1" parent="Question4" instance=ExtResource( 3 )]
+[node name="A1" parent="Hexagon1" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question4" instance=ExtResource( 3 )]
+[node name="A2" parent="Hexagon1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "6"
 
-[node name="Q2Answer3" parent="Question4" instance=ExtResource( 3 )]
+[node name="A3" parent="Hexagon1" instance=ExtResource( 3 )]
 answer = "8"
 
-[node name="Q2Answer4" parent="Question4" instance=ExtResource( 3 )]
+[node name="A4" parent="Hexagon1" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Question5" parent="." instance=ExtResource( 1 )]
+[node name="Hexagon2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a hexagon have?"
+diagram = ExtResource( 6 )
+
+[node name="A1" parent="Hexagon2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "6"
+
+[node name="A2" parent="Hexagon2" instance=ExtResource( 3 )]
+answer = "2"
+
+[node name="A3" parent="Hexagon2" instance=ExtResource( 3 )]
+answer = "8"
+
+[node name="A4" parent="Hexagon2" instance=ExtResource( 3 )]
+answer = "7"
+
+[node name="Hexagon3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What is the colour of this hexagon?"
+diagram = ExtResource( 6 )
+
+[node name="A1" parent="Hexagon3" instance=ExtResource( 3 )]
+answer = "Pink"
+
+[node name="A2" parent="Hexagon3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Purple"
+
+[node name="A3" parent="Hexagon3" instance=ExtResource( 3 )]
+answer = "Orange"
+
+[node name="A4" parent="Hexagon3" instance=ExtResource( 3 )]
+answer = "Red"
+
+[node name="Pentagon1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a pentagon have?"
 diagram = ExtResource( 7 )
 
-[node name="Q2Answer1" parent="Question5" instance=ExtResource( 3 )]
+[node name="A1" parent="Pentagon1" instance=ExtResource( 3 )]
 answer = "1"
 
-[node name="Q2Answer2" parent="Question5" instance=ExtResource( 3 )]
+[node name="A2" parent="Pentagon1" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Q2Answer3" parent="Question5" instance=ExtResource( 3 )]
+[node name="A3" parent="Pentagon1" instance=ExtResource( 3 )]
 answer = "8"
 
-[node name="Q2Answer4" parent="Question5" instance=ExtResource( 3 )]
+[node name="A4" parent="Pentagon1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "5"
 
-[node name="Question6" parent="." instance=ExtResource( 1 )]
+[node name="Pentagon2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a pentagon have?"
+diagram = ExtResource( 7 )
+
+[node name="A1" parent="Pentagon2" instance=ExtResource( 3 )]
+answer = "1"
+
+[node name="A2" parent="Pentagon2" instance=ExtResource( 3 )]
+answer = "7"
+
+[node name="A3" parent="Pentagon2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "5"
+
+[node name="A4" parent="Pentagon2" instance=ExtResource( 3 )]
+answer = "8"
+
+[node name="Pentagon3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this pentagon?"
+diagram = ExtResource( 7 )
+
+[node name="A1" parent="Pentagon3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Orange"
+
+[node name="A2" parent="Pentagon3" instance=ExtResource( 3 )]
+answer = "Red"
+
+[node name="A3" parent="Pentagon3" instance=ExtResource( 3 )]
+answer = "Yellow"
+
+[node name="A4" parent="Pentagon3" instance=ExtResource( 3 )]
+answer = "Blue"
+
+[node name="Parallelogram1" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
 question = "How many sides does a parallelogram have?"
 diagram = ExtResource( 8 )
 
-[node name="Q2Answer1" parent="Question6" instance=ExtResource( 3 )]
+[node name="A1" parent="Parallelogram1" instance=ExtResource( 3 )]
 answer = "3"
 
-[node name="Q2Answer2" parent="Question6" instance=ExtResource( 3 )]
+[node name="A2" parent="Parallelogram1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer3" parent="Question6" instance=ExtResource( 3 )]
+[node name="A3" parent="Parallelogram1" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Q2Answer4" parent="Question6" instance=ExtResource( 3 )]
+[node name="A4" parent="Parallelogram1" instance=ExtResource( 3 )]
 answer = "17"
 
-[node name="Question7" parent="." instance=ExtResource( 1 )]
+[node name="Parallelogram2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a parallelogram have?"
+diagram = ExtResource( 8 )
+
+[node name="A1" parent="Parallelogram2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "4"
+
+[node name="A2" parent="Parallelogram2" instance=ExtResource( 3 )]
+answer = "3"
+
+[node name="A3" parent="Parallelogram2" instance=ExtResource( 3 )]
+answer = "7"
+
+[node name="A4" parent="Parallelogram2" instance=ExtResource( 3 )]
+answer = "17"
+
+[node name="Parallelogram3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this parallelogram?"
+diagram = ExtResource( 8 )
+
+[node name="A1" parent="Parallelogram3" instance=ExtResource( 3 )]
+answer = "Red"
+
+[node name="A2" parent="Parallelogram3" instance=ExtResource( 3 )]
+answer = "Orange"
+
+[node name="A3" parent="Parallelogram3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Pink"
+
+[node name="A4" parent="Parallelogram3" instance=ExtResource( 3 )]
+answer = "Purple"
+
+[node name="Circle1" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 question = "How many sides does a circle have?"
 diagram = ExtResource( 9 )
 
-[node name="Q2Answer1" parent="Question7" instance=ExtResource( 3 )]
+[node name="A1" parent="Circle1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "0"
 
-[node name="Q2Answer2" parent="Question7" instance=ExtResource( 3 )]
+[node name="A2" parent="Circle1" instance=ExtResource( 3 )]
 answer = "3"
 
-[node name="Q2Answer3" parent="Question7" instance=ExtResource( 3 )]
+[node name="A3" parent="Circle1" instance=ExtResource( 3 )]
 answer = "6"
 
-[node name="Q2Answer4" parent="Question7" instance=ExtResource( 3 )]
+[node name="A4" parent="Circle1" instance=ExtResource( 3 )]
 answer = "7"
 
-[node name="Question8" parent="." instance=ExtResource( 1 )]
+[node name="Circle2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a circle have?"
+diagram = ExtResource( 9 )
+
+[node name="A1" parent="Circle2" instance=ExtResource( 3 )]
+answer = "6"
+
+[node name="A2" parent="Circle2" instance=ExtResource( 3 )]
+answer = "3"
+
+[node name="A3" parent="Circle2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "0"
+
+[node name="A4" parent="Circle2" instance=ExtResource( 3 )]
+answer = "7"
+
+[node name="Circle3" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "What colour is this circle?"
+diagram = ExtResource( 9 )
+
+[node name="A1" parent="Circle3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Green"
+
+[node name="A2" parent="Circle3" instance=ExtResource( 3 )]
+answer = "Blue"
+
+[node name="A3" parent="Circle3" instance=ExtResource( 3 )]
+answer = "Yellow"
+
+[node name="A4" parent="Circle3" instance=ExtResource( 3 )]
+answer = "Purple"
+
+[node name="Rhombus1" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 question = "How many sides does a rhombus have?"
 diagram = ExtResource( 10 )
 
-[node name="Q2Answer1" parent="Question8" instance=ExtResource( 3 )]
+[node name="A1" parent="Rhombus1" instance=ExtResource( 3 )]
 answer = "2"
 
-[node name="Q2Answer2" parent="Question8" instance=ExtResource( 3 )]
+[node name="A2" parent="Rhombus1" instance=ExtResource( 3 )]
 is_correct = true
 answer = "4"
 
-[node name="Q2Answer3" parent="Question8" instance=ExtResource( 3 )]
+[node name="A3" parent="Rhombus1" instance=ExtResource( 3 )]
 answer = "5"
 
-[node name="Q2Answer4" parent="Question8" instance=ExtResource( 3 )]
+[node name="A4" parent="Rhombus1" instance=ExtResource( 3 )]
 answer = "1"
+
+[node name="Rhombus2" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
+question = "How many vertices does a rhombus have?"
+diagram = ExtResource( 10 )
+
+[node name="A1" parent="Rhombus2" instance=ExtResource( 3 )]
+answer = "2"
+
+[node name="A2" parent="Rhombus2" instance=ExtResource( 3 )]
+answer = "1"
+
+[node name="A3" parent="Rhombus2" instance=ExtResource( 3 )]
+answer = "5"
+
+[node name="A4" parent="Rhombus2" instance=ExtResource( 3 )]
+is_correct = true
+answer = "4"
+
+[node name="Rhombus3" parent="." instance=ExtResource( 1 )]
+question = "What colour is this rhombus?"
+diagram = ExtResource( 10 )
+
+[node name="A1" parent="Rhombus3" instance=ExtResource( 3 )]
+answer = "Orange"
+
+[node name="A2" parent="Rhombus3" instance=ExtResource( 3 )]
+answer = "Purple"
+
+[node name="A3" parent="Rhombus3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Yellow"
+
+[node name="A4" parent="Rhombus3" instance=ExtResource( 3 )]
+is_correct = true
+answer = "Red"
 

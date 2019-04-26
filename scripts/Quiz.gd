@@ -16,8 +16,12 @@ const MERIT = 0.7
 const DISTINCTION = 1.0
 
 func _ready():
-	for i in question_database.get_child_count():
-		all_questions.append(question_database.get_child(i))
+	while len(all_questions) < 5:
+		randomize()
+		var rand = randi() % len(question_database.get_children())
+		if all_questions.has(question_database.get_child(rand)):
+			continue
+		all_questions.append(question_database.get_child(rand))
 
 	current_question = get_question()
 	current_answers = get_answers(current_question)
@@ -33,9 +37,9 @@ func get_question():
 
 		var result = float(score / total_questions)
 		if result == DISTINCTION:
-			GameDataManager.add_points(5)
-		elif result >= MERIT:
 			GameDataManager.add_points(3)
+		elif result >= MERIT:
+			GameDataManager.add_points(2)
 		elif result >= PASS:
 			GameDataManager.add_points(1)
 		print("Current Points: " + str(GameDataManager.get_current_points()))
