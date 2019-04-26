@@ -71,9 +71,11 @@ var controlling = false
 signal update_score
 signal setup_max_score
 signal maximum_streak_reached
+
 export(int) var max_score
 export (int) var piece_value
 var streak = 1
+var score_goal_met = false
 
 # Counter variables
 signal update_counter
@@ -934,6 +936,10 @@ func _on_GoalHolder_game_win():
 	goals_met = true
 	destroy_hint()
 	$Timer.stop()
+	if score_goal_met:
+		GameDataManager.save_data["level_data"][get_parent().level]["star_unlocked"] = true
+	if GameDataManager.save_data["level_data"].has(get_parent().level + 1):
+		GameDataManager.save_data["level_data"][get_parent().level + 1]["unlocked"] = true
 	GameDataManager.save_data()
 
 func _on_ShuffleTimer_timeout():
@@ -960,3 +966,7 @@ func _on_BottomUI_random_color_bomb():
 
 func _on_HintTimer_timeout():
 	generate_hint()
+
+
+func _on_TopUI_score_goal_met() -> void:
+	score_goal_met = true

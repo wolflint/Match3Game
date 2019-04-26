@@ -23,6 +23,7 @@ config/icon="res://art/ui/game_start_menu.png"
 
 ConfigManager="*res://scripts/ConfigManager.gd"
 GameDataManager="*res://scenes/GameDataManager.tscn"
+Music="*res://scenes/Music.tscn"
 
 [debug]
 

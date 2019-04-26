@@ -8,7 +8,7 @@ var default_save_data = {
 		1: {
 			"unlocked": true,
 			"highscore": 0,
-			"stars_unlocked": 0
+			"star_unlocked": false
 		}
 	},
 	"points": 1,

@@ -4,7 +4,7 @@ extends Node2D
 export (int) var level
 export (String) var level_to_load
 export (bool) var enabled
-export (bool) var score_goal_met
+export (bool) var score_goal_met = false
 
 # Textures
 export (Texture) var blocked_texture
@@ -21,6 +21,7 @@ onready var star = $Sprite
 func _ready() -> void:
 	if GameDataManager.save_data["level_data"].has(level):
 		enabled = GameDataManager.save_data["level_data"][level]["unlocked"]
+		score_goal_met = GameDataManager.save_data["level_data"][level]["star_unlocked"]
 	else:
 		enabled = false
 	setup()

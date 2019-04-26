@@ -8,6 +8,7 @@ export (Texture) var sound_off_texture
 
 func _on_Button1_pressed():
 	ConfigManager.sound_on = !ConfigManager.sound_on
+	Music.playing = ConfigManager.sound_on
 	change_sound_texture()
 	ConfigManager.save_config()
 
