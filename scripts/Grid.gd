@@ -68,7 +68,7 @@ var final_touch = Vector2(0, 0)
 var controlling = false
 
 # Scoring variables
-signal update_score
+signal update_score(value, is_final)
 signal setup_max_score
 signal maximum_streak_reached
 
@@ -675,17 +675,17 @@ func after_refill():
 #	just_matched_in_row = false
 	if goals_met:
 		$Timer.stop()
+		emit_signal("update_score", piece_value * current_counter_value, true)
 		emit_signal("open_game_win_panel")
 	if is_deadlocked():
 		$ShuffleTimer.start()
 	if is_moves:
+		current_counter_value -= 1
+		emit_signal("update_counter")
+	if current_counter_value == 0:
 		if state != game_win:
-			current_counter_value -= 1
-			emit_signal("update_counter")
-			if current_counter_value == 0:
-				declare_game_over()
-			else:
-				state = move
+			declare_game_over()
+	state = move
 	$HintTimer.start()
 
 func generate_slime():
@@ -938,9 +938,11 @@ func _on_GoalHolder_game_win():
 	$Timer.stop()
 	if score_goal_met:
 		GameDataManager.save_data["level_data"][get_parent().level]["star_unlocked"] = true
+		print("score_goal_met and saved")
 	if GameDataManager.save_data["level_data"].has(get_parent().level + 1):
 		GameDataManager.save_data["level_data"][get_parent().level + 1]["unlocked"] = true
 	GameDataManager.save_data()
+#	get_tree().paused = true
 
 func _on_ShuffleTimer_timeout():
 	shuffle_board()

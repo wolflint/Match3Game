@@ -3,6 +3,7 @@ extends Control
 signal read_sound
 
 func _ready():
+	GameDataManager.add_points(5)
 	$GameStartMenu.slide_in()
 	print("Current points: " + str(GameDataManager.get_current_points()))
 

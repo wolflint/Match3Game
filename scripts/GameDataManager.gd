@@ -9,7 +9,83 @@ var default_save_data = {
 			"unlocked": true,
 			"highscore": 0,
 			"star_unlocked": false
-		}
+		},
+		2: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		3: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		4: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		5: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		6: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		7: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		8: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		9: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		10: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		11: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		12: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		13: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		14: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		15: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+		16: {
+			"unlocked": false,
+			"highscore": 0,
+			"star_unlocked": false
+		},
+
 	},
 	"points": 1,
 }

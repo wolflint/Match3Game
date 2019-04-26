@@ -15,10 +15,13 @@ signal score_goal_met
 func _ready():
 	_on_Grid_update_score(current_score)
 
-func _on_Grid_update_score(amount_to_change):
+func _on_Grid_update_score(amount_to_change, is_final = false):
 	current_score += amount_to_change
 	update_score_bar()
 	score_label.text = str(current_score)
+	if is_final == true:
+		emit_signal("final_score", current_score)
+	print(current_score)
 
 
 func _on_Grid_update_counter(amount_to_change = -1):
@@ -30,7 +33,7 @@ func setup_score_bar(max_score):
 
 func update_score_bar():
 	score_bar.value = current_score
-	if score_bar.value == score_bar.max_value:
+	if current_score >= score_bar.max_value:
 		emit_signal("score_goal_met")
 
 func make_goal(new_max, new_texture, new_value):
@@ -55,5 +58,5 @@ func _on_IceHolder_break_ice(goal_type):
 	for i in goal_container.get_child_count():
 		goal_container.get_child(i).update_goal_values(goal_type)
 
-func _on_Grid_open_game_win_panel():
-	emit_signal("final_score", current_score)
+#func _on_Grid_open_game_win_panel():
+#	emit_signal("final_score", current_score)

@@ -4,6 +4,7 @@
 
 [node name="Level1" instance=ExtResource( 1 )]
 level = 1
+next_level = "res://scenes/levels/Level2.tscn"
 
 [node name="Grid" parent="." index="3"]
 height = 8
