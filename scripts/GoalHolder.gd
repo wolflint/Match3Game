@@ -22,7 +22,7 @@ func goals_met():
 	for i in get_child_count():
 		if !get_child(i).goal_met:
 			return false
-		return true
+	return true
 
 func check_game_win():
 	if goals_met():

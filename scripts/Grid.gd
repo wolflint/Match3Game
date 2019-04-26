@@ -323,7 +323,7 @@ func is_color_bomb(piece):
 func spawn_ice():
 	if ice_spaces != null:
 		for i in ice_spaces.size():
-			emit_signal("make_ice", ice_spaces[i])
+			emit_signal("make_ice", ice_spaces[i], offset, x_start, y_start)
 
 func spawn_locks():
 	if lock_spaces != null:

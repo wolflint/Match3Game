@@ -23,7 +23,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ScrollContainer"]
 margin_right = 576.0
-margin_bottom = 2048.0
+margin_bottom = 1024.0
 custom_constants/separation = 0
 
 [node name="LevelBackdrop" parent="TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -31,13 +31,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 576.0
 margin_bottom = 1024.0
-
-[node name="LevelBackdrop2" parent="TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 1024.0
-margin_right = 576.0
-margin_bottom = 2048.0
 
 [node name="Home" type="TextureButton" parent="TextureRect"]
 anchor_top = 1.0
