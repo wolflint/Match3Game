@@ -6,7 +6,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimationPlayer.play("slide_in")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -14,8 +14,12 @@ func _ready():
 
 
 func _on_Back_pressed():
+	$AnimationPlayer.play_backwards("slide_in")
+	yield($AnimationPlayer, "animation_finished")
 	get_tree().change_scene("res://scenes/ShapeSelection.tscn")
 
 
 func _on_Home_pressed():
+	$AnimationPlayer.play_backwards("slide_in")
+	yield($AnimationPlayer, "animation_finished")
 	get_tree().change_scene("res://scenes/GameMenu.tscn")

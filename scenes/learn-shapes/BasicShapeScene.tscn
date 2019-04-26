@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/BasicShapeScene.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://art/characters/teacher.png" type="Texture" id=5]
 [ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://art/ui/buttons/btn_back1.png" type="Texture" id=7]
-[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=8]
+[ext_resource path="res://art/ui/buttons/btn_home.png" type="Texture" id=8]
+[ext_resource path="res://art/ui/buttons/btn_home2.png" type="Texture" id=9]
+[ext_resource path="res://animations/slide_in.tres" type="Animation" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -97,8 +99,12 @@ margin_right = 388.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
 expand = true
 stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_in = ExtResource( 10 )
 
 [connection signal="pressed" from="VBoxContainer/Navigation/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navigation/Home" to="." method="_on_Home_pressed"]

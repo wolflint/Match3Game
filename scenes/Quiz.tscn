@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Quiz.gd" type="Script" id=1]
 [ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://art/characters/mechanic.png" type="Texture" id=5]
 [ext_resource path="res://quiz_btn.tres" type="StyleBox" id=6]
 [ext_resource path="res://fonts/OpenSans-SemiBold.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://art/ui/buttons/btn_back2.png" type="Texture" id=8]
+[ext_resource path="res://art/ui/buttons/btn_home.png" type="Texture" id=8]
+[ext_resource path="res://art/ui/buttons/btn_home2.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -144,6 +145,7 @@ margin_right = 318.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
 expand = true
 stretch_mode = 4
 
