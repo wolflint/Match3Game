@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/LevelButton.gd" type="Script" id=1]
+[ext_resource path="res://art/ui/level-select/level_marker_red.png" type="Texture" id=2]
+[ext_resource path="res://art/ui/level-select/level_marker_red2.png" type="Texture" id=3]
+[ext_resource path="res://art/ui/level-select/level_marker_green.png" type="Texture" id=4]
+[ext_resource path="res://art/ui/level-select/level_marker_green2.png" type="Texture" id=5]
+[ext_resource path="res://art/ui/level-select/highscore_marker_filled.png" type="Texture" id=6]
+[ext_resource path="res://art/ui/level-select/highscore_marker_empty.png" type="Texture" id=7]
+[ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+font_data = ExtResource( 8 )
+
+[node name="LevelButton" type="Node2D"]
+script = ExtResource( 1 )
+blocked_texture = ExtResource( 2 )
+blocked_pressed_texture = ExtResource( 3 )
+open_texture = ExtResource( 4 )
+open_pressed_texture = ExtResource( 5 )
+goal_met = ExtResource( 6 )
+goal_not_met = ExtResource( 7 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -48.0
+margin_top = -49.0
+margin_right = 48.0
+margin_bottom = 49.0
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "123"
+align = 1
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 72.0882 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 7 )
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

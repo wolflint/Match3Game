@@ -13,7 +13,6 @@ var is_colour_bomb = false
 
 var move_tween;
 var matched = false
-
 func _ready():
 	move_tween = $Move_Tween
 

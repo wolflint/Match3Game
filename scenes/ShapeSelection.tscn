@@ -1,0 +1,170 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/ShapeSelection.gd" type="Script" id=1]
+[ext_resource path="res://art/ui/backgrounds/bg_space.png" type="Texture" id=2]
+[ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://art/pieces/blue_tile.png" type="Texture" id=4]
+[ext_resource path="res://art/pieces/lgreen_tile.png" type="Texture" id=5]
+[ext_resource path="res://art/pieces/red_tile.png" type="Texture" id=6]
+[ext_resource path="res://art/pieces/yellow_tile.png" type="Texture" id=7]
+[ext_resource path="res://art/pieces/green_tile.png" type="Texture" id=8]
+[ext_resource path="res://art/pieces/orange_tile.png" type="Texture" id=9]
+[ext_resource path="res://art/pieces/purple_tile.png" type="Texture" id=10]
+[ext_resource path="res://art/pieces/pink_tile.png" type="Texture" id=11]
+[ext_resource path="res://art/ui/buttons/btn_home.png" type="Texture" id=12]
+[ext_resource path="res://art/ui/buttons/btn_home2.png" type="Texture" id=13]
+[ext_resource path="res://animations/slide_in.tres" type="Animation" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 3 )
+
+[node name="ShapeSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 576.0
+margin_right = 576.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 269.0
+margin_right = 576.0
+margin_bottom = 332.0
+custom_fonts/font = SubResource( 1 )
+text = "Select a Shape:
+"
+align = 1
+valign = 1
+
+[node name="Shapes" type="GridContainer" parent="VBoxContainer"]
+margin_top = 336.0
+margin_right = 576.0
+margin_bottom = 920.0
+custom_constants/vseparation = 24
+columns = 2
+
+[node name="Square" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 79.0
+margin_right = 207.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Circle" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 369.0
+margin_right = 497.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="Triangle" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 79.0
+margin_top = 152.0
+margin_right = 207.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Rhombus" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 369.0
+margin_top = 152.0
+margin_right = 497.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="Rectangle" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 79.0
+margin_top = 304.0
+margin_right = 207.0
+margin_bottom = 432.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="Pentagon" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 369.0
+margin_top = 304.0
+margin_right = 497.0
+margin_bottom = 432.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Hexagon" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 79.0
+margin_top = 456.0
+margin_right = 207.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="Parallelogram" type="TextureButton" parent="VBoxContainer/Shapes"]
+margin_left = 369.0
+margin_top = 456.0
+margin_right = 497.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 11 )
+expand = true
+stretch_mode = 5
+
+[node name="Navigation" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 924.0
+margin_right = 576.0
+margin_bottom = 1024.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Home" type="TextureButton" parent="VBoxContainer/Navigation"]
+margin_left = 238.0
+margin_right = 338.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+expand = true
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_in = ExtResource( 14 )
+
+[connection signal="pressed" from="VBoxContainer/Navigation/Home" to="." method="_on_Home_pressed"]

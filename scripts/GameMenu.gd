@@ -1,24 +1,41 @@
 extends Control
 
+signal read_sound
+
 func _ready():
-	# Main menu panel active
-	$Main.slide_in()
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-
-func _on_Main_settings_pressed():
-	$Main.slide_out()
-	$SettingsMenu.slide_in()
-
+	$GameStartMenu.slide_in()
+#	print("Current points: " + str(GameDataManager.get_current_points()))
+	print(GameDataManager.save_data)
 
 func _on_SettingsMenu_back_button():
 	$SettingsMenu.slide_out()
-	$Main.slide_in()
+	$GameStartMenu.slide_in()
+
+func _on_GameStartMenu_play_button_pressed():
+	get_tree().change_scene("res://scenes/LevelSelectScene.tscn")
+	queue_free()
 
 
-func _on_Main_play_pressed():
-	get_tree().change_scene("res://scenes/GameWindow.tscn")
+func _on_GameStartMenu_learn_button_pressed():
+	$GameStartMenu.slide_out()
+	$LearnMenu.slide_in()
+
+
+func _on_GameStartMenu_settings_button_pressed():
+	emit_signal("read_sound")
+	$GameStartMenu.slide_out()
+	$SettingsMenu.slide_in()
+
+func _on_LearnMenu_learn_button_pressed():
+	get_tree().change_scene("res://scenes/ShapeSelection.tscn")
+
+func _on_LearnMenu_quiz_button_pressed():
+	get_tree().change_scene("res://scenes/Quiz.tscn")
+
+func _on_SettingsMenu_sound_changed() -> void:
+	ConfigManager.sound_on = !ConfigManager.sound_on
+
+
+func _on_LearnMenu_back_button_pressed():
+	$LearnMenu.slide_out()
+	$GameStartMenu.slide_in()

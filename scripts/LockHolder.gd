@@ -20,12 +20,12 @@ func make_2d_array():
 	return array
 
 
-func _on_Grid_make_lock(board_position):
+func _on_Grid_make_lock(board_position, offset, x_start, y_start):
 	if lock_pieces.size() == 0:
 		lock_pieces = make_2d_array()
 	var current = lock.instance()
 	add_child(current)
-	current.position = Vector2(board_position.x * 64 + 64, -board_position.y * 64 + 800)
+	current.position = Vector2(board_position.x * offset + x_start, -board_position.y * offset + y_start)
 	lock_pieces[board_position.x][board_position.y] = current
 
 

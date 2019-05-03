@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/levels/GameWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/pieces/lgreen_tile.png" type="Texture" id=3]
+
+[node name="Level4" instance=ExtResource( 1 )]
+level = 4
+next_level = "res://scenes/levels/Level5.tscn"
+
+[node name="Grid" parent="." index="3"]
+height = 8
+y_start = 736
+empty_spaces = PoolVector2Array(  )
+ice_spaces = PoolVector2Array(  )
+max_score = 3500
+current_counter_value = 30
+
+[node name="Goal2" parent="GoalHolder" index="1" instance=ExtResource( 2 )]
+goal_texture = ExtResource( 3 )
+max_needed = 10
+goal_string = "lightGreen"
+
