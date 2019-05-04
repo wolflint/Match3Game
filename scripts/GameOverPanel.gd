@@ -10,6 +10,7 @@ func _on_RestartButton_pressed():
 	get_tree().reload_current_scene()
 
 func _on_Grid_game_over():
+	get_tree().paused = true
 	slide_in()
 	yield($AnimationPlayer, "animation_finished")
 	if GameDataManager.get_current_points() <= 0:

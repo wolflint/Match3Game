@@ -41,7 +41,6 @@ transform = Transform2D( 1, 0, 0, 1, 576, 0 )
 [node name="LearnMenu" parent="." instance=ExtResource( 6 )]
 offset = Vector2( 576, 0 )
 transform = Transform2D( 1, 0, 0, 1, 576, 0 )
-
 [connection signal="read_sound" from="." to="SettingsMenu" method="_on_GameMenu_read_sound"]
 [connection signal="learn_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_learn_button_pressed"]
 [connection signal="play_button_pressed" from="GameStartMenu" to="." method="_on_GameStartMenu_play_button_pressed"]

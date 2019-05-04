@@ -2,7 +2,7 @@ extends Node
 
 signal points_changed()
 
-onready var path = "res://save.dat"
+onready var path = "user://save.dat"
 var save_data = {}
 var default_save_data = {
 	"level_data": {

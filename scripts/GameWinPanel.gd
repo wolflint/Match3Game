@@ -8,6 +8,8 @@ func _on_TopUI_final_score(score):
 
 func _on_Grid_open_game_win_panel():
 	slide_in()
+	get_tree().paused = true
+	
 
 
 func _on_Quit_pressed() -> void:

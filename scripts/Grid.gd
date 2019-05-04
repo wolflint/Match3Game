@@ -1013,8 +1013,6 @@ func _on_Grid_maximum_streak_reached():
 	clear_board()
 
 func _on_GoalHolder_game_win():
-
-	var score_goal_met = yield(get_parent().get_node("TopUI"), "score_goal_met")
 	state = game_win
 	goals_met = true
 	destroy_hint()

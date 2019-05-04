@@ -6,7 +6,7 @@
 [ext_resource path="res://art/pieces/lgreen_tile.png" type="Texture" id=4]
 [ext_resource path="res://art/pieces/yellow_tile.png" type="Texture" id=5]
 
-[node name="Level6" index="0" instance=ExtResource( 1 )]
+[node name="Level6" instance=ExtResource( 1 )]
 level = 6
 next_level = "res://scenes/levels/Level7.tscn"
 
@@ -20,7 +20,6 @@ current_counter_value = 30
 
 [node name="Goal" parent="GoalHolder" index="0"]
 goal_texture = ExtResource( 2 )
-max_needed = 10
 goal_string = "red"
 
 [node name="Goal2" parent="GoalHolder" index="1" instance=ExtResource( 3 )]
@@ -32,4 +31,3 @@ goal_string = "lightGreen"
 goal_texture = ExtResource( 5 )
 max_needed = 10
 goal_string = "yellow"
-

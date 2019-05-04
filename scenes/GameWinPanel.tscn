@@ -71,6 +71,5 @@ stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/slide_in = ExtResource( 8 )
-
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/Continue" to="." method="_on_Continue_pressed"]
