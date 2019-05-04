@@ -1,2 +1,2 @@
-# Match3Game
-A game like candy crush developed in Godot following https://www.youtube.com/playlist?list=PL4vbr3u7UKWqwQlvwvgNcgDL1p_3hcNn2
+# Shape-Shift
+An educational match 3 type game which teaches key stage 1 pupils the basics of colours and geometry.
